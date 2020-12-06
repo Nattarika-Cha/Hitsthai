@@ -1,14 +1,22 @@
-import logo from './img/Close.png';
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./template/Header";
+import Footer from "./template/Footer";
+import Routing from "./routes";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="logo"  width="70%"/> 
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Router>
+            <Header />
+            <Routing />
+            <Footer />
+          </Router>
+        </header>
+      </div>
+    );
+  }
 }
-
-export default App;
