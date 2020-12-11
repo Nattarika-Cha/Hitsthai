@@ -30,7 +30,7 @@ export default class App extends Component {
             {/* <Header id="layout-header" > <PageHeader /> </Header> */}
             {/* <PageHeader /> */}
             <Content> <Routing /> </Content>
-            <Footer style={{ textAlign: 'center' }}><PageFooter /></Footer>
+            <Footer style={{ textAlign: 'center'}}><PageFooter /></Footer>
           </Router>
         </Layout>
       </Layout>
