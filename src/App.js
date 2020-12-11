@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import './App.css';
 import { Layout } from 'antd';
@@ -5,6 +6,7 @@ import 'antd/dist/antd.css';
 
 import { BrowserRouter as Router } from "react-router-dom";
 import PageHeader from "./template/Header";
+import PageHeader2 from "./template/Header2";
 import PageFooter from "./template/Footer";
 import Routing from "./routes";
 const { Header, Content, Footer } = Layout;
@@ -24,6 +26,7 @@ export default class App extends Component {
         <Layout className="site-layout">
           <Router>
             <Header id="layout-header" > <PageHeader /> </Header>
+            <Header id="layout-header" > <PageHeader2 /> </Header>
             {/* <Header id="layout-header" > <PageHeader /> </Header> */}
             {/* <PageHeader /> */}
             <Content> <Routing /> </Content>
