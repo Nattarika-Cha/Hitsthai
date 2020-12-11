@@ -28,6 +28,15 @@
   color: #61dafb;
 }
 
+#components-layout-demo-fixed-sider .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +44,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#layout-header {
+  height: 64px;
+  padding: 0 0;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 64px;
+  background: #001529;
 }
