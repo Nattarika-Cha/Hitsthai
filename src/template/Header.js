@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import '../css/Header.css';
 import { Row, Col, Avatar, Select, Input } from 'antd';
 import { Container } from 'react-bootstrap';
-import { UserOutlined, AudioOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import logo from '../img/logo.png'
 
 const { Option } = Select;
-const { Search } = Input;
-const onSearch = value => console.log(value);
 
 export default class Header extends Component {
     render() {
@@ -27,7 +25,7 @@ export default class Header extends Component {
                                 style={{ paddingBottom: "0.3%", paddingTop: "0.3%" }}
                             />
                         </Col>
-                        <Col xs={12} xl={12}>
+                        <Col xs={12} xl={12} id="col-Headder-center">
                             <Select
                                 showSearch
                                 style={{ width: 180 }}
@@ -47,13 +45,7 @@ export default class Header extends Component {
                                 <Option value="5">Resolved</Option>
                                 <Option value="6">Cancelled</Option>
                             </Select>
-                            {/* <Search placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} enterButton /> */}
-                            <Input
-                                placeholder="ค้นหา"
-                                allowClear
-                                onSearch={onSearch}
-                                style={{ width: "30%" }}
-                            />
+                            <Input.Search allowClear style={{ width: '50%' }} placeholder="ค้นหา" />
                         </Col>
                         <Col xs={6} xl={6} style={{ textAlign: "end" }}>
                             <text style={{ paddingRight: "15%" }}> TH | EN </text>

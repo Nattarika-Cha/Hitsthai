@@ -3,7 +3,6 @@ import './App.css';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 
-
 import { BrowserRouter as Router } from "react-router-dom";
 import PageHeader from "./template/Header";
 import PageFooter from "./template/Footer";
