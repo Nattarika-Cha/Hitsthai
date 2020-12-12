@@ -11,6 +11,8 @@ import Register from "../content/Register";
 import Login from "../content/Login";
 import Changepass from "../content/Changepass";
 import Profile from "../content/Profile";
+
+
 export default class Index extends Component {
     render() {
         return (
