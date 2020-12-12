@@ -39,12 +39,12 @@ export default class Login extends Component {
     }
 
     handleChange = info => {
-        const { loading, imageUrl } = this.state;
-        const uploadButton = (
-        <div>
-            {loading ? <LoadingOutlined /> : <PlusOutlined />}
-        <div style={{ marginTop: 8 }}>Upload</div>
-        </div>);
+        // const { loading, imageUrl } = this.state;
+        // const uploadButton = (
+        // <div>
+        //     {loading ? <LoadingOutlined /> : <PlusOutlined />}
+        // <div style={{ marginTop: 8 }}>Upload</div>
+        // </div>);
         if (info.file.status === 'uploading') {
           this.setState({ loading: true });
           return;

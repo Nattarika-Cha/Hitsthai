@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from 'react-bootstrap';
 
-export default class Product extends Component {
+export default class Contact extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +11,7 @@ export default class Product extends Component {
     render() {
         return (
             <Container fluid>
-                <div>Product</div>
+                <div>Contact</div>
             </Container>
         )
 

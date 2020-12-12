@@ -1,6 +1,6 @@
 #header-frist {
-    height: 64px;
-    padding: 0 13%;
+    height: auto;
+    padding: 0 10%;
     color: rgba(255, 255, 255, 0.85);
     line-height: 64px;
     background: #001529;
@@ -12,3 +12,90 @@
     align-items: center;
 }
 
+#col-Headder-center2{
+  display: flex;
+  align-items: center;
+}
+
+#col-Headder-center4{
+  display: flex;
+  align-items: center;
+  padding-left: 4%;
+}
+
+#col-Headder-center3{
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+#header-frist2 {
+    height: auto;
+    padding: 0 10%;
+    color: rgba(110, 109, 109, 0.85);
+    line-height: initial;
+    background: #ffffff;
+    
+  }
+
+  #nav-Header{
+    color: rgba(110, 109, 109, 0.85);
+    /* font-weight: bold; */
+    padding-left: 5%;
+    padding-right: 5%;
+    /* padding-top: 0.8%; */
+}
+
+.ant-layout-header .ant-menu {
+  line-height: 35px;
+  color: rgba(110, 109, 109, 0.85);
+}
+
+@media screen and (min-width: 601px) {
+  #header-frist2 {
+    font-size: 22px;
+  }
+  #nav-Header{
+    font-size: 22px;
+  }
+  .ant-layout-header .ant-menu {
+    font-size: 22px;
+  }
+}
+  
+@media screen and (max-width: 1025px) {
+  #header-frist2 {
+    font-size: 16px;
+  }
+  #nav-Header{
+    font-size: 16px;
+  }
+  .ant-layout-header .ant-menu {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  #header-frist2 {
+    font-size: 12px;
+  }
+  #nav-Header{
+    font-size: 12px;
+  }
+  .ant-layout-header .ant-menu {
+    font-size: 12px;
+  }
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
+  color: rgba(110, 109, 109, 0.85);
+  border-bottom: 0px solid #1890ff;
+}
+
+.ant-menu-submenu-selected {
+  color: rgba(247, 65, 65, 0.85);
+}
+
+.ant-menu-item:hover, .ant-menu-item-active, .ant-menu:not( .ant-menu-inline) .ant-menu-submenu-open, .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+  color:#ff1818;
+}

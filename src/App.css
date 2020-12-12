@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #fdfdff;
+  /* background-color: #fdfdff; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -47,10 +47,10 @@
 }
 
 #layout-header {
-  height: 64px;
+  height: auto;
   padding: 0 0;
   color: rgba(0, 0, 0, 0.85);
-  line-height: 64px;
+  line-height: auto;
   background: #001529;
   font-family: 'Kanit', sans-serif;
 }
