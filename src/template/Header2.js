@@ -50,7 +50,7 @@ export default class Header2 extends Component {
                                 </SubMenu>
                             </Menu>
                         </Col>
-                        <Col xs={12} xl={12} id="col-Headder-center2">
+                        <Col xs={12} xl={12} id="col-Headder-center4">
                             <NavLink to="/Home" id="nav-Header" activeStyle={active}>หน้าแรก</NavLink >
                             <NavLink to="/Abount" id="nav-Header" activeStyle={active}>เกี่ยวกับ</NavLink>
                             <NavLink to="/Product" id="nav-Header" activeStyle={active}>สินค้า</NavLink>

@@ -1,0 +1,57 @@
+#Header{
+    font-size: x-large;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+}
+
+#Profile{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 3%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    background-color: #ffffff;
+    border-radius: 5mm;
+    box-shadow: 0 10px 10px rgba(0,0,0,.2);
+}
+
+#List{
+    margin-bottom: 0%
+}
+
+#Input{
+    box-shadow: 1px 1px 0.5px 0.5px rgba(153, 151, 151, 0.2);
+    background-color: #fbfbfb;
+    border-radius: 1mm;
+    /* background-color: rgb(246, 249, 250); */
+}
+
+#request-mask{
+    padding-left: 5%;
+    color: #ff3b18;
+    font-size:medium;
+}
+
+#Button-submit{
+    display: flex;
+    justify-content: center;
+    background-color: #fc1702;
+    width: fit-content;
+    border: 0mm;
+    border-radius: 1mm;
+}
+
+/* #label-img{
+    border: 1mm #ff3b18;
+    background-color: antiquewhite;
+} */
+
+.ant-upload-picture-card-wrapper{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5%;
+}
+
+
