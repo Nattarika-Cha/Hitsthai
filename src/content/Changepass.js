@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Col, Form, Input, Row, Button, } from 'antd';
+import { Col, Form, Input, Row, Button,} from 'antd';
 import { Container } from 'react-bootstrap';
-import '../css/Login.css';
+import '../css/Changepass.css';
 
-export default class Login extends Component {
+export default class Changepass extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -12,20 +12,21 @@ export default class Login extends Component {
     }
 
     render() {
-        return (
+        return(
             <Container>
-               <Row id="Header">เข้าสู่ระบบ</Row>
-               <Form>
-                    <Row id="Login">
-                        <Col xs={2} md={4} xl={6}></Col>
+                <Row id="Header">เปลี่ยนรหัสผ่าน</Row>
+                <Form>
+                    <Row id="Changpass">
+                        <Col xs={2} md={4} xl={6}>
+                        </Col >
                         <Col xs={20} md={16} xl={12}>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    Username 
+                                    รหัสผ่านเดิม 
                                 </Col>
-                                <Col xs={22} md={14} xl={14} >
+                                <Col xs={22} md={14} xl={14}>
                                     <Form.Item
-                                        name="username"
+                                        name="password"
                                         rules={[{ required: true, message: 'กรุณากรอกชื่อผู้ใช้!' }]}>
                                         <Input id="Input"/>
                                     </Form.Item>
@@ -35,12 +36,33 @@ export default class Login extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xs={24} md={8} xl={6} id="List">
-                                    Password 
+                                <Col   Col xs={24} md={8} xl={6} id="List">
+                                    รหัสผ่านใหม่ 
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
-                                        name="password"
+                                        name="password-old"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'กรุณากรอกรหัสผ่าน!',
+                                            },
+                                        ]}
+                                        hasFeedback >
+                                        <Input.Password id="Password"/>
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={2} md={2} xl={4} id="request-mask">
+                                    *
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col   Col xs={24} md={8} xl={6} id="List">
+                                    ยืนยันรหัสผ่าน 
+                                </Col>
+                                <Col xs={22} md={14} xl={14}>
+                                    <Form.Item
+                                        name="password-new"
                                         rules={[
                                             {
                                                 required: true,
@@ -57,14 +79,15 @@ export default class Login extends Component {
                             </Row>
                             <Row id="Row">
                                 <Button type="primary" htmlType="submit" id="Button-submit">
-                                    เข้าสู่ระบบ
+                                    ยืนยันรหัสผ่าน
                                 </Button>
                             </Row>
                         </Col>
-                        <Col xs={2} md={8} xl={6}></Col>
+                        <Col xs={2} md={4} xl={6}>
+                        </Col>
                     </Row>
-
                 </Form>
+            
             </Container>
         )
     }

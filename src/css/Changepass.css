@@ -6,22 +6,7 @@
     justify-content: center;
 }
 
-#Row{
-    display: flex;
-    justify-content: center;
-}
-
-#List{
-    margin-bottom: 0%
-}
-
-#request-mask{
-    padding-left: 5%;
-    color: #ff3b18;
-    font-size:medium;
-}
-
-#Login{
+#Changpass{
     margin-left: 15%;
     margin-right: 15%;
     margin-bottom: 3%;
@@ -40,10 +25,10 @@
     
 }
 
-.ant-input-affix-wrapper {
-    box-shadow: 1px 1px 0.5px 0.5px rgba(153, 151, 151, 0.2);
-    background-color: #fbfbfb;
-    border-radius: 1mm;
+#request-mask{
+    padding-left: 5%;
+    color: #ff3b18;
+    font-size:medium;
 }
 
 #Button-submit{
@@ -55,7 +40,7 @@
     border-radius: 1mm;
 }
 
-.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
-    background-color: #fbfbfb;
-    border-color: #ff4d4f !important;
+#Row{
+    display: flex;
+    justify-content: center;
 }
