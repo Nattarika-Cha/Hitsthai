@@ -8,7 +8,13 @@ import logo from '../img/logo.png'
 const { Option } = Select;
 
 export default class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
     render() {
+        console.log(window.location.pathname, " window.location.pathname Head1");
         return (
             // <div>
             <Container fluid>
@@ -48,7 +54,7 @@ export default class Header extends Component {
                             <Input.Search allowClear style={{ width: '50%' }} placeholder="ค้นหา" />
                         </Col>
                         <Col xs={6} xl={6} style={{ textAlign: "end" }}>
-                            <text style={{ paddingRight: "15%" }}> TH | EN </text>
+                            <strong style={{ paddingRight: "15%" }}> TH | EN </strong>
                             <Avatar size="large" icon={<UserOutlined />} />
                         </Col>
                     </Row>

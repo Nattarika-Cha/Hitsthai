@@ -1,0 +1,82 @@
+#home {
+  padding: 0 10%;
+}
+
+#col-img-head1{
+  background-color: darkgoldenrod;
+  height: 400px;
+  margin-top: 2%;
+  border-right: 8px solid white;
+}
+
+#col-img-head2{
+  margin-top: 2%;
+}
+
+#row-col-img-head2{
+  background-color: darkgoldenrod;
+  height: 200px;
+  border-bottom: 8px solid white;
+}
+
+#row-col-img-head3{
+  background-color: darkgoldenrod;
+  height: 200px;
+}
+
+#hade-standate{
+  padding: 0 10%;
+  margin: 2%;
+  justify-content: center;
+}
+
+#standate{
+  font-size: x-large;
+}
+
+#img-standate{
+  padding: 0 2%;
+}
+
+#black-img1{
+  background-color: brown;
+  height: 250px;
+  border-right: 4px solid white;
+  border-left: 4px solid white;
+}
+
+#black-img2{
+  background-color: brown;
+  height: 250px;
+  border-right: 4px solid white;
+  border-left: 4px solid white;
+}
+
+#black-img3{
+  background-color: brown;
+  height: 250px;
+  border-right: 4px solid white;
+  border-left: 4px solid white;
+}
+
+#black-img4{
+  background-color: brown;
+  height: 250px;
+  border-right: 4px solid white;
+  border-left: 4px solid white;
+}
+
+#black-img5{
+  background-color: brown;
+  height: 250px;
+  border-right: 4px solid white;
+  border-left: 4px solid white;
+}
+
+#row-pay{
+  padding: 0 10%;
+}
+
+#head-card{
+  text-align: center;
+}

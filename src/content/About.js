@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import { Container,  Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-export default class Register extends Component {
+export default class Abount extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+        };
     }
+
     render() {
         return (
             <Container fluid>
-                <Row>
-                    
-                </Row>
+                <div>Abount</div>
             </Container>
         )
+
     }
 }
