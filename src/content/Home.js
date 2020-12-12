@@ -6,7 +6,8 @@ export default class Home extends Component {
     render() {
         return (
             <div className="App-header">
-                <img src={Close} alt="logo"  width="70%"/> 
+                <img src={Close} alt="logo"  width="10%"/> 
+                
             </div>
         )
     }

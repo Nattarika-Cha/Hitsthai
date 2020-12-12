@@ -1,0 +1,97 @@
+#Header{
+    font-size: x-large;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+}
+#Row-outside{
+    padding-left: 10%;
+}
+
+#Row{
+    display: flex;
+    justify-content: center;
+}
+
+#Register{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 3%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    background-color: #ffffff;
+    border-radius: 5mm;
+    box-shadow: 0 10px 10px rgba(0,0,0,.2);
+}
+
+#List{
+    margin-bottom: 0%
+}
+
+.ant-upload.ant-upload-select-picture-card:hover {
+    border-color: #ff3b18;
+    border-radius: 50%;
+}
+
+.ant-upload.ant-upload-select-picture-card {
+    width: 104px;
+    height: 104px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #fafafa;
+    border: 1px dashed #d9d9d9;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    border-radius: 50%;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    border-radius: 50%;
+}
+
+#row-img {
+    justify-content: center;
+    display: grid;
+}
+
+#Input{
+    box-shadow: 1px 1px 0.5px 0.5px rgba(153, 151, 151, 0.2);
+    background-color: rgb(248, 247, 247);
+    border-radius: 1mm;
+    /* background-color: rgb(246, 249, 250); */
+    
+}
+
+#Password{
+    background-color: rgb(248, 247, 247);
+}
+
+#request-mask{
+    padding-left: 5%;
+    color: #ff3b18;
+    font-size:medium;
+}
+
+#Button-submit{
+    display: flex;
+    justify-content: center;
+    background-color: #fc1702;
+    width: 20%;
+    border: 0mm;
+}
+.ant-input-affix-wrapper {
+    box-shadow: 1px 1px 0.5px 0.5px rgba(153, 151, 151, 0.2);
+    background-color: rgb(248, 247, 247);
+    border-radius: 1mm;
+}
+
+.ant-form-item-has-error .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+    background-color: rgb(245, 240, 240);
+    border-color: #ff4d4f !important;
+}
+

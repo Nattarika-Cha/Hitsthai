@@ -1,88 +1,70 @@
 import React, { Component } from "react";
-import { Form, Container, Button, Row } from 'react-bootstrap';
-import axios from 'axios';
-var ip = "https://hitsthai.com/API";
+import { Col, Form, Input, Row, Button, } from 'antd';
+import { Container } from 'react-bootstrap';
+import '../css/Login.css';
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password: "",
-            user: []
+            loading: false
         };
-
-        this.onLogin = this.onLogin.bind(this);
-        this.onChangeUserName = this.onChangeUserName.bind(this);
-        this.onChangePassWord = this.onChangePassWord.bind(this);
-    }
-
-    async componentDidMount() {
-        var url_project = ip + "/UserProfile/find/all";
-        const project = await axios.get(url_project);
-        const data_project = project.data;
-        console.log(data_project, " data_project");
-        // this.setState({
-        //     dataIcon: data_project
-        // });
-        // const response = await fetch(ip + '/find/all', {
-        //     method: 'GET'
-        // });
-
-        // const res = await response.json();
-        // console.log(res, " res");
-    }
-
-    async onLogin() {
-        const data = {
-            username: this.state.username,
-            password: this.state.password
-        }
-
-        const response = await fetch(ip + '/find/all', {
-            method: 'GET',
-            body: JSON.stringify(data)
-        });
-
-        const res = await response.json();
-        console.log(res, " res");
-        // if (res.code === 200) {
-        //     sessionStorage.clear();
-        //     sessionStorage.setItem('user', JSON.stringify(res));
-        //     window.location.replace('/', false);
-        // } else {
-        //     alert("Username Or Password Wrong");
-        // }
-    }
-
-    onChangeUserName(e) {
-        this.setState({
-            username: e.target.value
-        })
-    }
-
-    onChangePassWord(e) {
-        this.setState({
-            password: e.target.value
-        })
     }
 
     render() {
         return (
-            <Container style={{ width: "20%", marginBottom: "2%", marginTop: "2%" }}>
-                <Form>
-                    <Form.Group controlId="formGroupUserName">
-                        <Form.Label>USERNAME</Form.Label>
-                        <Form.Control type="text" placeholder="Username" name="username" onChange={this.onChangeUserName} />
-                    </Form.Group>
-                    <Form.Group controlId="formGroupPassWord">
-                        <Form.Label>PASSWORD</Form.Label>
-                        <Form.Control type="password" placeholder="Password" name="password" onChange={this.onChangePassWord} />
-                    </Form.Group>
+            <Container>
+               <Row id="Header">เข้าสู่ระบบ</Row>
+               <Form>
+                    <Row id="Login">
+                        <Col xs={2} md={4} xl={6}></Col>
+                        <Col xs={20} md={16} xl={12}>
+                            <Row>
+                                <Col xs={24} md={8} xl={6} id="List">
+                                    Username :
+                                </Col>
+                                <Col xs={22} md={14} xl={14} >
+                                    <Form.Item
+                                        name="username"
+                                        rules={[{ required: true, message: 'กรุณากรอกชื่อผู้ใช้!' }]}>
+                                        <Input id="Input"/>
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={2} md={2} xl={4} id="request-mask">
+                                    *
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={24} md={8} xl={6} id="List">
+                                    Password :
+                            </Col>
+                                <Col xs={22} md={14} xl={14}>
+                                    <Form.Item
+                                        name="password"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'กรุณากรอกรหัสผ่าน!',
+                                            },
+                                        ]}
+                                        hasFeedback >
+                                        <Input.Password id="Password"/>
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={2} md={2} xl={4} id="request-mask">
+                                    *
+                                </Col>
+                            </Row>
+                            <Row id="Row">
+                                <Button type="primary" htmlType="submit" id="Button-submit">
+                                    เข้าสู่ระบบ
+                            </Button>
+                            </Row>
+                        </Col>
+                        <Col xs={2} md={8} xl={6}></Col>
+                    </Row>
+
                 </Form>
-                <Row style={{ justifyContent: "center" }}>
-                    <Button style={{ background: 'Navy', marginTop: '1%' }} onClick={this.onLogin}>Login</Button>
-                </Row>
             </Container>
         )
     }

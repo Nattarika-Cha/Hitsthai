@@ -9,7 +9,7 @@ export default class Footer extends Component {
             <Container fluid>
                 <div id="footer-frist">
                     <Row>
-                        <Col xs={14} md={6} xl={6} id="col-footer">
+                        <Col xs={14} md={7} xl={6} id="col-footer">
                             <Row id="header-footer"> ติดต่อเรา </Row>
                             <Row id="body-footer"> ทีมตัวแทนจำหน่าย</Row>
                             <Row id="body-footer">โทร : xxxxxxxxxx</Row>
@@ -21,7 +21,7 @@ export default class Footer extends Component {
                             <Row id="body-footer"></Row>
                             <Row id="body-footer">email : xxxxxxxxxx</Row>
                         </Col>
-                        <Col xs={10} md={6} xl={6} id="col-footer">
+                        <Col xs={10} md={5} xl={6} id="col-footer">
                             <Row id="header-footer"> หมวดหมู่ทั้งหมด </Row>
                             <Row id="body-footer"> ใบตัด</Row>
                             <Row id="body-footer"> ใบตัดโลหะ</Row>
