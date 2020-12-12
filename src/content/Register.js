@@ -63,9 +63,9 @@ export default class Register extends Component {
                         <Col xs={20} md={16} xl={12}>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    Username :
+                                    Username 
                                 </Col>
-                                <Col xs={20} md={14} xl={14} >
+                                <Col xs={22} md={14} xl={14} >
                                     <Form.Item
                                         name="username"
                                         rules={[{ required: true, message: 'กรุณากรอกชื่อผู้ใช้!' }]}>
@@ -78,9 +78,9 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    Password :
+                                    Password 
                             </Col>
-                                <Col xs={20} md={14} xl={14}>
+                                <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="password"
                                         rules={[
@@ -99,9 +99,9 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    ชื่อ - นามสกุล :
+                                    ชื่อ - นามสกุล 
                                 </Col>
-                                <Col xs={20} md={14} xl={14}>
+                                <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="name"
                                         rules={[{ required: true, message: 'กรุณากรอก ชื่อ-นามสกุล!' }]}>
@@ -114,9 +114,9 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    E-mail :
+                                    E-mail 
                             </Col>
-                                <Col xs={20} md={14} xl={14}>
+                                <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="email"
                                         rules={[
@@ -138,9 +138,9 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    เบอร์โทรศัพท์ :
+                                    เบอร์โทรศัพท์ 
                                 </Col>
-                                <Col xs={20} md={14} xl={14}>
+                                <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="phone"
                                         rules={[{ required: true, message: 'กรุณากรอกเบอร์โทรศัพท์!' }]}>
@@ -153,9 +153,9 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    ที่อยู่ :
+                                    ที่อยู่ 
                                 </Col>
-                                <Col xs={20} md={14} xl={14}>
+                                <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="phone"
                                         rules={[{ required: true, message: 'กรุณากรอกที่อยู่!' }]}>

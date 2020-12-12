@@ -21,7 +21,7 @@ export default class Login extends Component {
                         <Col xs={20} md={16} xl={12}>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    Username :
+                                    Username 
                                 </Col>
                                 <Col xs={22} md={14} xl={14} >
                                     <Form.Item
@@ -36,7 +36,7 @@ export default class Login extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    Password :
+                                    Password 
                             </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item

@@ -18,7 +18,7 @@
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 3%;
-    padding-top: 2.5%;
+    padding-top: 4%;
     padding-bottom: 2.5%;
     background-color: #ffffff;
     border-radius: 5mm;
@@ -61,14 +61,14 @@ img {
 
 #Input{
     box-shadow: 1px 1px 0.5px 0.5px rgba(153, 151, 151, 0.2);
-    background-color: rgb(248, 247, 247);
+    background-color: #fbfbfb;
     border-radius: 1mm;
     /* background-color: rgb(246, 249, 250); */
     
 }
 
 #Password{
-    background-color: rgb(248, 247, 247);
+    background-color: #fbfbfb;
 }
 
 #request-mask{
@@ -83,10 +83,11 @@ img {
     background-color: #fc1702;
     width: 20%;
     border: 0mm;
+    border-radius: 1mm;
 }
 .ant-input-affix-wrapper {
     box-shadow: 1px 1px 0.5px 0.5px rgba(153, 151, 151, 0.2);
-    background-color: rgb(248, 247, 247);
+    background-color: #fbfbfb;
     border-radius: 1mm;
 }
 
