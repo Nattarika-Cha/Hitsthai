@@ -49,11 +49,11 @@
     border-radius: 50%;
 }
 
-img {
+/* img {
     vertical-align: middle;
     border-style: none;
     border-radius: 50%;
-}
+} */
 
 #row-img {
     justify-content: center;
