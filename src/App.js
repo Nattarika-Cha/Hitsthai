@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-alice-carousel/lib/alice-carousel.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import PageHeader from "./template/Header";
