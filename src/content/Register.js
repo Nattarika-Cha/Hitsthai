@@ -1,83 +1,128 @@
 import React, { Component } from "react";
-import { Col, Form, Input, Row, Button, Upload,  } from 'antd';
-import { UploadOutlined, } from '@ant-design/icons';
+import { Col, Form, Input, Row, Button, Upload, message } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import { Container } from 'react-bootstrap';
 import '../css/Register.css';
+import axios from 'axios';
+import swal from 'sweetalert';
+var ip = "http://localhost:5000";
 
 const normFile = e => {
-    console.log('Upload event:', e);
+    // console.log('Upload event:', e);
     if (Array.isArray(e)) {
-      return e;
+        return e;
     }
     return e && e.fileList;
 };
 
-function getBase64(img, callback) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-}
+const onFinishFailed = errorInfo => {
+    // console.log('Failed:', errorInfo);
+};
 
-// function beforeUpload(file) {
-//     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-//     if (!isJpgOrPng) {
-//         message.error('You can only upload JPG/PNG file!');
-//     }
-//     const isLt2M = file.size / 1024 / 1024 < 2;
-//     if (!isLt2M) {
-//         message.error('Image must smaller than 2MB!');
-//     }
-//     return isJpgOrPng && isLt2M;
-// }
+function beforeUpload(file) {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+        message.error('You can only upload JPG/PNG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+    }
+    return isJpgOrPng && isLt2M;
+}
 
 export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false
+            fileList: [],
+            flagUplode: false
         };
+
+        this.onRegister = this.onRegister.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.onPreview = this.onPreview(this);
     }
 
-    handleChange = info => {
-        if (info.file.status === 'uploading') {
-            this.setState({ loading: true });
-            return;
+    onPreview(info) {
+        console.log(info, " info info info ");
+        this.setState({ flagUplode: false });
+        return;
+    }
+
+    handleChange(info) {
+        // if (info.file.status === 'uploading') {
+        //     this.setState({ flagUplode: true });
+        //     return;
+        // } else if (info.file.status === 'remove') {
+        //     this.setState({ flagUplode: false });
+        //     return;
+        // }
+    }
+
+    async onRegister(values) {
+        // console.log('Success:', values);
+
+        const isJpgOrPng = values.upload[0].type === 'image/jpeg' || values.upload[0].type === 'image/png';
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+            return 0;
         }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            getBase64(info.file.originFileObj, imageUrl =>
-                this.setState({
-                    imageUrl,
-                    loading: false,
-                }),
-            );
+        const isLt2M = values.upload[0].size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+            return 0;
         }
-    };
+
+        const data = {
+            userName: values.username,
+            passWord: values.password,
+            name: values.name,
+            email: values.email,
+            phone: values.phone,
+            address: values.address,
+            img: values.upload[0]
+        };
+
+        var config = {
+            method: 'post',
+            url: ip + '/UserProfile/register',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(data)
+        };
+
+        const profile = await axios(config);
+        const data_profile = profile.data;
+        if (data_profile.statusCode === 200) {
+            swal("Success!", data_profile.message, "success").then((value) => {
+                window.location.replace('/Login', false);
+            });
+        } else {
+            swal("Error!", data_profile.message, "error").then((value) => {
+            });
+
+        }
+    }
 
     render() {
-        // const { loading, imageUrl } = this.state;
-        // const uploadButton = (
-        //     <div>
-        //         {loading ? <LoadingOutlined /> : <PlusOutlined />}
-        //         <div style={{ marginTop: 8 }}>Upload</div>
-        //     </div>
-        // );
         return (
             <Container fluid>
                 <Row id="Header">สมัครสมาชิก</Row>
-                <Form>
+                <Form onFinish={this.onRegister} onFinishFailed={onFinishFailed}>
                     <Row id="Register">
                         <Col xs={2} md={4} xl={6}></Col>
                         <Col xs={20} md={16} xl={12}>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    Username 
+                                    Username
                                 </Col>
                                 <Col xs={22} md={14} xl={14} >
                                     <Form.Item
                                         name="username"
                                         rules={[{ required: true, message: 'กรุณากรอกชื่อผู้ใช้!' }]}>
-                                        <Input id="Input"/>
+                                        <Input id="Input" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -86,7 +131,7 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    Password 
+                                    Password
                             </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
@@ -98,7 +143,7 @@ export default class Register extends Component {
                                             },
                                         ]}
                                         hasFeedback >
-                                        <Input.Password id="Password"/>
+                                        <Input.Password id="Password" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -107,13 +152,13 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    ชื่อ - นามสกุล 
+                                    ชื่อ - นามสกุล
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="name"
                                         rules={[{ required: true, message: 'กรุณากรอก ชื่อ-นามสกุล!' }]}>
-                                        <Input id="Input"/>
+                                        <Input id="Input" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -122,7 +167,7 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    E-mail 
+                                    E-mail
                             </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
@@ -137,7 +182,7 @@ export default class Register extends Component {
                                                 message: 'กรุณากรอก E-mail!',
                                             },
                                         ]}>
-                                        <Input id="Input"/>
+                                        <Input id="Input" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -146,13 +191,13 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    เบอร์โทรศัพท์ 
+                                    เบอร์โทรศัพท์
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="phone"
                                         rules={[{ required: true, message: 'กรุณากรอกเบอร์โทรศัพท์!' }]}>
-                                        <Input id="Input"/>
+                                        <Input id="Input" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -161,13 +206,13 @@ export default class Register extends Component {
                             </Row>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    ที่อยู่ 
+                                    ที่อยู่
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
-                                        name="phone"
+                                        name="address"
                                         rules={[{ required: true, message: 'กรุณากรอกที่อยู่!' }]}>
-                                         <Input.TextArea id="Input"/>
+                                        <Input.TextArea id="Input" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -179,15 +224,24 @@ export default class Register extends Component {
                                     รูปภาพ
                                 </Col>
                                 <Col>
-                                <Form.Item
-                                    name="upload"
-                                    valuePropName="fileList"
-                                    getValueFromEvent={normFile}
-                                    extra="สำเนาบัตรประจำตัวประชาชน">
-                                    <Upload name="logo" action="/upload.do" listType="picture.jpg">
-                                    <Button icon={<UploadOutlined />}>อัพโหลดรูปภาพ</Button>
-                                    </Upload>
-                                </Form.Item>
+                                    <Form.Item
+                                        name="upload"
+                                        // valuePropName="fileList"
+                                        getValueFromEvent={normFile}
+                                        extra="สำเนาบัตรประจำตัวประชาชน"
+                                    >
+                                        <Upload
+                                            action={ip + "/UserProfile/UploadImg"}
+                                            listType="picture"
+                                            className="upload-list-inline"
+                                            beforeUpload={beforeUpload}
+                                            onChange={this.handleChange}
+                                            // onRemove={this.handleRemove}
+                                            onPreview={this.onPreview}
+                                        >
+                                            <Button icon={<UploadOutlined />} disabled={this.state.flagUplode}>อัพโหลดรูปภาพ</Button>
+                                        </Upload>
+                                    </Form.Item>
                                 </Col>
                             </Row>
                             <Row id="Row">

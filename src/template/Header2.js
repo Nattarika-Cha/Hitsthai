@@ -4,14 +4,26 @@ import { Row, Col, Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 const { SubMenu } = Menu;
-const active = { color: "rgb(255 255 255)", backgroundColor: "#DA213D", borderRadius: "10mm" };
+const active = { color: "rgb(255 255 255)", backgroundColor: "#DA213D", borderRadius: "10mm", marginTop: "0.7%", marginBottom: "0.7%" };
+const cookies = new Cookies();
 export default class Header2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            token: "",
+            user: []
         }
+    }
+
+    componentWillMount() {
+        this.setState({
+            token: cookies.get('token', { path: '/' }),
+            user: cookies.get('user', { path: '/' })
+        });
+        
     }
 
     render() {
@@ -39,7 +51,7 @@ export default class Header2 extends Component {
                         <Col xs={6} xl={6} id="col-Headder-center2">
                             <Menu
                                 // onClick={this.handleClick}
-                                style={{ width: 360, borderRight: "2px solid rgba(110, 109, 109, 0.30)" }}
+                                style={{ width: 360, borderRight: "2px solid rgba(110, 109, 109, 0.30)", lineHeight: "inherit" }}
                                 // defaultSelectedKeys={['1']}
                                 // defaultOpenKeys={['sub1']}
                                 mode="horizontal"
