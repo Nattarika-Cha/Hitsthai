@@ -2,6 +2,23 @@ import React, { Component } from "react";
 import { Col, Form, Input, Row, Button,} from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Changepass.css';
+import axios from 'axios';
+var ip = "http://localhost:5000";
+
+axios.interceptors.request.use(
+    config => {
+      const { origin } = new URL(config.url);
+      const allowedOrigins = [ip];
+      const token = localStorage.getItem('token');
+  if (allowedOrigins.includes(origin)) {
+        config.headers.authorization = `${token}`;
+      }
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    }
+  );
 
 export default class Changepass extends Component{
     constructor(props) {
@@ -9,13 +26,35 @@ export default class Changepass extends Component{
         this.state = {
             loading: false
         };
+        this.onChangepass = this.onChangepass.bind(this);
+    }
+
+    async onChangepass(values) {
+        const data = {
+            userName: values.username,
+            passWord: values.password
+        };
+
+        var config = {
+            method: 'post',
+            url: ip + '/UserProfile/UploadImg',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(data)
+        };
+
+        const login = await axios(config);
+        const data_login = login.data;
+        // setJwt(data_login.token);
+        console.log(data_login, " data");
     }
 
     render() {
         return(
             <Container>
                 <Row id="Header">เปลี่ยนรหัสผ่าน</Row>
-                <Form>
+                <Form onFinish={this.onChangepass}>
                     <Row id="Changpass">
                         <Col xs={2} md={4} xl={6}>
                         </Col >
@@ -27,7 +66,7 @@ export default class Changepass extends Component{
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="password"
-                                        rules={[{ required: true, message: 'กรุณากรอกชื่อผู้ใช้!' }]}>
+                                        rules={[{ required: true, message: 'กรุณากรอกรหัสผ่านเดิม!' }]}>
                                         <Input id="Input"/>
                                     </Form.Item>
                                 </Col>
@@ -41,11 +80,11 @@ export default class Changepass extends Component{
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
-                                        name="password-old"
+                                        name="passwordOld"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'กรุณากรอกรหัสผ่าน!',
+                                                message: 'กรุณากรอกรหัสผ่านใหม่!',
                                             },
                                         ]}
                                         hasFeedback >
@@ -62,11 +101,11 @@ export default class Changepass extends Component{
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
-                                        name="password-new"
+                                        name="passwordNew"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'กรุณากรอกรหัสผ่าน!',
+                                                message: 'กรุณากรอกรหัสผ่านใหม่!',
                                             },
                                         ]}
                                         hasFeedback >

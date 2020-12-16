@@ -11,7 +11,7 @@ import Register from "../content/Register";
 import Login from "../content/Login";
 import Changepass from "../content/Changepass";
 import Profile from "../content/Profile";
-
+import Logout from "../content/Logout"
 
 export default class Index extends Component {
     render() {
@@ -26,6 +26,7 @@ export default class Index extends Component {
                 <Route exact path="/Register" component={Register} />
                 <Route exact path="/Changepass" component={Changepass} />
                 <Route exact path="/Profile" component={Profile} />
+                <Route exact path="/Logout" component={Logout} />
             </Switch>
         );
     }
