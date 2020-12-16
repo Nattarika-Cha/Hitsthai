@@ -95,12 +95,16 @@
     margin-bottom: 1%;
 }
 
+#description{
+    margin-bottom: 1%;
+}
+
 #Col-product{
     margin-right: 5%;
 }
 
 .ant-card-body {
-    padding: 15px;
+    padding: 10px;
 }
 
 #img-product-ipad{
@@ -120,6 +124,7 @@
         border-left: 0.3em solid #fbfbfb;
         border-right: 0.3em solid #fbfbfb;
     }
+    
 }
 
 @media screen and (max-width: 1024px) {
@@ -143,6 +148,14 @@
         width: 140px;
         border-left: 0.3em solid #fbfbfb;
         border-right: 0.3em solid #fbfbfb;
+    }
+    #textdescription{
+        margin-bottom: 1%;
+        font-size: 8px;
+    }
+    #description{
+        margin-bottom: 1%;
+        font-size: 2px;
     }
 }
 
