@@ -3,6 +3,11 @@ import { Col, Form, Input, Row, Button,} from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Changepass.css';
 import axios from 'axios';
+import swal from 'sweetalert';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 var ip = "http://localhost:5000";
 
 axios.interceptors.request.use(
@@ -24,30 +29,59 @@ export default class Changepass extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            loading: false
+            token: "",
+            user: []
         };
         this.onChangepass = this.onChangepass.bind(this);
     }
 
+    componentWillMount() {
+        this.setState({
+            token: cookies.get('token', { path: '/' }),
+            user: cookies.get('user', { path: '/' })
+        });
+        
+    }
+
     async onChangepass(values) {
-        const data = {
-            userName: values.username,
-            passWord: values.password
-        };
-
-        var config = {
-            method: 'post',
-            url: ip + '/UserProfile/UploadImg',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify(data)
-        };
-
-        const login = await axios(config);
-        const data_login = login.data;
-        // setJwt(data_login.token);
-        console.log(data_login, " data");
+        console.log(this.state.user.username, " dsds")
+        if(values.passwordNew === values.passwordNewCon) {
+            const data = {
+                userName: this.state.user.username,
+                passWord: values.password,
+                passwordNew: values.passwordNew
+            };
+    
+            var config = {
+                method: 'post',
+                url: ip + '/UserProfile/Changepass',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(data)
+            };
+    
+            const changPasseord = await axios(config);
+            const data_changPasseord = changPasseord.data;
+            if (data_changPasseord.statusCode === 200) {
+                swal("Success!", "เปลี่นน Password สำเร็จ", "success").then((value) => {
+                    window.location.replace('/Profile', false);
+                });
+            } else if (data_changPasseord.statusCode === 401) {
+                swal("Warning!", "Password ผิด", "warning").then((value) => {
+                });
+            } else {
+                swal("Error!", "เกิดข้อผิดพลาด", "error").then((value) => {
+                });
+    
+            }
+            console.log(data_changPasseord, " data");
+        } 
+        else 
+        {
+            swal("Warning!", "Password ใหม่ไม่ตรงกัน", "warning").then((value) => {
+            });
+        }
     }
 
     render() {
@@ -67,7 +101,7 @@ export default class Changepass extends Component{
                                     <Form.Item
                                         name="password"
                                         rules={[{ required: true, message: 'กรุณากรอกรหัสผ่านเดิม!' }]}>
-                                        <Input id="Input"/>
+                                        <Input.Password id="Password"/>
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -80,7 +114,7 @@ export default class Changepass extends Component{
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
-                                        name="passwordOld"
+                                        name="passwordNew"
                                         rules={[
                                             {
                                                 required: true,
@@ -101,7 +135,7 @@ export default class Changepass extends Component{
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
-                                        name="passwordNew"
+                                        name="passwordNewCon"
                                         rules={[
                                             {
                                                 required: true,

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import '../css/Header.css';
 import { Row, Col, Avatar, Select, Input, Menu, Dropdown } from 'antd';
-import { Container } from 'react-bootstrap';
+import { Container, Image } from 'react-bootstrap';
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import logo from '../img/logo.png'
 import Cookies from 'universal-cookie';
 
+
+var ip_img_profile = "http://128.199.198.10/API/profile/";
+var img_profile = "";
 const cookies = new Cookies();
 
 const { Option } = Select;
@@ -50,11 +53,14 @@ export default class Header extends Component {
             token: cookies.get('token', { path: '/' }),
             user: cookies.get('user', { path: '/' })
         });
+
+        img_profile = ip_img_profile + this.state.user.img;
     }
 
     render() {
-        console.log(window.location.pathname, " window.location.pathname Head1");
-        console.log(this.state.token, " this.state.token")
+        // img_profile = ip_img_profile + this.state.user.img;
+        console.log(this.state.user, " this.state.user")
+        console.log(img_profile, " img_profile")
         return (
             // <div>
             <Container fluid>
@@ -98,11 +104,15 @@ export default class Header extends Component {
                             {
                                 (this.state.token === "" || this.state.token === null || this.state.token === undefined)?
                                     <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" arrow>
-                                        <Avatar size="large" icon={<UserOutlined />} />
+                                        <Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar"/>
                                     </Dropdown>
                                     :
                                     <Dropdown overlay={menuuser} trigger={['click']} placement="bottomRight" arrow>
-                                        <Avatar size="large" icon={<UserOutlined />} />
+                                        {/* <> */}
+                                        {/* <Avatar size="large" icon={<UserOutlined />} /> */}
+                                        <Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" fluid responsive />
+                                        {/* </> */}
+                                        {/* <img src={ip_img_profile + this.state.user.img} /> */}
                                     </Dropdown>
                             }
                         </Col>

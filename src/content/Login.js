@@ -42,7 +42,6 @@ export default class Login extends Component {
             token: cookies.get('token', { path: '/' }),
             user: cookies.get('user', { path: '/' })
         });
-        
     }
 
     async onLogin(values) {
@@ -64,6 +63,8 @@ export default class Login extends Component {
         const data_login = login.data;
         if (data_login.statusCode === 200) {
             const user_data = {
+                id: data_login.id,
+                username: data_login.user,
                 name: data_login.name,
                 img: data_login.img
             }
