@@ -28,7 +28,9 @@ export default class Index extends Component {
                 <Route exact path="/Changepass" component={Changepass} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/Logout" component={Logout} />
+
                 <Route exact path="/ProductList" component={ProductList} />
+                <Route exact path="/ProductList/:mode/:page/:size" component={ProductList} />
             </Switch>
         );
     }

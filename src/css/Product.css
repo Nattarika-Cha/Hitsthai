@@ -118,6 +118,34 @@
     height: 260px;   
 }
 
+.ant-tabs-ink-bar {
+    position: absolute;
+    background: #da213d;
+    pointer-events: none;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #222222;
+    font-weight: bold;
+}
+
+.ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-bottom > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-top > div > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-bottom > div > .ant-tabs-nav .ant-tabs-ink-bar {
+    height: 3px;
+}
+
+.ant-tabs {
+    color: #222222;
+    font-weight: bold;
+}
+
+.ant-tabs-tab:hover {
+    color: #da213d;
+}
+
+#container-productlist {
+    padding: 1% 10%;
+  }
+
 @media screen and (max-width: 1300px) {
     #card-product{
         width: 210px;

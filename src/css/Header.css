@@ -71,6 +71,10 @@
   cursor: pointer;
 }
 
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+  margin: 0 0px;
+}
+
 @media screen and (min-width: 601px) {
   #header-frist2 {
     font-size: 22px;
