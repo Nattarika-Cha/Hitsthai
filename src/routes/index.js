@@ -11,6 +11,7 @@ import Register from "../content/Register";
 import Login from "../content/Login";
 import Changepass from "../content/Changepass";
 import Profile from "../content/Profile";
+import ProductList from "../content/Product/ProductList";
 import Logout from "../content/Logout"
 
 export default class Index extends Component {
@@ -27,6 +28,7 @@ export default class Index extends Component {
                 <Route exact path="/Changepass" component={Changepass} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/Logout" component={Logout} />
+                <Route exact path="/ProductList" component={ProductList} />
             </Switch>
         );
     }
