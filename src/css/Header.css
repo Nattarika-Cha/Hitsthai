@@ -57,6 +57,20 @@
   margin-right: 2%;
 }
 
+#img-profile{
+  background-color: aliceblue;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+#img-profile-avatar{
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 601px) {
   #header-frist2 {
     font-size: 22px;
@@ -69,6 +83,7 @@
   }
   #sub-icon-profile{
     font-size: 18px;
+    font-family: 'Kanit', sans-serif;
   }
 }
   
@@ -84,6 +99,7 @@
   }
   #sub-icon-profile{
     font-size: 16px;
+    font-family: 'Kanit', sans-serif;
   }
 }
 
@@ -99,6 +115,7 @@
   }
   #sub-icon-profile{
     font-size: 12px;
+    font-family: 'Kanit', sans-serif;
   }
 }
 
