@@ -5,6 +5,7 @@ import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-alice-carousel/lib/alice-carousel.css";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import PageHeader from "./template/Header";
@@ -12,6 +13,7 @@ import PageHeader2 from "./template/Header2";
 import PageFooter from "./template/Footer";
 import Routing from "./routes";
 // import { browserHistory } from 'react-router';
+
 
 //Your initialization
 const { Header, Content, Footer } = Layout;

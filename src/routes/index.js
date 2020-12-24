@@ -13,6 +13,7 @@ import Changepass from "../content/Changepass";
 import Profile from "../content/Profile";
 import ProductList from "../content/Product/ProductList";
 import Logout from "../content/Logout"
+import ProductDetail from "../content/Product/ProductDetail"
 
 export default class Index extends Component {
     render() {
@@ -31,6 +32,8 @@ export default class Index extends Component {
 
                 <Route exact path="/ProductList" component={ProductList} />
                 <Route exact path="/ProductList/:mode/:page/:size" component={ProductList} />
+                <Route exact path="/ProductDetail" component={ProductDetail} />
+                
             </Switch>
         );
     }
