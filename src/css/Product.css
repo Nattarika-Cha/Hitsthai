@@ -13,6 +13,7 @@
     vertical-align: middle;
     border-style: none;
     border-radius: 0%;
+    padding: 3%;
 }
 /* element.style {
     height: 10px;
@@ -145,6 +146,29 @@
 #container-productlist {
     padding: 1% 10%;
   }
+
+#product-card-list-col {
+    padding-left: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 3%;
+}
+
+#product-tab-headerbar-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#product-footer-page {
+    display: flex;
+    justify-content: flex-end;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+}
 
 @media screen and (max-width: 1300px) {
     #card-product{

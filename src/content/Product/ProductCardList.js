@@ -23,30 +23,32 @@ export default class ProductCardList extends Component {
                         <Col xs={6} md={6} lg={6}>
                             <img id="img-product" alt="example" src={imgm} />
                         </Col>
-                        <Col xs={18} md={18} lg={18}>
+                        <Col xs={18} md={18} lg={18} id="product-card-list-col">
                             <Row id="text-detail">
-                                <Meta id="text-title" title="ใบตัดเหล็ก 16'" />
-                            </Row>
-                            <Row id="text-detail">
-                                <Col id="textdescription" xs={5} md={5} xl={5}>
-                                    <Meta description="ขนาด" />
-                                </Col>
-                                <Col id="textdescription" xs={1} md={1} xl={1}>
-                                    <Meta description=":" />
-                                </Col>
-                                <Col xs={18} md={18} xl={18}>
-                                    <Meta id="description" description="400x3.0x25.4 mm" />
-                                </Col>
+                                <Meta id="text-title" title={this.props.product.name} />
                             </Row>
                             <Row id="text-detail">
                                 <Col id="textdescription" xs={2} md={2} xl={2}>
-                                    <Meta description="สี" />
+                                    <Meta description="ขนาด : " />
                                 </Col>
+                                <Col xs={21} md={21} xl={21}>
+                                    <Meta id="description" description={this.props.product.size} />
+                                </Col>
+                            </Row>
+                            <Row id="text-detail">
                                 <Col id="textdescription" xs={1} md={1} xl={1}>
-                                    <Meta description=":" />
+                                    <Meta description="สี : " />
+                                </Col>
+                                <Col xs={23} md={23} xl={23}>
+                                    <Meta id="description" description={this.props.product.color} />
+                                </Col>
+                            </Row>
+                            <Row id="text-detail">
+                                <Col id="textdescription" xs={4} md={4} xl={4}>
+                                    <Meta description="วิธีการใช้งาน : " />
                                 </Col>
                                 <Col xs={19} md={19} xl={19}>
-                                    <Meta id="description" description="ดำ" />
+                                    <Meta id="description" description={this.props.product.use} />
                                 </Col>
                             </Row>
                         </Col>

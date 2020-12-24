@@ -4,12 +4,46 @@ import '../../css/Product.css';
 
 import AliceCarousel from 'react-alice-carousel';
 import ProductCart from "./ProductCard"
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
+var ip = "http://localhost:5000";
+// var ip_img_profile = "http://128.199.198.10/API/profile/";
 
 export default class ProductSlide extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            token: "",
+            user: [],
+            product: []
         };
+
+        this.list_productcade = this.list_productcade.bind(this);
+    }
+
+    componentWillMount() {
+        this.setState({
+            token: cookies.get('token', { path: '/' }),
+            user: cookies.get('user', { path: '/' })
+        });
+    }
+
+    async componentDidMount() {
+        var url_product = ip + "/Product/find/id/" + this.props.catId;
+        const product = await (await axios.get(url_product)).data;
+        this.setState({
+            product: product
+        });
+    }
+
+    list_productcade() {
+        console.log(this.state.product, " product");
+        return this.state.product.map((product) => {
+            return <ProductCart product={product}/>
+        });
     }
 
     onSlideChange(e) {
@@ -47,6 +81,8 @@ export default class ProductSlide extends Component {
             }
         };
 
+        console.log(this.props.catId, " this.props.catId");
+
         return (
             <Row id="Row-Product">
                 <AliceCarousel
@@ -63,12 +99,7 @@ export default class ProductSlide extends Component {
                     onSlideChange={this.onSlideChange}
                     onSlideChanged={this.onSlideChanged}
                 >
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-
+                    {this.list_productcade()}
                 </AliceCarousel>
             </Row>
         )

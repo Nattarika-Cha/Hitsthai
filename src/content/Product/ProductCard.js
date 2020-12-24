@@ -20,7 +20,7 @@ export default class ProductCard extends Component {
                 id="card-product"
                 cover={<img id="img-product" alt="example" src={imgm} />}>
                 <Row id="text-detail">
-                    <Meta id="text-title" title="ใบตัดเหล็ก 16'" />
+                    <Meta id="text-title" title={this.props.product.name} />
                 </Row>
                 <Row id="text-detail">
                     <Col id="textdescription" xs={5} md={5} xl={5}>
@@ -30,7 +30,7 @@ export default class ProductCard extends Component {
                         <Meta description=":" />
                     </Col>
                     <Col xs={18} md={18} xl={18}>
-                        <Meta id="description" description="400x3.0x25.4 mm" />
+                        <Meta id="description" description={this.props.product.size} />
                     </Col>
                 </Row>
                 <Row id="text-detail">
@@ -41,7 +41,7 @@ export default class ProductCard extends Component {
                         <Meta description=":" />
                     </Col>
                     <Col xs={19} md={19} xl={19}>
-                        <Meta id="description" description="ดำ" />
+                        <Meta id="description" description={this.props.product.color} />
                     </Col>
                 </Row>
             </Card>

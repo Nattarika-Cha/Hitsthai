@@ -14,11 +14,9 @@ var ip = "http://localhost:5000";
 
 const { TabPane } = Tabs;
 
-function callback(key) {
-    console.log(key);
-}
-
 var mode = "";
+var page = "";
+var size = "";
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
@@ -28,8 +26,11 @@ export default class ProductList extends Component {
             catalog: [],
             mode: "",
             page: "",
+            tab: "",
             size: 12
         };
+
+        this.callback = this.callback.bind(this);
     }
 
     componentWillMount() {
@@ -37,8 +38,9 @@ export default class ProductList extends Component {
             token: cookies.get('token', { path: '/' }),
             user: cookies.get('user', { path: '/' }),
             mode: this.props.match.params.mode,
-            page: this.props.match.params.page,
-            size: this.props.match.params.size
+            page: parseInt(this.props.match.params.page),
+            tab: this.props.match.params.catid
+            // size: parseInt(this.props.match.params.size)
         });
     }
 
@@ -53,16 +55,27 @@ export default class ProductList extends Component {
     tab_product() {
         return this.state.catalog.map((cat) => {
             return <TabPane tab={cat.catName} key={cat.catId}>
-                <ProductTab catId={cat.catId} mode={mode} page={this.state.page} size={this.state.page}/>
+                <ProductTab catId={cat.catId} mode={mode} page={page} size={size} props={this.props}/>
             </TabPane>
         });
     }
 
+    callback(key) {
+        console.log(key, " key");
+        page = 1;
+        this.setState({
+            tab: key
+        });
+    }
+
     render() {
+        console.log(this.state.tab.toString() , " this.state.tab");
         mode = this.props.match.params.mode;
+        // page = this.props.match.params.page;
+        // size = this.props.match.params.size;
         return (
             <Container fluid id="container-productlist">
-                <Tabs defaultActiveKey="1" onChange={callback}>
+                <Tabs activeKey={this.state.tab.toString()} onChange={this.callback}>
                     {this.state.catalog.length > 0 ?
                         this.tab_product()
                         :

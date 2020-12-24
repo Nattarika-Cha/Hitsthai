@@ -21,28 +21,28 @@ export default class ProductCardTab extends Component {
                     // id="card-product"
                     cover={<img id="img-product" alt="example" src={imgm} />}>
                     <Row id="text-detail">
-                        <Meta id="text-title" title="ใบตัดเหล็ก 16'" />
+                        <Meta id="text-title" title={this.props.product.name} />
                     </Row>
                     <Row id="text-detail">
-                        <Col id="textdescription" xs={5} md={5} xl={5}>
-                            <Meta description="ขนาด" />
+                        <Col id="textdescription" xs={3} md={3} xl={3}>
+                            <Meta description="ขนาด : " />
                         </Col>
-                        <Col id="textdescription" xs={1} md={1} xl={1}>
+                        {/* <Col id="textdescription" xs={1} md={1} xl={1}>
                             <Meta description=":" />
-                        </Col>
-                        <Col xs={18} md={18} xl={18}>
-                            <Meta id="description" description="400x3.0x25.4 mm" />
+                        </Col> */}
+                        <Col xs={21} md={21} xl={21}>
+                            <Meta id="description" description={this.props.product.size} />
                         </Col>
                     </Row>
                     <Row id="text-detail">
                         <Col id="textdescription" xs={2} md={2} xl={2}>
-                            <Meta description="สี" />
+                            <Meta description="สี : " />
                         </Col>
-                        <Col id="textdescription" xs={1} md={1} xl={1}>
+                        {/* <Col id="textdescription" xs={1} md={1} xl={1}>
                             <Meta description=":" />
-                        </Col>
-                        <Col xs={19} md={19} xl={19}>
-                            <Meta id="description" description="ดำ" />
+                        </Col> */}
+                        <Col xs={22} md={22} xl={22}>
+                            <Meta id="description" description={this.props.product.color} />
                         </Col>
                     </Row>
                 </Card>
