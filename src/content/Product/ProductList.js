@@ -82,6 +82,8 @@ export default class ProductList extends Component {
                         <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
                     }
                 </Tabs>
+
+                
             </Container>
         )
     }

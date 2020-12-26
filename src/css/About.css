@@ -1,0 +1,20 @@
+#About{
+    margin-top: 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 3%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    background-color: #ffffff;
+    border-radius: 5mm;
+    box-shadow: 0 10px 10px rgba(0,0,0,.2);
+}
+
+#col-imglogo{
+    display: flex;
+    justify-content: center;
+}
+
+#col-about{
+    margin: 5% 5% 0 5%;
+}

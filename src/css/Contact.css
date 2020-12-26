@@ -1,0 +1,46 @@
+
+#contact{
+    padding: 0 10%;
+    margin-top: 5%;
+    margin-bottom: 6%;
+}
+#map{
+    background-color: darkgoldenrod;
+    height: 400px;
+    margin-top: 2%;
+  }
+
+#form-contact{
+    margin-top: 3.5%;
+}
+
+#form{
+    margin-left: 5%;
+}
+
+#Input{
+    box-shadow: 1px 1px 0.5px 0.5px rgba(153, 151, 151, 0.2);
+    background-color: #fbfbfb;
+    border-radius: 1mm;
+    /* background-color: rgb(246, 249, 250); */
+    
+}
+
+#List{
+    margin-bottom: 0%
+}
+
+#request-mask{
+    padding-left: 5%;
+    color: #ff3b18;
+    font-size:medium;
+}
+
+#Button-submit{
+    display: flex;
+    justify-content: center;
+    background-color: #DA213D;
+    width: 45px;
+    border: 0mm;
+    border-radius: 1mm;
+}
