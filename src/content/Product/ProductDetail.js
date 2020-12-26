@@ -56,7 +56,7 @@ export default class Abount extends Component {
                         <div>ใบตัดเหล็ก 7"</div>
                     </Row>
                     <Row id="detailname">
-                        <div>180x3.2x22.2มม</div>
+                        <div>180x3.2x22.2 มม.</div>
                     </Row>
 
                     <Row>
@@ -123,12 +123,11 @@ export default class Abount extends Component {
                     <Descriptions
                         title="ข้อมูลเพิ่มเติมเพิ่มเติม"
                         bordered
-                        column={{ xl: 2, md: 2, xs: 1, sm: 1,}}
+                        column={{ xl: 1, md: 1, xs: 1, sm: 1,}}
                         >
                         <Descriptions.Item label="ตราสินค้า">Hits</Descriptions.Item>
-                        <Descriptions.Item label="ความกว้าง (มม.)" labelStyle={{width:"25%"}}>180 มม.</Descriptions.Item>
+                        <Descriptions.Item label="ขนาด (มม.)">180x3.2x22.2</Descriptions.Item>
                         <Descriptions.Item label="วิธีใช้งาน">ใช้ร่วมกับแท่นตัดโลหะไฟฟ้า</Descriptions.Item>
-                        <Descriptions.Item label="ความหนา (มม.)">3.3 มม.</Descriptions.Item>
                         <Descriptions.Item label="ข้อควรระวัง" span={2}>
                             - สวมอุปกรณ์ป้องกันใบหน้าในขณะใช้งาน 
                             <br />
