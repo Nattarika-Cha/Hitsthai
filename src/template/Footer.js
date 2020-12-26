@@ -11,15 +11,13 @@ export default class Footer extends Component {
                     <Row>
                         <Col xs={14} md={7} xl={6} id="col-footer">
                             <Row id="header-footer"> ติดต่อเรา </Row>
-                            <Row id="body-footer"> ทีมตัวแทนจำหน่าย</Row>
+                            <Row id="body-footer"> ฝ่ายขาย</Row>
                             <Row id="body-footer">โทร : xxxxxxxxxx</Row>
-                            <Row id="body-footer"> ทีมขายอุตสาหกรรม</Row>
-                            <Row id="body-footer">โทร : xxxxxxxxxx</Row>
-                            <Row id="body-footer"> ทีม e-commerce</Row>
-                            <Row id="body-footer">โทร : xxxxxxxxxx</Row>
+                            <Row id="body-footer">Fax : xxxxxxxxxx</Row>
+                            <Row id="body-footer">email : info@hitsthai.com</Row>
                             <Row id="body-footer">เวลาทำการ : จ. - ส. 08.30 - 17.30</Row>
                             <Row id="body-footer"></Row>
-                            <Row id="body-footer">email : xxxxxxxxxx</Row>
+                            
                         </Col>
                         <Col xs={10} md={5} xl={6} id="col-footer">
                             <Row id="header-footer"> หมวดหมู่ทั้งหมด </Row>

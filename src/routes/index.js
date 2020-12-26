@@ -14,6 +14,7 @@ import Profile from "../content/Profile";
 import ProductList from "../content/Product/ProductList";
 import Logout from "../content/Logout";
 import SearchProduct from "../content/SearchProduct";
+import ProductDetail from "../content/Product/ProductDetail"
 
 export default class Index extends Component {
     render() {
@@ -31,6 +32,8 @@ export default class Index extends Component {
                 <Route exact path="/Logout" component={Logout} />
 
                 <Route exact path="/ProductList" component={ProductList} />
+                <Route exact path="/ProductDetail" component={ProductDetail} />
+                
                 <Route exact path="/ProductList/:catid/:mode" component={ProductList} />
 
                 <Route exact path="/SearchProduct/:mode/:id/:search" component={SearchProduct} />
