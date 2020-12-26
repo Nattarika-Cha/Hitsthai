@@ -56,6 +56,14 @@
     margin-right: 10%;
 }
 
+#Row-Product-Search{
+    font-size: 200%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .alice-carousel__dots {
     margin: 30px 3px 5px;
     padding: 0;
@@ -164,10 +172,27 @@
     justify-content: flex-end;
 }
 
+#product-footer-page-search {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 a {
     color: #ffffff;
     text-decoration: none;
     background-color: transparent;
+}
+
+#rowempty {
+    display: flex;
+    justify-content: center;
+}
+
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary) {
+    color: rgb(255 255 255 / 90%);
+    background-color: #da213d;
 }
 
 @media screen and (max-width: 1300px) {

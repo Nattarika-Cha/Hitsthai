@@ -27,6 +27,7 @@ export default class ProductList extends Component {
             mode: "",
             page: "",
             tab: "",
+            catIdOld: "",
             size: 12
         };
 
@@ -39,7 +40,8 @@ export default class ProductList extends Component {
             user: cookies.get('user', { path: '/' }),
             mode: this.props.match.params.mode,
             page: parseInt(this.props.match.params.page),
-            tab: this.props.match.params.catid
+            tab: this.props.match.params.catid,
+            catIdOld: this.props.match.params.catid
             // size: parseInt(this.props.match.params.size)
         });
     }
@@ -52,10 +54,20 @@ export default class ProductList extends Component {
         });
     }
 
+    async componentDidUpdate() {
+        // if (this.props.props.match.params.size !== this.state.sizeOld) {  
+        if ((this.state.catIdOld !== this.props.match.params.catid)) {
+            this.setState({
+                tab: this.props.match.params.catid,
+                catIdOld: this.props.match.params.catid
+            });
+        }
+    }
+
     tab_product() {
         return this.state.catalog.map((cat) => {
             return <TabPane tab={cat.catName} key={cat.catId}>
-                <ProductTab catId={cat.catId} mode={mode} page={page} size={size} props={this.props}/>
+                <ProductTab catId={cat.catId} mode={mode} page={page} size={size} props={this.props} />
             </TabPane>
         });
     }
@@ -69,7 +81,7 @@ export default class ProductList extends Component {
     }
 
     render() {
-        console.log(this.state.tab.toString() , " this.state.tab");
+        console.log(this.state.tab.toString(), " this.state.tab");
         mode = this.props.match.params.mode;
         // page = this.props.match.params.page;
         // size = this.props.match.params.size;

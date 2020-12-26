@@ -40,7 +40,7 @@ export default class ProductSlide extends Component {
     }
 
     list_productcade() {
-        console.log(this.state.product, " product");
+        //console.log(this.state.product, " product");
         return this.state.product.map((product) => {
             return <ProductCart product={product}/>
         });
@@ -81,7 +81,7 @@ export default class ProductSlide extends Component {
             }
         };
 
-        console.log(this.props.catId, " this.props.catId");
+        //console.log(this.props.catId, " this.props.catId");
 
         return (
             <Row id="Row-Product">

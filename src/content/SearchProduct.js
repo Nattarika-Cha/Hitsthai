@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Container, Image } from 'react-bootstrap';
 import { Row, Space, Empty, Select, Col, Pagination } from 'antd';
-import '../../css/Profile.css';
+import '../css/Profile.css';
+import '../css/Product.css';
 import axios from 'axios';
 // import swal from 'sweetalert';
 import Cookies from 'universal-cookie';
-import ProductCardGrid from './ProductCardGrid';
-import ProductCardList from './ProductCardList';
+import ProductCardGrid from './Product/ProductCardGrid';
+import ProductCardList from './Product/ProductCardList';
 import { NavLink } from 'react-router-dom';
 
-import grid from '../../img/mode_grid.svg';
-import list from '../../img/mode_list.svg';
+import grid from '../img/mode_grid.svg';
+import list from '../img/mode_list.svg';
 
 const cookies = new Cookies();
 const { Option } = Select;
@@ -42,7 +43,6 @@ export default class ProductTab extends Component {
         this.setState({
             token: cookies.get('token', { path: '/' }),
             user: cookies.get('user', { path: '/' }),
-            // catId: this.props.catId,
             mode: this.props.mode,
             page: 1,
             pageOld: 1,
@@ -53,19 +53,17 @@ export default class ProductTab extends Component {
     }
 
     async componentDidMount() {
-        var url_product = ip + "/Product/find/id/" + this.props.catId + "/" + this.state.page + "/" + this.state.size;
+        var url_product = ip + "/Product/find/search/" + this.props.match.params.id + "/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
         const product = await (await axios.get(url_product)).data;
         this.setState({
             product: product
         });
 
-        var url_product_count = ip + "/Product/count/all/" + this.props.catId;
+        var url_product_count = ip + "/Product/count/search/" + this.props.match.params.id + "/" + this.props.match.params.search;
         const product_count = await (await axios.get(url_product_count)).data;
         this.setState({
             product_count: product_count[0].num
         });
-
-        // console.log(product_count[0].num , ' product_count')
     }
 
     async componentDidUpdate() {
@@ -77,8 +75,7 @@ export default class ProductTab extends Component {
             }
 
             var size = parseInt(this.state.size);
-            var catId = this.props.catId;
-            var url_product = ip + "/Product/find/id/" + catId + "/" + page + "/" + size;
+            var url_product = ip + "/Product/find/search/" + this.props.match.params.id + "/" + this.props.match.params.search + "/" + page + "/" + size;
             const product = await (await axios.get(url_product)).data;
             this.setState({
                 product: product,
@@ -126,16 +123,19 @@ export default class ProductTab extends Component {
         // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
         return (
             <Container fluid>
-                <Row>
+                <Row id="Row-Product-Search">
+                    ค้าหาคำว่า "{this.props.match.params.search}" จำนวน {this.state.product_count} รายการ
+                </Row>
+                <Row id="Row-Product">
                     <Col xs={12} md={12} lg={12}>
-                        {this.props.mode === "grid" ?
+                        {this.props.match.params.mode === "grid" ?
                             <Space>
-                                <NavLink to={"/ProductList/" + this.props.props.match.params.catid + "/grid"}>
+                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.id + "/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #DA213D", backgroundColor: "#DA213D" }}>
                                         <Image src={grid} />
                                     </div>
                                 </NavLink >
-                                <NavLink to={"/ProductList/" + this.props.props.match.params.catid + "/list"}>
+                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.id + "/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #707070", backgroundColor: "#707070" }}>
                                         <Image src={list} />
                                     </div>
@@ -143,12 +143,12 @@ export default class ProductTab extends Component {
                             </Space>
                             :
                             <Space>
-                                <NavLink to={"/ProductList/" + this.props.props.match.params.catid + "/grid"}>
+                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.id + "/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #707070", backgroundColor: "#707070" }}>
                                         <Image src={grid} />
                                     </div>
                                 </NavLink >
-                                <NavLink to={"/ProductList/" + this.props.props.match.params.catid + "/list"}>
+                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.id + "/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #DA213D", backgroundColor: "#DA213D" }}>
                                         <Image src={list} />
                                     </div>
@@ -160,10 +160,9 @@ export default class ProductTab extends Component {
                         <Space>
                             <b>จำนวน</b>
 
-                            {this.props.mode === "grid" ?
+                            {this.props.match.params.mode === "grid" ?
 
                                 <Select defaultValue={this.state.size} style={{ width: 60 }} onChange={this.handleChange}>
-                                    {/* {(() => { console.log(this.state.size, " tesstttst") })()} */}
                                     <Option value="12">12</Option>
                                     <Option value="24">24</Option>
                                     <Option value="36">36</Option>
@@ -178,16 +177,16 @@ export default class ProductTab extends Component {
                         </Space>
                     </Col>
                 </Row>
-                <Row>
+                <Row id="Row-Product">
                     {this.state.product.length > 0 ?
-                        this.props.mode === "grid" ? this.grid_product() : this.list_product()
+                        this.props.match.params.mode === "grid" ? this.grid_product() : this.list_product()
                         :
                         <Col xs={24} md={24} lg={24} id="rowempty">
                             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
                         </Col>
                     }
                 </Row>
-                <Row id="product-footer-page">
+                <Row id="product-footer-page-search">
                     <Pagination size="small" defaultCurrent={1} pageSize={this.state.size} total={this.state.product_count} onChange={this.onChangePage} />
                 </Row>
             </Container>

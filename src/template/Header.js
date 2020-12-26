@@ -4,12 +4,13 @@ import { Row, Col, Avatar, Select, Input, Menu, Dropdown } from 'antd';
 import { Container, Image } from 'react-bootstrap';
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
-import logo from '../img/logo.png'
+import logo from '../img/logo.png';
+import axios from 'axios';
 import Cookies from 'universal-cookie';
 
-
+var ip = "http://localhost:5000";
 var ip_img_profile = "http://128.199.198.10/API/profile/";
-var img_profile = "";
+// var img_profile = "";
 const cookies = new Cookies();
 
 const { Option } = Select;
@@ -44,8 +45,13 @@ export default class Header extends Component {
         super(props);
         this.state = {
             token: "",
-            user: []
+            user: [],
+            catalog: [],
+            catId: ""
         }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.onSearch = this.onSearch.bind(this);
     }
 
     componentWillMount() {
@@ -54,13 +60,35 @@ export default class Header extends Component {
             user: cookies.get('user', { path: '/' })
         });
 
-        img_profile = ip_img_profile + this.state.user.img;
+        // img_profile = ip_img_profile + this.state.user.img;
+    }
+
+    async componentDidMount() {
+        var url_catalog = ip + "/Catalog/find/all";
+        const catalog = await (await axios.get(url_catalog)).data;
+        this.setState({
+            catalog: catalog
+        });
+    }
+
+    tab_product() {
+        return this.state.catalog.map((cat) => {
+            return <Option value={cat.catId}>{cat.catName}</Option>
+        });
+    }
+
+    handleChange(value) {
+        console.log(`selected ${value}`);
+    }
+
+    onSearch(value) {
+        console.log(value, " value");
     }
 
     render() {
         // img_profile = ip_img_profile + this.state.user.img;
-        console.log(this.state.user, " this.state.user")
-        console.log(img_profile, " img_profile")
+        // console.log(this.state.user, " this.state.user")
+        // console.log(img_profile, " img_profile")
         return (
             // <div>
             <Container fluid>
@@ -79,32 +107,34 @@ export default class Header extends Component {
                         </Col>
                         <Col xs={12} xl={12} id="col-Headder-center">
                             <Select
-                                showSearch
+                                // showSearch
+                                defaultValue="0"
                                 style={{ width: 180 }}
                                 placeholder="สินค้าทั้งหมด"
                                 optionFilterProp="children"
-                                filterOption={(input, option) =>
-                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                }
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                }
+                                onChange={this.handleChange}
+                            // filterOption={(input, option) =>
+                            //     option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            // }
+                            // filterSort={(optionA, optionB) =>
+                            //     optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                            // }
                             >
-                                <Option value="1">Not Identified</Option>
-                                <Option value="2">Closed</Option>
-                                <Option value="3">Communicated</Option>
-                                <Option value="4">Identified</Option>
-                                <Option value="5">Resolved</Option>
-                                <Option value="6">Cancelled</Option>
+                                <Option value="0">สินค้าทั้งหมด</Option>
+                                {this.state.catalog.length > 0 ?
+                                    this.tab_product()
+                                    :
+                                    <></>
+                                }
                             </Select>
-                            <Input.Search allowClear style={{ width: '50%' }} placeholder="ค้นหา" />
+                            <Input.Search allowClear style={{ width: '50%' }} placeholder="ค้นหา" onSearch={this.onSearch} />
                         </Col>
                         <Col xs={6} xl={6} style={{ textAlign: "end" }}>
                             <strong style={{ paddingRight: "15%" }}> TH | EN </strong>
                             {
-                                (this.state.token === "" || this.state.token === null || this.state.token === undefined)?
+                                (this.state.token === "" || this.state.token === null || this.state.token === undefined) ?
                                     <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" arrow>
-                                        <Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar"/>
+                                        <Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" />
                                     </Dropdown>
                                     :
                                     <Dropdown overlay={menuuser} trigger={['click']} placement="bottomRight" arrow>

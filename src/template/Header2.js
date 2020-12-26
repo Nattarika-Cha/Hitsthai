@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import '../css/Header.css';
-import { Row, Col, Menu } from 'antd';
+import { Row, Col, Menu, Empty } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 const { SubMenu } = Menu;
 const active = { color: "rgb(255 255 255)", backgroundColor: "#DA213D", borderRadius: "10mm", marginTop: "0.7%", marginBottom: "0.7%" };
 const cookies = new Cookies();
+
+var ip = "http://localhost:5000";
 export default class Header2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
             token: "",
-            user: []
+            user: [],
+            catalog: []
         }
     }
 
@@ -23,7 +27,21 @@ export default class Header2 extends Component {
             token: cookies.get('token', { path: '/' }),
             user: cookies.get('user', { path: '/' })
         });
-        
+
+    }
+
+    async componentDidMount() {
+        var url_catalog = ip + "/Catalog/find/all";
+        const catalog = await (await axios.get(url_catalog)).data;
+        this.setState({
+            catalog: catalog
+        });
+    }
+
+    tab_product() {
+        return this.state.catalog.map((cat) => {
+            return <Menu.Item key={cat.catId}><NavLink to={"/ProductList/" + cat.catId + "/grid"}>{cat.catName}</NavLink></Menu.Item>
+        });
     }
 
     render() {
@@ -57,8 +75,11 @@ export default class Header2 extends Component {
                                 mode="horizontal"
                             >
                                 <SubMenu key="sub1" icon={<MenuOutlined />} title="ประเภทสินค้าทั้งหมด">
-                                    <Menu.Item key="1">Option 1</Menu.Item>
-                                    <Menu.Item key="2">Option 2</Menu.Item>
+                                    {this.state.catalog.length > 0 ?
+                                        this.tab_product()
+                                        :
+                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                                    }
                                 </SubMenu>
                             </Menu>
                         </Col>

@@ -12,7 +12,8 @@ import Login from "../content/Login";
 import Changepass from "../content/Changepass";
 import Profile from "../content/Profile";
 import ProductList from "../content/Product/ProductList";
-import Logout from "../content/Logout"
+import Logout from "../content/Logout";
+import SearchProduct from "../content/SearchProduct";
 
 export default class Index extends Component {
     render() {
@@ -31,6 +32,8 @@ export default class Index extends Component {
 
                 <Route exact path="/ProductList" component={ProductList} />
                 <Route exact path="/ProductList/:catid/:mode" component={ProductList} />
+
+                <Route exact path="/SearchProduct/:mode/:id/:search" component={SearchProduct} />
             </Switch>
         );
     }
