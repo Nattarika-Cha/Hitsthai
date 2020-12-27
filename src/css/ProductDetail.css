@@ -57,6 +57,10 @@
     color: #ff0404;
 }
 
+#color-product2{
+    color: #4A85DE
+}
+
 .image-gallery-play-button {
     display: none;
 }
@@ -73,6 +77,10 @@
 #img-showproduct{
     margin-bottom: 5%;
     margin-right: 4%;
+}
+
+#detail-size{
+    color: #686868;
 }
 
 #detial{
