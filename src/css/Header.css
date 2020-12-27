@@ -75,6 +75,10 @@
   margin: 0 0px;
 }
 
+.ant-menu-horizontal {
+  border-bottom: 0px solid #f0f0f0;
+}
+
 .ant-menu-item-selected a, .ant-menu-item-selected a:hover {
   color: #DA213D;
 }

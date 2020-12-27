@@ -36,7 +36,7 @@ export default class Index extends Component {
                 
                 <Route exact path="/ProductList/:catid/:mode" component={ProductList} />
 
-                <Route exact path="/SearchProduct/:mode/:id/:search" component={SearchProduct} />
+                <Route exact path="/SearchProduct/:mode/:search" component={SearchProduct} />
             </Switch>
         );
     }

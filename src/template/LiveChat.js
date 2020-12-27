@@ -9,8 +9,9 @@ import {
     ChildButton,
 } from 'react-floating-button-menu';
 import { MdForum } from 'react-icons/md';
-import { FaFacebookMessenger, FaPhoneAlt, FaTimes, FaMapMarkerAlt } from 'react-icons/fa'; //FaCommentDots
-import LineIcon from 'react-lineicons';
+import { FaFacebookMessenger, FaPhoneAlt, FaTimes, FaMapMarkerAlt, FaLine } from 'react-icons/fa'; //FaCommentDots
+// import LineIcon from 'react-lineicons';
+import { Tooltip } from 'antd';
 
 
 export default class Footer extends Component {
@@ -31,41 +32,39 @@ export default class Footer extends Component {
                 style={{ position: 'fixed', bottom: '20px', right: '3%', zIndex: '100000' }}
             >
                 <MainButton
-                    iconResting={<MdForum style={{ fontSize: 30, color: "aliceblue" }} />}
-                    iconActive={<FaTimes style={{ fontSize: 30, color: "aliceblue" }} />}
+                    iconResting={<Tooltip placement="left" title="ติดต่อเพิ่มเติม"><MdForum style={{ fontSize: 50, color: "aliceblue", padding: "20%" }} /></Tooltip>}
+                    iconActive={<Tooltip placement="left" title="ติดต่อเพิ่มเติม"><FaTimes style={{ fontSize: 50, color: "aliceblue", padding: "20%" }} /></Tooltip>}
                     style={{ backgroundColor: '#FF9C00' }}
                     size={60}
                     onClick={() => this.setState({ isOpen: !this.state.isOpen })}
                 />
 
                 <ChildButton
-                    icon={<NavLink to="/Contact"><FaMapMarkerAlt name="comment" style={{ fontSize: 50, color: "aliceblue", padding: "20%" }} /></NavLink>}
+                    icon={<Tooltip placement="left" title="ติดต่อเรา"><NavLink to="/Contact"><FaMapMarkerAlt name="comment" style={{ fontSize: 50, color: "aliceblue", padding: "20%" }} /></NavLink></Tooltip>}
                     background='darkred'
                     size={50}
                     //onClick={() => { window.location = "/Request"; }}
                 />
 
                 <ChildButton
-                    icon={
-                        <FaPhoneAlt style={{ fontSize: 25, color: "aliceblue" }} />
-                    }
+                    icon={<Tooltip placement="left" title="โทรศัพท์"><FaPhoneAlt style={{ fontSize: 50 , color: "aliceblue", padding: "20%" }} /></Tooltip>}
                     background='teal'
                     size={50}
-                    // onClick={() => { window.open("tel:+66831885535"); }}
+                    onClick={() => { window.open("tel:+66905436000"); }}
                 />
 
 
                 <ChildButton
-                    icon={<LineIcon name="line" style={{ fontSize: 25, color: "aliceblue" }} />}
+                    icon={<Tooltip placement="left" title="Line"><FaLine style={{ fontSize: 60, color: "aliceblue", padding: "20%" }} /></Tooltip>}
                     background='#00C300'
                     size={50}
-                    // onClick={() => { window.open("http://line.me/ti/p/0831885535", "_blank"); }}
+                    onClick={() => { window.open("http://line.me/ti/p/~hitsthai", "_blank"); }}
                 />
                 <ChildButton
-                    icon={<FaFacebookMessenger style={{ fontSize: 25, color: "aliceblue" }} />}
+                    icon={<Tooltip placement="left" title="Facebook"><FaFacebookMessenger style={{ fontSize: 50, color: "aliceblue", padding: "20%" }} /></Tooltip>}
                     background='blue'
                     size={50}
-                    // onClick={() => { window.open("https://web.facebook.com/ptscombinationTH?_rdc=1&_rdr", "_blank"); }}
+                    onClick={() => { window.open("https://m.me/hits.thai.9", "_blank"); }}
                 />
                 {/* <ChildButton
                     icon={<NavLink to="/Contact"><FaMapMarkerAlt style={{ fontSize: 50, color: "aliceblue", padding: "20%" }} /></NavLink>}

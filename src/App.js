@@ -20,6 +20,7 @@ import Routing from "./routes";
 const { Header, Content, Footer } = Layout;
 export default class App extends Component {
   render() {
+    // console.log(window.innerHeight, " window");
     return (
       // <div className="App">
       //   <header className="App-header">
@@ -36,7 +37,7 @@ export default class App extends Component {
           <Layout className="site-layout">
             <Header id="layout-header" > <PageHeader /> </Header>
             <Header id="layout-header" > <PageHeader2 /> </Header>
-            <Content> <Routing /> </Content>
+            <Content style={{minHeight: "588px"}}> <Routing /> </Content>
             <Footer style={{ textAlign: 'center' }}><PageFooter /></Footer>
             <LiveChat />
           </Layout>

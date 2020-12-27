@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import '../css/Header.css';
-import { Row, Col, Avatar, Select, Input, Menu, Dropdown } from 'antd';
+import { Row, Col, Avatar, Input, Menu, Dropdown } from 'antd';
 import { Container, Image } from 'react-bootstrap';
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import logo from '../img/logo3.svg';
-import axios from 'axios';
-import Cookies from 'universal-cookie';
+// import axios from 'axios';
+// import Cookies from 'universal-cookie';
 // import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
-var ip = "http://localhost:5000";
+// var ip = "http://localhost:5000";
 var ip_img_profile = "http://128.199.198.10/API/profile/";
 // var img_profile = "";
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
-const { Option } = Select;
+// const { Option } = Select;
 const menu = (
     <Menu>
         <Menu.Item key="0">
@@ -52,43 +52,43 @@ export default withRouter(class Header extends Component {
             catId: "0"
         }
 
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
         this.onSearch = this.onSearch.bind(this);
     }
 
-    componentWillMount() {
-        this.setState({
-            token: cookies.get('token', { path: '/' }),
-            user: cookies.get('user', { path: '/' })
-        });
+    // componentWillMount() {
+    //     this.setState({
+    //         token: cookies.get('token', { path: '/' }),
+    //         user: cookies.get('user', { path: '/' })
+    //     });
 
-        // img_profile = ip_img_profile + this.state.user.img;
-    }
+    //     // img_profile = ip_img_profile + this.state.user.img;
+    // }
 
-    async componentDidMount() {
-        var url_catalog = ip + "/Catalog/find/all";
-        const catalog = await (await axios.get(url_catalog)).data;
-        this.setState({
-            catalog: catalog
-        });
-    }
+    // async componentDidMount() {
+    //     var url_catalog = ip + "/Catalog/find/all";
+    //     const catalog = await (await axios.get(url_catalog)).data;
+    //     this.setState({
+    //         catalog: catalog
+    //     });
+    // }
 
-    tab_product() {
-        return this.state.catalog.map((cat) => {
-            return <Option value={cat.catId}>{cat.catName}</Option>
-        });
-    }
+    // tab_product() {
+    //     return this.state.catalog.map((cat) => {
+    //         return <Option value={cat.catId}>{cat.catName}</Option>
+    //     });
+    // }
 
-    handleChange(value) {
-        this.setState({
-            catalog: value
-        });
-    }
+    // handleChange(value) {
+    //     this.setState({
+    //         catalog: value
+    //     });
+    // }
 
     onSearch(value) {
         console.log(value, " value");
         if(value !== "") {
-            this.props.history.push("/SearchProduct/grid/" + this.state.catId + "/" + value);
+            this.props.history.push("/SearchProduct/grid/" + value);
         }
     }
 
@@ -113,7 +113,7 @@ export default withRouter(class Header extends Component {
                             />
                         </Col>
                         <Col xs={12} xl={12} id="col-Headder-center">
-                            <Select
+                            {/* <Select
                                 // showSearch
                                 defaultValue="0"
                                 style={{ width: 180 }}
@@ -133,8 +133,8 @@ export default withRouter(class Header extends Component {
                                     :
                                     <></>
                                 }
-                            </Select>
-                            <Input.Search allowClear style={{ width: '50%' }} placeholder="ค้นหา" onSearch={this.onSearch} />
+                            </Select> */}
+                            <Input.Search allowClear style={{ width: '70%' }} placeholder="ค้นหา" onSearch={this.onSearch} />
                         </Col>
                         <Col xs={6} xl={6} style={{ textAlign: "end" }}>
                             <strong style={{ paddingRight: "15%" }}> TH | EN </strong>

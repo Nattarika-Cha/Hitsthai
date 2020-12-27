@@ -90,7 +90,7 @@ export default class Header2 extends Component {
                             <NavLink to="/Contact" id="nav-Header" activeStyle={active}>ติดต่อเรา</NavLink>
                         </Col>
                         <Col xs={6} xl={6} id="col-Headder-center3">
-                            <div>Call us : 0888888888</div>
+                            <div>Call us : 090-543-6000</div>
                         </Col>
                     </Row>
                 </div>

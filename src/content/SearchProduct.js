@@ -47,50 +47,55 @@ export default class ProductTab extends Component {
             page: 1,
             pageOld: 1,
             size: "12",
-            sizeOld: "12"
+            sizeOld: "12",
+            search: this.props.match.params.search
         });
 
+        console.log("testtttttt11111");
     }
 
     async componentDidMount() {
-        var url_product = ip + "/Product/find/search/" + this.props.match.params.id + "/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
+        var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
         const product = await (await axios.get(url_product)).data;
         this.setState({
             product: product
         });
 
-        var url_product_count = ip + "/Product/count/search/" + this.props.match.params.id + "/" + this.props.match.params.search;
+        var url_product_count = ip + "/Product/count/search/" + this.props.match.params.search;
         const product_count = await (await axios.get(url_product_count)).data;
         this.setState({
             product_count: product_count[0].num
         });
+
+        console.log(product_count , " product_count");
     }
 
     async componentDidUpdate() {
         // if (this.props.props.match.params.size !== this.state.sizeOld) {  
-        if ((this.state.size !== this.state.sizeOld) || (this.state.page !== this.state.pageOld)) {
+        if ((this.state.size !== this.state.sizeOld) || (this.state.page !== this.state.pageOld) || (this.state.search !== this.props.match.params.search)) {
             var page = 1;
             if (this.state.size <= this.state.product_count) {
                 page = parseInt(this.state.page);
             }
 
             var size = parseInt(this.state.size);
-            var url_product = ip + "/Product/find/search/" + this.props.match.params.id + "/" + this.props.match.params.search + "/" + page + "/" + size;
+            var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + page + "/" + size;
             const product = await (await axios.get(url_product)).data;
             this.setState({
                 product: product,
                 sizeOld: this.state.size,
-                pageOld: this.state.page
+                pageOld: this.state.page,
+                search: this.props.match.params.search
             });
 
-            var url_product_count = ip + "/Product/count/search/" + this.props.match.params.id + "/" + this.props.match.params.search;
+            var url_product_count = ip + "/Product/count/search/" + this.props.match.params.search;
             const product_count = await (await axios.get(url_product_count)).data;
             this.setState({
                 product_count: product_count[0].num
             });
         }
 
-
+        console.log("testtttttt22222");
         //console.log(this.state.product, " product-update");
         // console.log(this.props.catId, " this.props.catId");
         // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
