@@ -3,7 +3,7 @@ import { Container, } from 'react-bootstrap';
 import { Row, Col, Descriptions, PageHeader, } from 'antd';
 import '../../css/ProductDetail.css';
 import ImageGallery from 'react-image-gallery';
-import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
+import { CheckCircleTwoTone, CloseCircleTwoTone, ShoppingTwoTone } from '@ant-design/icons';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
@@ -87,9 +87,6 @@ export default class Abount extends Component {
                     <Row id="Product-name" >
                         <div>{this.state.product[0]?.name}</div>
                     </Row>
-                    <Row id="detailname">
-                        <div>{this.state.product[0]?.size}</div>
-                    </Row>
 
                     <Row>
                         <Col xs={24} md={24} xl={10} id="img-showproduct">
@@ -102,6 +99,14 @@ export default class Abount extends Component {
                                 </Col>
                                 <Col xs={12} md={12} xl={12} id="detial">
                                     <div>-</div>
+                                </Col>
+                            </Row>
+                            <Row id="Row-List">
+                                <Col xs={10} md={5} xl={5}>
+                                    <div>ขนาด   :</div>
+                                </Col>
+                                <Col xs={12} md={12} xl={12} id="detail-size">
+                                    <div>{this.state.product[0]?.size}</div>
                                 </Col>
                             </Row>
                             <Row id="Row-List">
@@ -137,15 +142,21 @@ export default class Abount extends Component {
                                             <div>รอเพิ่มเติมสินค้า</div>
                                         </Col>
                                     </Row>
+                                    <Row>
+                                        <Col id="col-icon">
+                                            <div className="icons-list" id="icon">
+                                                <ShoppingTwoTone twoToneColor="#4A85DE"/>
+                                            </div>
+                                        </Col>
+                                        <Col id="color-product2">
+                                            <div>สั่งสินค้าล่วงหน้า</div>
+                                        </Col>
+                                    </Row>
                                 </Col>
                             </Row>
                             <Row id="dercript">
                                 <div>
-                                    {
-                                        this.state.caution?.map((caution, i) => {
-                                            return <> - {caution} <br /> </>
-                                        })
-                                    }
+                                    {this.state.product[0]?.direction}
                                 </div>
                             </Row>
                         </Col>
