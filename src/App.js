@@ -11,6 +11,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import PageHeader from "./template/Header";
 import PageHeader2 from "./template/Header2";
 import PageFooter from "./template/Footer";
+import LiveChat from "./template/LiveChat";
 import Routing from "./routes";
 // import { browserHistory } from 'react-router';
 
@@ -33,15 +34,11 @@ export default class App extends Component {
       <Router>
         <Layout>
           <Layout className="site-layout">
-
             <Header id="layout-header" > <PageHeader /> </Header>
             <Header id="layout-header" > <PageHeader2 /> </Header>
-            {/* <PageHeader2 /> */}
-            {/* <Header id="layout-header" > <PageHeader /> </Header> */}
-            {/* <PageHeader /> */}
             <Content> <Routing /> </Content>
             <Footer style={{ textAlign: 'center' }}><PageFooter /></Footer>
-
+            <LiveChat />
           </Layout>
         </Layout>
       </Router>

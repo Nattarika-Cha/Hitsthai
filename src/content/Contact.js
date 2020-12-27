@@ -12,7 +12,6 @@ export default class Contact extends Component {
     render() {
         return (
             <Container fluid>
-                <div>Contact</div>
                 <Row id="contact">
                     <Col xs={24} md={24} xl={12} id="map" >
                     </Col>

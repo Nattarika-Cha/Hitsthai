@@ -4,9 +4,11 @@ import { Row, Col, Avatar, Select, Input, Menu, Dropdown } from 'antd';
 import { Container, Image } from 'react-bootstrap';
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
-import logo from '../img/logo.png';
+import logo from '../img/logo3.svg';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+// import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 var ip = "http://localhost:5000";
 var ip_img_profile = "http://128.199.198.10/API/profile/";
@@ -40,14 +42,14 @@ const menuuser = (
         </Menu.Item>
     </Menu>
 );
-export default class Header extends Component {
+export default withRouter(class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
             token: "",
             user: [],
             catalog: [],
-            catId: ""
+            catId: "0"
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -78,11 +80,16 @@ export default class Header extends Component {
     }
 
     handleChange(value) {
-        console.log(`selected ${value}`);
+        this.setState({
+            catalog: value
+        });
     }
 
     onSearch(value) {
         console.log(value, " value");
+        if(value !== "") {
+            this.props.history.push("/SearchProduct/grid/" + this.state.catId + "/" + value);
+        }
     }
 
     render() {
@@ -151,4 +158,4 @@ export default class Header extends Component {
             </Container>
         )
     }
-}
+})

@@ -32,7 +32,7 @@ export default class Index extends Component {
                 <Route exact path="/Logout" component={Logout} />
 
                 <Route exact path="/ProductList" component={ProductList} />
-                <Route exact path="/ProductDetail" component={ProductDetail} />
+                <Route exact path="/ProductDetail/:productId" component={ProductDetail} />
                 
                 <Route exact path="/ProductList/:catid/:mode" component={ProductList} />
 

@@ -82,6 +82,12 @@ export default class ProductTab extends Component {
                 sizeOld: this.state.size,
                 pageOld: this.state.page
             });
+
+            var url_product_count = ip + "/Product/count/search/" + this.props.match.params.id + "/" + this.props.match.params.search;
+            const product_count = await (await axios.get(url_product_count)).data;
+            this.setState({
+                product_count: product_count[0].num
+            });
         }
 
 
