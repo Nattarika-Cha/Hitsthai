@@ -12,6 +12,7 @@ import { NavLink } from 'react-router-dom';
 
 import grid from '../img/mode_grid.svg';
 import list from '../img/mode_list.svg';
+import swal from 'sweetalert';
 
 const cookies = new Cookies();
 const { Option } = Select;
@@ -50,24 +51,44 @@ export default class ProductTab extends Component {
             sizeOld: "12",
             search: this.props.match.params.search
         });
-
-        console.log("testtttttt11111");
     }
 
     async componentDidMount() {
-        var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
-        const product = await (await axios.get(url_product)).data;
-        this.setState({
-            product: product
-        });
+
+        var url_product = "";
+        if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
+            this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
+            url_product = ip + "/Product/find/notauthorization/search/16/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
+        } else {
+            url_product = ip + "/Product/find/authorization/search/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
+        }
+
+        const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        if ((product.statusCode === 500) || (product.statusCode === 400)) {
+            swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                this.setState({
+                    token: cookies.remove('token', { path: '/' }),
+                    user: cookies.remove('user', { path: '/' })
+                });
+                window.location.replace('/Login', false);
+            });
+        } else {
+            this.setState({
+                product: product
+            });
+        }
+
+        // var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
+        // const product = await (await axios.get(url_product)).data;
+        // this.setState({
+        //     product: product
+        // });
 
         var url_product_count = ip + "/Product/count/search/" + this.props.match.params.search;
         const product_count = await (await axios.get(url_product_count)).data;
         this.setState({
             product_count: product_count[0].num
         });
-
-        console.log(product_count , " product_count");
     }
 
     async componentDidUpdate() {
@@ -79,14 +100,41 @@ export default class ProductTab extends Component {
             }
 
             var size = parseInt(this.state.size);
-            var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + page + "/" + size;
-            const product = await (await axios.get(url_product)).data;
-            this.setState({
-                product: product,
-                sizeOld: this.state.size,
-                pageOld: this.state.page,
-                search: this.props.match.params.search
-            });
+
+            var url_product = "";
+            if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
+                this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
+                url_product = ip + "/Product/find/notauthorization/search/16/" + this.props.match.params.search + "/" + page + "/" + size;
+            } else {
+                url_product = ip + "/Product/find/authorization/search/" + this.props.match.params.search + "/" + page + "/" + size;
+            }
+
+            const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+            if ((product.statusCode === 500) || (product.statusCode === 400)) {
+                swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                    this.setState({
+                        token: cookies.remove('token', { path: '/' }),
+                        user: cookies.remove('user', { path: '/' })
+                    });
+                    window.location.replace('/Login', false);
+                });
+            } else {
+                this.setState({
+                    product: product,
+                    sizeOld: this.state.size,
+                    pageOld: this.state.page,
+                    search: this.props.match.params.search
+                });
+            }
+
+            // var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + page + "/" + size;
+            // const product = await (await axios.get(url_product)).data;
+            // this.setState({
+            //     product: product,
+            //     sizeOld: this.state.size,
+            //     pageOld: this.state.page,
+            //     search: this.props.match.params.search
+            // });
 
             var url_product_count = ip + "/Product/count/search/" + this.props.match.params.search;
             const product_count = await (await axios.get(url_product_count)).data;
@@ -94,11 +142,6 @@ export default class ProductTab extends Component {
                 product_count: product_count[0].num
             });
         }
-
-        console.log("testtttttt22222");
-        //console.log(this.state.product, " product-update");
-        // console.log(this.props.catId, " this.props.catId");
-        // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
     }
 
     grid_product() {
@@ -141,12 +184,12 @@ export default class ProductTab extends Component {
                     <Col xs={12} md={12} lg={12}>
                         {this.props.match.params.mode === "grid" ?
                             <Space>
-                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.id + "/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #DA213D", backgroundColor: "#DA213D" }}>
                                         <Image src={grid} />
                                     </div>
                                 </NavLink >
-                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.id + "/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #707070", backgroundColor: "#707070" }}>
                                         <Image src={list} />
                                     </div>
@@ -154,12 +197,12 @@ export default class ProductTab extends Component {
                             </Space>
                             :
                             <Space>
-                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.id + "/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #707070", backgroundColor: "#707070" }}>
                                         <Image src={grid} />
                                     </div>
                                 </NavLink >
-                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.id + "/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.search}>
                                     <div style={{ border: "10px solid #DA213D", backgroundColor: "#DA213D" }}>
                                         <Image src={list} />
                                     </div>

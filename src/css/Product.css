@@ -195,6 +195,18 @@ a {
     background-color: #da213d;
 }
 
+#price-card-product {
+    color: #DA213D;
+    font-size: 140%;
+    text-align: end;
+    padding-right: 7%;
+}
+
+#price-list-product {
+    color: #DA213D;
+    font-size: 140%;
+}
+
 @media screen and (max-width: 1300px) {
     #card-product{
         width: 210px;

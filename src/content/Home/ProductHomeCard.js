@@ -19,8 +19,8 @@ export default class ProductCardTab extends Component {
                 <NavLink to={"/ProductDetail/" + this.props.product.productId}>
                     <Card
                         hoverable
-                        style={{ width: "max-content", border: "10px solid #f0f2f5" }}
-                        // id="card-product"
+                        //style={{ width: "min-content", border: "10px solid #f0f2f5" }}
+                        id="card-product"
                         cover={<img id="img-product" alt="example" src={imgm} />}>
                         <Row id="text-detail">
                             <Meta id="text-title" title={this.props.product.name} />
@@ -41,6 +41,11 @@ export default class ProductCardTab extends Component {
                                 <Meta id="description" description={this.props.product.color} />
                             </Col>
                         </Row>
+                        <Row id="text-detail">
+                        <Col id="textdescription" xs={24} md={24} xl={24}>
+                            <div id="price-card-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                        </Col>
+                    </Row>
                     </Card>
                 </NavLink>
             </Col>

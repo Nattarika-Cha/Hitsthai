@@ -53,6 +53,11 @@ export default class ProductCardList extends Component {
                                         <Meta id="description" description={this.props.product.use} />
                                     </Col>
                                 </Row>
+                                <Row id="text-detail">
+                                    <Col id="textdescription" xs={24} md={24} xl={24}>
+                                        <div id="price-list-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                                    </Col>
+                                </Row>
                             </Col>
                         </Row>
 

@@ -6,14 +6,14 @@ import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import logo from '../img/logo3.svg';
 // import axios from 'axios';
-// import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie';
 // import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 // var ip = "http://localhost:5000";
 var ip_img_profile = "http://128.199.198.10/API/profile/";
 // var img_profile = "";
-// const cookies = new Cookies();
+const cookies = new Cookies();
 
 // const { Option } = Select;
 const menu = (
@@ -56,14 +56,14 @@ export default withRouter(class Header extends Component {
         this.onSearch = this.onSearch.bind(this);
     }
 
-    // componentWillMount() {
-    //     this.setState({
-    //         token: cookies.get('token', { path: '/' }),
-    //         user: cookies.get('user', { path: '/' })
-    //     });
+    componentWillMount() {
+        this.setState({
+            token: cookies.get('token', { path: '/' }),
+            user: cookies.get('user', { path: '/' })
+        });
 
-    //     // img_profile = ip_img_profile + this.state.user.img;
-    // }
+        // img_profile = ip_img_profile + this.state.user.img;
+    }
 
     // async componentDidMount() {
     //     var url_catalog = ip + "/Catalog/find/all";

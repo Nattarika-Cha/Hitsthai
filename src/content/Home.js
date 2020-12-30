@@ -7,6 +7,7 @@ import '../css/Home.css';
 import ProductHomeCard from './Home/ProductHomeCard';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import swal from 'sweetalert';
 
 const cookies = new Cookies();
 
@@ -32,17 +33,61 @@ export default class Home extends Component {
     }
 
     async componentDidMount() {
-        var url_product_new = ip + "/Product/find/new/";
-        const product_new = await (await axios.get(url_product_new)).data;
-        this.setState({
-            product_new: product_new
-        });
 
-        var url_product_hit = ip + "/Product/find/hit/";
-        const product_hit = await (await axios.get(url_product_hit)).data;
-        this.setState({
-            product_hit: product_hit
-        });
+        var url_product_new = "";
+        var url_product_hit = "";
+
+        if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
+            this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
+            url_product_new = ip + "/Product/find/notauthorization/new/16/";
+            url_product_hit = ip + "/Product/find/notauthorization/hit/16/";
+
+        } else {
+            url_product_new = ip + "/Product/find/authorization/new/";
+            url_product_hit = ip + "/Product/find/authorization/hit/";
+        }
+
+        const product_new = await (await axios.get(url_product_new, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        if ((product_new.statusCode === 500) || (product_new.statusCode === 400)) {
+            swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                this.setState({
+                    token: cookies.remove('token', { path: '/' }),
+                    user: cookies.remove('user', { path: '/' })
+                });
+                window.location.replace('/Login', false);
+            });
+        } else {
+            this.setState({
+                product_new: product_new
+            });
+        }
+
+        const product_hit = await (await axios.get(url_product_hit, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        if ((product_hit.statusCode === 500) || (product_hit.statusCode === 400)) {
+            swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                this.setState({
+                    token: cookies.remove('token', { path: '/' }),
+                    user: cookies.remove('user', { path: '/' })
+                });
+                window.location.replace('/Login', false);
+            });
+        } else {
+            this.setState({
+                product_hit: product_hit
+            });
+        }
+
+        // var url_product_new = ip + "/Product/find/new/";
+        // const product_new = await (await axios.get(url_product_new)).data;
+        // this.setState({
+        //     product_new: product_new
+        // });
+
+        // var url_product_hit = ip + "/Product/find/hit/";
+        // const product_hit = await (await axios.get(url_product_hit)).data;
+        // this.setState({
+        //     product_hit: product_hit
+        // });
     }
 
     list_product_new() {

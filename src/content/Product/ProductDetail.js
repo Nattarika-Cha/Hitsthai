@@ -6,6 +6,7 @@ import ImageGallery from 'react-image-gallery';
 import { CheckCircleTwoTone, CloseCircleTwoTone, ShoppingTwoTone } from '@ant-design/icons';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import swal from 'sweetalert';
 
 const cookies = new Cookies();
 var ip = "http://localhost:5000";
@@ -49,17 +50,33 @@ export default class Abount extends Component {
     }
 
     async componentDidMount() {
-        var url_product = ip + "/Product/find/byproduct/id/" + this.props.match.params.productId;
-        const product = await (await axios.get(url_product)).data;
-        this.setState({
-            product: product
-        });
-
-        console.log(this.state.product[0]?.caution, " eeeeee");
-        if (this.state.product[0]?.caution !== null && this.state.product[0]?.caution !== "") {
-            this.setState({
-                caution: this.state.product[0]?.caution.split("-")
+        // var url_product = ip + "/Product/find/byproduct/authorization/id/" + this.props.match.params.productId;
+        var url_product = "";
+        if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
+            this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
+            url_product = ip + "/Product/find/byproduct/notauthorization/id/" + this.props.match.params.productId + "/16";
+        } else {
+            url_product = ip + "/Product/find/byproduct/authorization/id/" + this.props.match.params.productId;
+        }
+        const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        if ((product.statusCode === 500) || (product.statusCode === 400)) {
+            swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                this.setState({
+                    token: cookies.remove('token', { path: '/' }),
+                    user: cookies.remove('user', { path: '/' })
+                });
+                window.location.replace('/Login', false);
             });
+        } else {
+            this.setState({
+                product: product
+            });
+
+            if (this.state.product[0]?.caution !== null && this.state.product[0]?.caution !== "") {
+                this.setState({
+                    caution: this.state.product[0]?.caution.split("-")
+                });
+            }
         }
     }
 
@@ -98,7 +115,7 @@ export default class Abount extends Component {
                                     <div>ราคา   :</div>
                                 </Col>
                                 <Col xs={12} md={12} xl={12} id="detial">
-                                    <div>-</div>
+                                    <div>{"฿ " + (((this.state.product[0]?.price === null) || (this.state.product[0]?.price === "")) ? "-" : this.state.product[0]?.price) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)}</div>
                                 </Col>
                             </Row>
                             <Row id="Row-List">

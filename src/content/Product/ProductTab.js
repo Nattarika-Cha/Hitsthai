@@ -8,7 +8,7 @@ import Cookies from 'universal-cookie';
 import ProductCardGrid from './ProductCardGrid';
 import ProductCardList from './ProductCardList';
 import { NavLink } from 'react-router-dom';
-
+import swal from 'sweetalert';
 import grid from '../../img/mode_grid.svg';
 import list from '../../img/mode_list.svg';
 
@@ -53,44 +53,79 @@ export default class ProductTab extends Component {
     }
 
     async componentDidMount() {
-        var url_product = ip + "/Product/find/id/" + this.props.catId + "/" + this.state.page + "/" + this.state.size;
-        const product = await (await axios.get(url_product)).data;
-        this.setState({
-            product: product
-        });
+        var url_product = "";
+        if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
+            this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
+            url_product = ip + "/Product/find/notauthorization/" + this.props.catId + "/16/" + this.state.page + "/" + this.state.size;
+        } else {
+            url_product = ip + "/Product/find/authorization/" + this.props.catId + "/" + this.state.page + "/" + this.state.size;
+        }
+
+        const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        if ((product.statusCode === 500) || (product.statusCode === 400)) {
+            swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                this.setState({
+                    token: cookies.remove('token', { path: '/' }),
+                    user: cookies.remove('user', { path: '/' })
+                });
+                window.location.replace('/Login', false);
+            });
+        } else {
+            this.setState({
+                product: product
+            });
+        }
 
         var url_product_count = ip + "/Product/count/all/" + this.props.catId;
         const product_count = await (await axios.get(url_product_count)).data;
         this.setState({
             product_count: product_count[0].num
         });
-
-        // console.log(product_count[0].num , ' product_count')
     }
 
     async componentDidUpdate() {
-        // if (this.props.props.match.params.size !== this.state.sizeOld) {  
-        if ((this.state.size !== this.state.sizeOld) || (this.state.page !== this.state.pageOld)) {
-            var page = 1;
-            if (this.state.size <= this.state.product_count) {
-                page = parseInt(this.state.page);
+        if (this.props.props.match.params.size !== this.state.sizeOld) {
+            if ((this.state.size !== this.state.sizeOld) || (this.state.page !== this.state.pageOld)) {
+                var page = 1;
+                if (this.state.size <= this.state.product_count) {
+                    page = parseInt(this.state.page);
+                }
+
+                var size = parseInt(this.state.size);
+                var catId = this.props.catId;
+                // var url_product = ip + "/Product/find/id/" + catId + "/" + page + "/" + size;
+                var url_product = "";
+                if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
+                    this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
+                    url_product = ip + "/Product/find/notauthorization/" + catId + "/16/" + page + "/" + size;
+                } else {
+                    url_product = ip + "/Product/find/authorization/" + catId + "/" + page + "/" + size;
+                }
+
+                const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user.username } })).data;
+                if ((product.statusCode === 500) || (product.statusCode === 400)) {
+                    swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                        this.setState({
+                            token: cookies.remove('token', { path: '/' }),
+                            user: cookies.remove('user', { path: '/' })
+                        });
+                        window.location.replace('/Login', false);
+                    });
+                } else {
+                    this.setState({
+                        product: product,
+                        sizeOld: this.state.size,
+                        pageOld: this.state.page
+                    });
+                }
+                // const product = await (await axios.get(url_product)).data;
+                // this.setState({
+                //     product: product,
+                //     sizeOld: this.state.size,
+                //     pageOld: this.state.page
+                // });
             }
-
-            var size = parseInt(this.state.size);
-            var catId = this.props.catId;
-            var url_product = ip + "/Product/find/id/" + catId + "/" + page + "/" + size;
-            const product = await (await axios.get(url_product)).data;
-            this.setState({
-                product: product,
-                sizeOld: this.state.size,
-                pageOld: this.state.page
-            });
         }
-
-
-        //console.log(this.state.product, " product-update");
-        // console.log(this.props.catId, " this.props.catId");
-        // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
     }
 
     grid_product() {
