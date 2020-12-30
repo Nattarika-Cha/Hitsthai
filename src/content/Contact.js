@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import { Container } from 'react-bootstrap';
-import { Row, Col, Form, Input, Button } from 'antd';
+import { Row, Col, Form, Input, Button, Select } from 'antd';
 import '../css/Contact.css';
+
+const { Option } = Select;
+
+function onChange(value) {
+  console.log(`selected ${value}`);
+}
+
+function onBlur() {
+  console.log('blur');
+}
+
+function onFocus() {
+  console.log('focus');
+}
+
+function onSearch(val) {
+  console.log('search:', val);
+}
 export default class Contact extends Component {
     constructor(props) {
         super(props);
@@ -69,14 +87,26 @@ export default class Contact extends Component {
                         </Row>
                         <Row id="form">
                             <Col xs={24} md={6} xl={6} id="List">
-                                 ที่อยู่
+                                 การติดต่อ
                             </Col>
-                            <Col xs={22} md={14} xl={14}>
-                                <Form.Item
-                                    name="address"
-                                    rules={[{ required: true, message: 'กรุณากรอกที่อยู่!' }]}>
-                                    <Input.TextArea id="Input" />
-                                </Form.Item>
+                            <Col xs={22} md={14} xl={14} id="select">
+                                <Select
+                                    showSearch
+                                    placeholder="โปรดเลือกรูปแบบการติดต่อ"
+                                    optionFilterProp="children"
+                                    onChange={onChange}
+                                    onFocus={onFocus}
+                                    onBlur={onBlur}
+                                    onSearch={onSearch}
+                                    id="select1"
+                                    filterOption={(input, option) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                    }
+                                >
+                                    <Option value="Dealer">สมัครตัวแทนจำหน่าย</Option>
+                                    <Option value="Information">สอบถามข้อมูลเพิ่มเติม</Option>
+                                    <Option value="Order">สั่งซื้อสินค้า</Option>
+                                </Select>
                             </Col>
                             <Col xs={2} md={4} xl={4} id="request-mask">
                                 *
