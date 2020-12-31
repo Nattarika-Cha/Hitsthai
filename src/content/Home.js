@@ -92,13 +92,13 @@ export default class Home extends Component {
 
     list_product_new() {
         return this.state.product_new.map((product) => {
-            return <Col xs={4} xl={4}> <ProductHomeCard product={product}/> </Col>
+            return <Col xs={12} md={8} xl={4}> <ProductHomeCard product={product} /> </Col>
         });
     }
 
     list_product_hit() {
         return this.state.product_hit.map((product) => {
-            return <Col xs={4} xl={4}> <ProductHomeCard product={product}/> </Col>
+            return <Col xs={12} md={8} xl={4}> <ProductHomeCard product={product} /> </Col>
         });
     }
 
@@ -121,28 +121,35 @@ export default class Home extends Component {
                 <Row id="hade-standate">
                     <div id="standate">สินค้าใหม่</div>
                 </Row>
-                <Row  id="img-standate">
+                {/* <Row  id="img-standate">
                     <Col xs={2} xl={2} ></Col>
                     {this.list_product_new()}
-                    {/* <Col xs={4} xl={4} id="black-img1"> <ProductHomeCard /> </Col>
+                    <Col xs={4} xl={4} id="black-img1"> <ProductHomeCard /> </Col>
                     <Col xs={4} xl={4} id="black-img2"> <ProductHomeCard /></Col>
                     <Col xs={4} xl={4} id="black-img3"> <ProductHomeCard /></Col>
                     <Col xs={4} xl={4} id="black-img4"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img5"> <ProductHomeCard /></Col> */}
+                    <Col xs={4} xl={4} id="black-img5"> <ProductHomeCard /></Col>
                     <Col xs={2} xl={2} ></Col>
-                </Row>
-                <Row id="hade-standate">
-                    <div id="standate">สินค้ายอดนิยม</div>
                 </Row>
                 <Row  id="img-standate">
                     <Col xs={2} xl={2} ></Col>
                     {this.list_product_hit()}
-                    {/* <Col xs={4} xl={4} id="black-img1"> <ProductHomeCard /> </Col>
+                    <Col xs={4} xl={4} id="black-img1"> <ProductHomeCard /> </Col>
                     <Col xs={4} xl={4} id="black-img2"> <ProductHomeCard /></Col>
                     <Col xs={4} xl={4} id="black-img3"> <ProductHomeCard /></Col>
                     <Col xs={4} xl={4} id="black-img4"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img5"> <ProductHomeCard /></Col> */}
+                    <Col xs={4} xl={4} id="black-img5"> <ProductHomeCard /></Col>
                     <Col xs={2} xl={2} ></Col>
+                </Row> */}
+
+                <Row id="row-pay">
+                    {this.list_product_new()}
+                </Row>
+                <Row id="hade-standate">
+                    <div id="standate">สินค้ายอดนิยม</div>
+                </Row>
+                <Row id="row-pay">
+                    {this.list_product_hit()}
                 </Row>
             </Container>
         )

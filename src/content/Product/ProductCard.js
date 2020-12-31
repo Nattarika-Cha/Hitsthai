@@ -25,7 +25,9 @@ export default class ProductCard extends Component {
                         <Meta id="text-title" title={this.props.product.name} />
                     </Row>
                     <Row id="text-detail">
-                        <Col id="textdescription" xs={5} md={5} xl={5}>
+                        {/* <div>{"ขนาด : " + this.props.product.size}</div> */}
+                        <Meta description={"ขนาด : " + this.props.product.size} />
+                        {/* <Col id="textdescription" xs={5} md={5} xl={5}>
                             <Meta description="ขนาด" />
                         </Col>
                         <Col id="textdescription" xs={1} md={1} xl={1}>
@@ -33,10 +35,12 @@ export default class ProductCard extends Component {
                         </Col>
                         <Col xs={18} md={18} xl={18}>
                             <Meta id="description" description={this.props.product.size} />
-                        </Col>
+                        </Col> */}
                     </Row>
                     <Row id="text-detail">
-                        <Col id="textdescription" xs={2} md={2} xl={2}>
+                        {/* <div>{"สี : " + this.props.product.color}</div> */}
+                        <Meta description={"สี : " + this.props.product.color} />
+                        {/* <Col id="textdescription" xs={2} md={2} xl={2}>
                             <Meta description="สี" />
                         </Col>
                         <Col id="textdescription" xs={1} md={1} xl={1}>
@@ -44,7 +48,7 @@ export default class ProductCard extends Component {
                         </Col>
                         <Col xs={19} md={19} xl={19}>
                             <Meta id="description" description={this.props.product.color} />
-                        </Col>
+                        </Col> */}
                     </Row>
                     <Row id="text-detail">
                         <Col id="textdescription" xs={24} md={24} xl={24}>

@@ -26,26 +26,30 @@ export default class ProductCardTab extends Component {
                             <Meta id="text-title" title={this.props.product.name} />
                         </Row>
                         <Row id="text-detail">
-                            <Col id="textdescription" xs={3} md={3} xl={3}>
+                            {/* <div>{"ขนาด : " + this.props.product.size}</div> */}
+                            <Meta description={"ขนาด : " + this.props.product.size} />
+                            {/* <Col id="textdescription" xs={3} md={3} xl={3}>
                                 <Meta description="ขนาด : " />
                             </Col>
-                            {/* <Col id="textdescription" xs={1} md={1} xl={1}>
-                            <Meta description=":" />
-                        </Col> */}
+                            <Col id="textdescription" xs={1} md={1} xl={1}>
+                                <Meta description=":" />
+                            </Col>
                             <Col xs={21} md={21} xl={21}>
                                 <Meta id="description" description={this.props.product.size} />
-                            </Col>
+                            </Col> */}
                         </Row>
                         <Row id="text-detail">
-                            <Col id="textdescription" xs={2} md={2} xl={2}>
+                            {/* <div>{"สี : " + this.props.product.color}</div> */}
+                            <Meta description={"สี : " + this.props.product.color} />
+                            {/* <Col id="textdescription" xs={2} md={2} xl={2}>
                                 <Meta description="สี : " />
                             </Col>
-                            {/* <Col id="textdescription" xs={1} md={1} xl={1}>
-                            <Meta description=":" />
-                        </Col> */}
+                            <Col id="textdescription" xs={1} md={1} xl={1}>
+                                <Meta description=":" />
+                            </Col>
                             <Col xs={22} md={22} xl={22}>
                                 <Meta id="description" description={this.props.product.color} />
-                            </Col>
+                            </Col> */}
                         </Row>
                         <Row id="text-detail">
                             <Col id="textdescription" xs={24} md={24} xl={24}>

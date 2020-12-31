@@ -30,28 +30,34 @@ export default class ProductCardList extends Component {
                                     <Meta id="text-title" title={this.props.product.name} />
                                 </Row>
                                 <Row id="text-detail">
-                                    <Col id="textdescription" xs={2} md={2} xl={2}>
+                                    {/* <div>{"ขนาด : " + this.props.product.size}</div> */}
+                                    <Meta description={"ขนาด : " + this.props.product.size} />
+                                    {/* <Col id="textdescription" xs={2} md={2} xl={2}>
                                         <Meta description="ขนาด : " />
                                     </Col>
                                     <Col xs={21} md={21} xl={21}>
                                         <Meta id="description" description={this.props.product.size} />
-                                    </Col>
+                                    </Col> */}
                                 </Row>
                                 <Row id="text-detail">
-                                    <Col id="textdescription" xs={1} md={1} xl={1}>
+                                    {/* <div>{"สี : " + this.props.product.color}</div> */}
+                                    <Meta description={"สี : " + this.props.product.color} />
+                                    {/* <Col id="textdescription" xs={1} md={1} xl={1}>
                                         <Meta description="สี : " />
                                     </Col>
                                     <Col xs={23} md={23} xl={23}>
                                         <Meta id="description" description={this.props.product.color} />
-                                    </Col>
+                                    </Col> */}
                                 </Row>
                                 <Row id="text-detail">
-                                    <Col id="textdescription" xs={4} md={4} xl={4}>
+                                    {/* <div>{"วิธีการใช้งาน : " + this.props.product.direction}</div> */}
+                                    <Meta description={"วิธีการใช้งาน : " + this.props.product.direction} />
+                                    {/* <Col id="textdescription" xs={4} md={4} xl={4}>
                                         <Meta description="วิธีการใช้งาน : " />
                                     </Col>
                                     <Col xs={19} md={19} xl={19}>
-                                        <Meta id="description" description={this.props.product.use} />
-                                    </Col>
+                                        <Meta id="description" description={this.props.product.direction} />
+                                    </Col> */}
                                 </Row>
                                 <Row id="text-detail">
                                     <Col id="textdescription" xs={24} md={24} xl={24}>
