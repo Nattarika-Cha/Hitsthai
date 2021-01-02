@@ -1,0 +1,122 @@
+#div-sidebar {
+    padding-left: 5%;
+}
+
+#div-sidebar1 {
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: black;
+}
+
+#div-sidebar2 {
+    padding-left: 4%;
+    padding-top: 2%;
+    /* padding-bottom: 2%; */
+    font-size: x-large;
+}
+
+#div-sidebar3 {
+    padding-left: 4%;
+    padding-right: 4%;
+    /* padding-top: 2%;
+    padding-bottom: 2%; */
+    font-size: small;
+    color: #DA213D;
+    font-weight: 600;
+}
+
+#col-sidbar3 {
+    display: flex;
+    justify-content: center;
+}
+
+#col-sidbar3-k {
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+#div-sidebar4 {
+    /* padding-left: 4%;
+    padding-right: 4%; */
+    padding-top: 3%;
+    /* padding-bottom: 2%; */
+    font-size: small;
+    color: #DA213D;
+    font-weight: 600;
+}
+
+.ant-collapse {
+    background-color: #f3f2f2;
+    border: 0px solid #d9d9d9;
+    border-bottom: 0;
+    border-radius: 2px;
+    width: 100%;
+    font-size: large;
+}
+
+.ant-collapse-content {
+    color: rgba(0, 0, 0, 0.85);
+    background-color: #fff;
+    border-top: 0px solid #d9d9d9;
+}
+
+#div-sidebar5 {
+    padding-left: 6%;
+    padding-right: 4%;
+    margin-top: 1%;
+    /* padding-bottom: 2%; */
+    background-color: #f3f2f2;
+    font-size: large;
+    color: black;
+    font-weight: 600;
+}
+
+#div-sidebar6 {
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 3%;
+    /* padding-bottom: 2%; */
+    font-size: small;
+    color: #DA213D;
+    font-weight: 600;
+}
+
+.ant-collapse > .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
+    padding-left: 6%;
+}
+
+#sub-cat {
+    color: black;
+    font-size: smaller;
+    font-weight: 500;
+    padding-left: 10%;
+    display: flex;
+    align-items: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#cat-content {
+    background-color: #f3f2f2;
+    margin-bottom: 1%;
+}
+
+.ant-collapse-content > .ant-collapse-content-box {
+    padding: 2%;
+}
+
+.ant-collapse > .ant-collapse-item {
+    border-bottom: 0px solid #d9d9d9;
+}
+
+/* #custom-sidebar-content-id{
+    position: inherit !important
+} */
+
+hr {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    border-top: 2px solid rgba(0,0,0,.3);
+}

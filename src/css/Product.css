@@ -57,7 +57,7 @@
 }
 
 #Row-Product-Search{
-    font-size: 200%;
+    font-size: 150%;
     margin-top: 1%;
     margin-bottom: 1%;
     margin-left: 10%;
@@ -98,6 +98,10 @@
 
 #text-detail{
     margin-bottom: 3%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 #textdescription{
@@ -170,6 +174,9 @@
 #product-footer-page {
     display: flex;
     justify-content: flex-end;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    z-index: 200;
 }
 
 #product-footer-page-search {
@@ -205,6 +212,23 @@ a {
 #price-list-product {
     color: #DA213D;
     font-size: 140%;
+}
+
+#row-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+@media screen and (max-width: 683px) {
+    .ant-pagination {
+        position: absolute;
+    }
+
+    #product-footer-page {
+        margin-bottom: 15%;
+    }
 }
 
 @media screen and (max-width: 1300px) {

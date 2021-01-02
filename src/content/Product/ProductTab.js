@@ -102,7 +102,7 @@ export default class ProductTab extends Component {
                     url_product = ip + "/Product/find/authorization/" + catId + "/" + page + "/" + size;
                 }
 
-                const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user.username } })).data;
+                const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
                 if ((product.statusCode === 500) || (product.statusCode === 400)) {
                     swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
                         this.setState({
@@ -223,7 +223,17 @@ export default class ProductTab extends Component {
                     }
                 </Row>
                 <Row id="product-footer-page">
-                    <Pagination size="small" defaultCurrent={1} pageSize={this.state.size} total={this.state.product_count} onChange={this.onChangePage} />
+                    <Pagination 
+                        size="small"
+                        current={this.state.page} 
+                        pageSize={this.state.size} 
+                        total={this.state.product_count} 
+                        onChange={this.onChangePage} 
+                        // responsive={true} 
+                        // showTitle={false} 
+                        // showSizeChanger 
+                        // showQuickJumper
+                    />
                 </Row>
             </Container>
         )

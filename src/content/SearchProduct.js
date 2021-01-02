@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Image } from 'react-bootstrap';
-import { Row, Space, Empty, Select, Col, Pagination } from 'antd';
+import { Row, Space, Empty, Select, Col, Pagination, AutoComplete, Input } from 'antd';
 import '../css/Profile.css';
 import '../css/Product.css';
 import axios from 'axios';
@@ -33,11 +33,14 @@ export default class ProductTab extends Component {
             size: "12",
             sizeOld: "",
             product_count: 0,
-            product: []
+            product: [],
+            options: []
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.onChangePage = this.onChangePage.bind(this);
+        this.onSearch = this.onSearch.bind(this);
+        this.onSearchFild = this.onSearchFild.bind(this);
     }
 
     componentWillMount() {
@@ -172,11 +175,48 @@ export default class ProductTab extends Component {
         // console.log(pageSize, " pageSize");
     }
 
+    onSearch(value) {
+        console.log(value, " value3333");
+        if (value !== "") {
+            this.props.history.push("/SearchProduct/grid/" + value);
+        }
+    }
+
+    async onSearchFild(value) {
+        if (value !== "") {
+            var url_wordsearch = ip + "/Product/find/wordsearch/" + value;
+            const wordsearch = await (await axios.get(url_wordsearch)).data;
+            this.setState({
+                options: wordsearch
+            });
+        } else {
+            this.setState({
+                options: []
+            });
+        }
+    }
+
     render() {
         // console.log(this.props.catId, " this.props.catId");
         // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
         return (
             <Container fluid>
+                {window.innerWidth < 684 ?
+                    <Row id="row-search">
+                        <AutoComplete
+                            style={{ width: "70%" }}
+                            options={this.state.options}
+                            filterOption={(inputValue, option) =>
+                                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                            }
+                            onSearch={this.onSearchFild}
+                        >
+                            <Input.Search style={{ width: '100%' }} placeholder="ค้นหา" onSearch={this.onSearch} />
+                        </AutoComplete>
+                    </Row>
+                    :
+                    <></>
+                }
                 <Row id="Row-Product-Search">
                     ค้าหาคำว่า "{this.props.match.params.search}" จำนวน {this.state.product_count} รายการ
                 </Row>

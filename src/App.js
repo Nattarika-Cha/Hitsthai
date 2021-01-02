@@ -18,9 +18,11 @@ import Routing from "./routes";
 
 //Your initialization
 const { Header, Content, Footer } = Layout;
+var heightContent = "";
 export default class App extends Component {
   render() {
-    // console.log(window.innerHeight, " window");
+    heightContent = (window.innerHeight - 210 - 64 - 47) + "px";
+    console.log(window.innerHeight, " window");
     return (
       // <div className="App">
       //   <header className="App-header">
@@ -37,7 +39,7 @@ export default class App extends Component {
           <Layout className="site-layout">
             <Header id="layout-header" > <PageHeader /> </Header>
             <Header id="layout-header" > <PageHeader2 /> </Header>
-            <Content style={{minHeight: "588px"}}> <Routing /> </Content>
+            <Content style={{minHeight: heightContent}}> <Routing /> </Content>
             <Footer style={{ textAlign: 'center' }}><PageFooter /></Footer>
             <LiveChat />
           </Layout>

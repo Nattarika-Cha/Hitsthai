@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import '../css/Header.css';
-import { Row, Col, Avatar, Input, Menu, Dropdown } from 'antd';
+import { Row, Col, Avatar, Input, Menu, Dropdown, AutoComplete } from 'antd';
 import { Container, Image } from 'react-bootstrap';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, SearchOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import logo from '../img/logo3.svg';
-// import axios from 'axios';
+import axios from 'axios';
 import Cookies from 'universal-cookie';
 // import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
-// var ip = "http://localhost:5000";
+var ip = "http://localhost:5000";
 var ip_img_profile = "http://128.199.198.10/API/profile/";
 // var img_profile = "";
 const cookies = new Cookies();
@@ -21,10 +21,10 @@ const menu = (
         <Menu.Item key="0">
             <NavLink to="/Login" id="sub-icon-profile" >เข้าสู่ระบบ</NavLink >
         </Menu.Item>
-        <Menu.Divider />
+        {/* <Menu.Divider />
         <Menu.Item key="1">
             <NavLink to="/Register" id="sub-icon-profile" >สมัครสมาชิก</NavLink >
-        </Menu.Item>
+        </Menu.Item> */}
     </Menu>
 );
 const menuuser = (
@@ -42,6 +42,7 @@ const menuuser = (
         </Menu.Item>
     </Menu>
 );
+
 export default withRouter(class Header extends Component {
     constructor(props) {
         super(props);
@@ -49,11 +50,17 @@ export default withRouter(class Header extends Component {
             token: "",
             user: [],
             catalog: [],
-            catId: "0"
+            catId: "0",
+            options: [
+                // { value: 'Burns Bay Road' },
+                // { value: 'Downing Street' },
+                // { value: 'Wall Street' },
+            ]
         }
 
         // this.handleChange = this.handleChange.bind(this);
         this.onSearch = this.onSearch.bind(this);
+        this.onSearchFild = this.onSearchFild.bind(this);
     }
 
     componentWillMount() {
@@ -86,9 +93,32 @@ export default withRouter(class Header extends Component {
     // }
 
     onSearch(value) {
-        console.log(value, " value");
-        if(value !== "") {
+        console.log(value, " value3333");
+        if (value !== "") {
             this.props.history.push("/SearchProduct/grid/" + value);
+        }
+    }
+
+    // onChange(value) {
+    //     console.log(value.target.value, " value");
+    //     options = [
+    //         { value: 'Burns Bay Road' },
+    //         { value: 'Downing Street' },
+    //         { value: 'Wall Street' },
+    //     ];
+    // }
+
+    async onSearchFild(value) {
+        if (value !== "") {
+            var url_wordsearch = ip + "/Product/find/wordsearch/" + value;
+            const wordsearch = await (await axios.get(url_wordsearch)).data;
+            this.setState({
+                options: wordsearch
+            });
+        } else {
+            this.setState({
+                options: []
+            });
         }
     }
 
@@ -100,20 +130,20 @@ export default withRouter(class Header extends Component {
             // <div>
             <Container fluid>
                 <div id="header-frist">
-
-                    <Row>
-                        <Col xs={6} xl={6}>
-                            <img
-                                src={logo}
-                                width="110px"
-                                height="auto"
-                                className="d-inline-block align-top"
-                                alt="React Bootstrap logo"
-                                style={{ paddingBottom: "0.3%", paddingTop: "0.3%" }}
-                            />
-                        </Col>
-                        <Col xs={12} xl={12} id="col-Headder-center">
-                            {/* <Select
+                    {window.innerWidth >= 684 ?
+                        <Row>
+                            <Col xs={6} xl={6}>
+                                <img
+                                    src={logo}
+                                    width="110px"
+                                    height="auto"
+                                    className="d-inline-block align-top"
+                                    alt="React Bootstrap logo"
+                                    style={{ paddingBottom: "0.3%", paddingTop: "0.3%" }}
+                                />
+                            </Col>
+                            <Col xs={12} xl={12} id="col-Headder-center">
+                                {/* <Select
                                 // showSearch
                                 defaultValue="0"
                                 style={{ width: 180 }}
@@ -134,26 +164,49 @@ export default withRouter(class Header extends Component {
                                     <></>
                                 }
                             </Select> */}
-                            <Input.Search allowClear style={{ width: '70%' }} placeholder="ค้นหา" onSearch={this.onSearch} />
-                        </Col>
-                        <Col xs={6} xl={6} style={{ textAlign: "end" }}>
-                            <strong style={{ paddingRight: "15%" }}> TH | EN </strong>
-                            {
-                                (this.state.token === "" || this.state.token === null || this.state.token === undefined) ?
-                                    <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" arrow>
-                                        <Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" />
-                                    </Dropdown>
-                                    :
-                                    <Dropdown overlay={menuuser} trigger={['click']} placement="bottomRight" arrow>
-                                        {/* <> */}
-                                        {/* <Avatar size="large" icon={<UserOutlined />} /> */}
-                                        <Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" fluid responsive />
-                                        {/* </> */}
-                                        {/* <img src={ip_img_profile + this.state.user.img} /> */}
-                                    </Dropdown>
-                            }
-                        </Col>
-                    </Row>
+                                <AutoComplete
+                                    style={{ width: "70%" }}
+                                    options={this.state.options}
+                                    filterOption={(inputValue, option) =>
+                                        option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                                    }
+                                    onSearch={this.onSearchFild}
+                                >
+                                    <Input.Search style={{ width: '100%' }} placeholder="ค้นหา" onSearch={this.onSearch} />
+                                </AutoComplete>
+                                {/* <Input.Search allowClear style={{ width: '70%' }} placeholder="ค้นหา" onSearch={this.onSearch} /> */}
+                            </Col>
+                            <Col xs={6} xl={6} style={{ textAlign: "end" }}>
+                                <strong style={{ paddingRight: "15%" }}> TH | EN </strong>
+                                {
+                                    (this.state.token === "" || this.state.token === null || this.state.token === undefined) ?
+                                        <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" arrow>
+                                            <Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" />
+                                        </Dropdown>
+                                        :
+                                        <Dropdown overlay={menuuser} trigger={['click']} placement="bottomRight" arrow>
+                                            {/* <> */}
+                                            {/* <Avatar size="large" icon={<UserOutlined />} /> */}
+                                            <Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" fluid responsive />
+                                            {/* </> */}
+                                            {/* <img src={ip_img_profile + this.state.user.img} /> */}
+                                        </Dropdown>
+                                }
+                            </Col>
+                        </Row>
+                        :
+                        <Row id="header-frist-mobile">
+                            <img
+                                src={logo}
+                                width="25%"
+                                height="auto"
+                                className="d-inline-block align-top"
+                                alt="React Bootstrap logo"
+                                style={{ paddingBottom: "0.9%", paddingTop: "0.9%" }}
+                            />
+                            <NavLink to="/SearchProduct/grid"><SearchOutlined id="icon-search"/></NavLink>
+                        </Row>
+                    }
                 </div>
             </Container>
         )
