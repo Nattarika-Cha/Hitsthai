@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container } from 'react-bootstrap';
-import { Row, Col, Form, Input, Button, Select } from 'antd';
+import { Row, Col, Form, Input, Button, Select, Spin } from 'antd';
 import '../css/Contact.css';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -11,6 +11,7 @@ export default class Contact extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            statusSend: false
         };
 
         this.onRegister = this.onRegister.bind(this);
@@ -18,7 +19,12 @@ export default class Contact extends Component {
 
     async onRegister(values) {
         console.log(values, " values");
+        this.setState({
+            statusSend: true
+        });
+
         const data = {
+            // contactId: 1,
             name: values.name,
             email: values.email,
             phone: values.phone,
@@ -37,7 +43,7 @@ export default class Contact extends Component {
         };
 
         const contact = await axios(config);
-        const data_contact = contact.data;
+        // const data_contact = contact.data;
         console.log(contact, " contact");
         if (contact.status === 200) {
             swal("บันทึกข้อมูลสำเร็จ", "กรุณารอการติดต่อกลับจากเจ้าหน้าที่", "success").then((value) => {
@@ -45,6 +51,9 @@ export default class Contact extends Component {
             });
         } else {
             swal("บันทึกข้อมูลไม่สำเร็จ!", "กรุณาลองใหม่อีกครั้ง", "error").then((value) => {
+                this.setState({
+                    statusSend: false
+                });
             });
 
         }
@@ -150,9 +159,9 @@ export default class Contact extends Component {
                             </Col> */}
                             </Row>
                             <Row id="Row">
-                                <Button type="primary" htmlType="submit" id="Button-submit">
-                                    ส่ง
-                            </Button>
+                                {
+                                    (!this.state.statusSend) ? <Button type="primary" htmlType="submit" id="Button-submit">ส่ง</Button> : <Spin />
+                                }
                             </Row>
                         </Col>
                     </Row>

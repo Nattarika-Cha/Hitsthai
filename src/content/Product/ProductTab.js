@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Image } from 'react-bootstrap';
-import { Row, Space, Empty, Select, Col, Pagination } from 'antd';
+import { Row, Space, Empty, Select, Col, Pagination, Spin } from 'antd';
 import '../../css/Profile.css';
 import axios from 'axios';
 // import swal from 'sweetalert';
@@ -31,7 +31,8 @@ export default class ProductTab extends Component {
             size: "12",
             sizeOld: "",
             product_count: 0,
-            product: []
+            product: [],
+            statusDataProduct: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -72,7 +73,8 @@ export default class ProductTab extends Component {
             });
         } else {
             this.setState({
-                product: product
+                product: product,
+                statusDataProduct: true
             });
         }
 
@@ -213,28 +215,39 @@ export default class ProductTab extends Component {
                         </Space>
                     </Col>
                 </Row>
-                <Row>
-                    {this.state.product.length > 0 ?
-                        this.props.mode === "grid" ? this.grid_product() : this.list_product()
+
+                {
+                    (this.state.statusDataProduct) ?
+                        <>
+                            <Row>
+
+                                {this.state.product.length > 0 ?
+                                    this.props.mode === "grid" ? this.grid_product() : this.list_product()
+                                    :
+                                    <Col xs={24} md={24} lg={24} id="rowempty">
+                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                                    </Col>
+                                }
+                            </Row>
+                            <Row id="product-footer-page">
+                                <Pagination
+                                    size="small"
+                                    current={this.state.page}
+                                    pageSize={this.state.size}
+                                    total={this.state.product_count}
+                                    onChange={this.onChangePage}
+                                // responsive={true} 
+                                // showTitle={false} 
+                                // showSizeChanger 
+                                // showQuickJumper
+                                />
+                            </Row>
+                        </>
                         :
-                        <Col xs={24} md={24} lg={24} id="rowempty">
-                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-                        </Col>
-                    }
-                </Row>
-                <Row id="product-footer-page">
-                    <Pagination 
-                        size="small"
-                        current={this.state.page} 
-                        pageSize={this.state.size} 
-                        total={this.state.product_count} 
-                        onChange={this.onChangePage} 
-                        // responsive={true} 
-                        // showTitle={false} 
-                        // showSizeChanger 
-                        // showQuickJumper
-                    />
-                </Row>
+                        <Row id="row-spin-slide">
+                            <Spin size="large" />
+                        </Row>
+                }
             </Container>
         )
     }

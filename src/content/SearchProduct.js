@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Image } from 'react-bootstrap';
-import { Row, Space, Empty, Select, Col, Pagination, AutoComplete, Input } from 'antd';
+import { Row, Space, Empty, Select, Col, Pagination, AutoComplete, Input, Spin } from 'antd';
 import '../css/Profile.css';
 import '../css/Product.css';
 import axios from 'axios';
@@ -34,7 +34,8 @@ export default class ProductTab extends Component {
             sizeOld: "",
             product_count: 0,
             product: [],
-            options: []
+            options: [],
+            statusDataProduct: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -77,7 +78,8 @@ export default class ProductTab extends Component {
             });
         } else {
             this.setState({
-                product: product
+                product: product,
+                statusDataProduct: true
             });
         }
 
@@ -271,6 +273,9 @@ export default class ProductTab extends Component {
                         </Space>
                     </Col>
                 </Row>
+                {
+                    (this.state.statusDataProduct) ?
+                        <>
                 <Row id="Row-Product">
                     {this.state.product.length > 0 ?
                         this.props.match.params.mode === "grid" ? this.grid_product() : this.list_product()
@@ -281,8 +286,14 @@ export default class ProductTab extends Component {
                     }
                 </Row>
                 <Row id="product-footer-page-search">
-                    <Pagination size="small" defaultCurrent={1} pageSize={this.state.size} total={this.state.product_count} onChange={this.onChangePage} />
+                    <Pagination size="small" current={this.state.page} pageSize={this.state.size} total={this.state.product_count} onChange={this.onChangePage} />
                 </Row>
+                </>
+                        :
+                        <Row id="row-spin-slide">
+                            <Spin size="large" />
+                        </Row>
+                }
             </Container>
         )
     }

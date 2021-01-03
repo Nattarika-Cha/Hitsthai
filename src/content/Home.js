@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Close from '../img/Close.png';
-import { Row, Col } from 'antd';
+import { Row, Col, Spin, Empty } from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Home.css';
 
@@ -21,7 +21,9 @@ export default class Home extends Component {
             token: "",
             user: [],
             product_new: [],
-            product_hit: []
+            product_hit: [],
+            statusDataNew: false,
+            statusDataHit: false
         };
     }
 
@@ -58,7 +60,8 @@ export default class Home extends Component {
             });
         } else {
             this.setState({
-                product_new: product_new
+                product_new: product_new,
+                statusDataNew: true
             });
         }
 
@@ -73,7 +76,8 @@ export default class Home extends Component {
             });
         } else {
             this.setState({
-                product_hit: product_hit
+                product_hit: product_hit,
+                statusDataHit: true
             });
         }
 
@@ -103,6 +107,7 @@ export default class Home extends Component {
     }
 
     render() {
+        console.log(this.state.statusDataNew, " statusDataNew");
         return (
             <Container fluid>
                 <Row id="home">
@@ -142,15 +147,37 @@ export default class Home extends Component {
                     <Col xs={2} xl={2} ></Col>
                 </Row> */}
 
-                <Row id="row-pay">
-                    {this.list_product_new()}
-                </Row>
+                {
+                    (this.state.statusDataNew) ?
+                        (this.state.product_new.length > 0) ?
+                            <Row id="row-pay">
+                                {this.list_product_new()}
+                            </Row>
+                            :
+                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        :
+                        <Row id="row-spin">
+                            <Spin size="large" />
+                        </Row>
+                }
+
                 <Row id="hade-standate">
                     <div id="standate">สินค้ายอดนิยม</div>
                 </Row>
-                <Row id="row-pay">
-                    {this.list_product_hit()}
-                </Row>
+
+                {
+                    (this.state.statusDataHit) ?
+                        (this.state.product_hit.length > 0) ?
+                            <Row id="row-pay">
+                                {this.list_product_hit()}
+                            </Row>
+                            :
+                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        :
+                        <Row id="row-spin">
+                            <Spin size="large" />
+                        </Row>
+                }
             </Container>
         )
     }

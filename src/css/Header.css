@@ -88,6 +88,10 @@
   color: #DA213D;
 }
 
+#cat-option {
+  font-family: 'Kanit', sans-serif;
+}
+
 #icon-search {
   font-size: 160%;
   /* background-color: #DA213D; */

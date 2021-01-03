@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Form, Input, Row, Button,} from 'antd';
+import { Col, Form, Input, Row, Button, Spin } from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Changepass.css';
 import axios from 'axios';
@@ -12,25 +12,26 @@ var ip = "http://localhost:5000";
 
 axios.interceptors.request.use(
     config => {
-      const { origin } = new URL(config.url);
-      const allowedOrigins = [ip];
-      const token = localStorage.getItem('token');
-  if (allowedOrigins.includes(origin)) {
-        config.headers.authorization = `${token}`;
-      }
-      return config;
+        const { origin } = new URL(config.url);
+        const allowedOrigins = [ip];
+        const token = localStorage.getItem('token');
+        if (allowedOrigins.includes(origin)) {
+            config.headers.authorization = `${token}`;
+        }
+        return config;
     },
     error => {
-      return Promise.reject(error);
+        return Promise.reject(error);
     }
-  );
+);
 
-export default class Changepass extends Component{
+export default class Changepass extends Component {
     constructor(props) {
         super(props);
         this.state = {
             token: "",
-            user: []
+            user: [],
+            statusSend: false
         };
         this.onChangepass = this.onChangepass.bind(this);
     }
@@ -40,18 +41,21 @@ export default class Changepass extends Component{
             token: cookies.get('token', { path: '/' }),
             user: cookies.get('user', { path: '/' })
         });
-        
+
     }
 
     async onChangepass(values) {
         console.log(this.state.user.username, " dsds")
-        if(values.passwordNew === values.passwordNewCon) {
+        this.setState({
+            statusSend: true
+        });
+        if (values.passwordNew === values.passwordNewCon) {
             const data = {
                 userName: this.state.user.username,
                 passWord: values.password,
                 passwordNew: values.passwordNew
             };
-    
+
             var config = {
                 method: 'post',
                 url: ip + '/UserProfile/Changepass',
@@ -60,7 +64,7 @@ export default class Changepass extends Component{
                 },
                 data: JSON.stringify(data)
             };
-    
+
             const changPasseord = await axios(config);
             const data_changPasseord = changPasseord.data;
             if (data_changPasseord.statusCode === 200) {
@@ -69,23 +73,31 @@ export default class Changepass extends Component{
                 });
             } else if (data_changPasseord.statusCode === 401) {
                 swal("Warning!", "Password ผิด", "warning").then((value) => {
+                    this.setState({
+                        statusSend: false
+                    });
                 });
             } else {
                 swal("Error!", "เกิดข้อผิดพลาด", "error").then((value) => {
+                    this.setState({
+                        statusSend: false
+                    });
                 });
-    
+
             }
             console.log(data_changPasseord, " data");
-        } 
-        else 
-        {
+        }
+        else {
             swal("Warning!", "Password ใหม่ไม่ตรงกัน", "warning").then((value) => {
+                this.setState({
+                    statusSend: false
+                });
             });
         }
     }
 
     render() {
-        return(
+        return (
             <Container>
                 <Row id="Header">เปลี่ยนรหัสผ่าน</Row>
                 <Form onFinish={this.onChangepass}>
@@ -95,13 +107,13 @@ export default class Changepass extends Component{
                         <Col xs={20} md={16} xl={12}>
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
-                                    รหัสผ่านเดิม 
+                                    รหัสผ่านเดิม
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="password"
                                         rules={[{ required: true, message: 'กรุณากรอกรหัสผ่านเดิม!' }]}>
-                                        <Input.Password id="Password"/>
+                                        <Input.Password id="Password" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -109,8 +121,8 @@ export default class Changepass extends Component{
                                 </Col>
                             </Row>
                             <Row>
-                                <Col   Col xs={24} md={8} xl={6} id="List">
-                                    รหัสผ่านใหม่ 
+                                <Col Col xs={24} md={8} xl={6} id="List">
+                                    รหัสผ่านใหม่
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
@@ -122,7 +134,7 @@ export default class Changepass extends Component{
                                             },
                                         ]}
                                         hasFeedback >
-                                        <Input.Password id="Password"/>
+                                        <Input.Password id="Password" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -130,8 +142,8 @@ export default class Changepass extends Component{
                                 </Col>
                             </Row>
                             <Row>
-                                <Col   Col xs={24} md={8} xl={6} id="List">
-                                    ยืนยันรหัสผ่าน 
+                                <Col Col xs={24} md={8} xl={6} id="List">
+                                    ยืนยันรหัสผ่าน
                                 </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
@@ -143,7 +155,7 @@ export default class Changepass extends Component{
                                             },
                                         ]}
                                         hasFeedback >
-                                        <Input.Password id="Password"/>
+                                        <Input.Password id="Password" />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={2} md={2} xl={4} id="request-mask">
@@ -151,16 +163,17 @@ export default class Changepass extends Component{
                                 </Col>
                             </Row>
                             <Row id="Row">
-                                <Button type="primary" htmlType="submit" id="Button-submit">
-                                    ยืนยันรหัสผ่าน
-                                </Button>
+                                {/* <Button type="primary" htmlType="submit" id="Button-submit">ยืนยันรหัสผ่าน</Button> */}
+                                {
+                                    (!this.state.statusSend) ? <Button type="primary" htmlType="submit" id="Button-submit">ยืนยันรหัสผ่าน</Button> : <Spin />
+                                }
                             </Row>
                         </Col>
                         <Col xs={2} md={4} xl={6}>
                         </Col>
                     </Row>
                 </Form>
-            
+
             </Container>
         )
     }

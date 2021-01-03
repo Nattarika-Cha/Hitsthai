@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row } from 'antd';
+import { Row, Spin, Empty } from 'antd';
 import '../../css/Product.css';
 
 import AliceCarousel from 'react-alice-carousel';
@@ -19,7 +19,8 @@ export default class ProductSlide extends Component {
         this.state = {
             token: "",
             user: [],
-            product: []
+            product: [],
+            statusDataProduct: false
         };
 
         this.list_productcade = this.list_productcade.bind(this);
@@ -59,7 +60,8 @@ export default class ProductSlide extends Component {
             });
         } else {
             this.setState({
-                product: product
+                product: product,
+                statusDataProduct: true
             });
         }
     }
@@ -67,7 +69,7 @@ export default class ProductSlide extends Component {
     list_productcade() {
         //console.log(this.state.product, " product");
         return this.state.product.map((product) => {
-            return <ProductCart product={product}/>
+            return <ProductCart product={product} />
         });
     }
 
@@ -109,24 +111,36 @@ export default class ProductSlide extends Component {
         //console.log(this.props.catId, " this.props.catId");
 
         return (
-            <Row id="Row-Product">
-                <AliceCarousel
-                    duration={400}
-                    autoPlay={true}
-                    responsive={responsive}
-                    startIndex={1}
-                    fadeOutAnimation={true}
-                    mouseDragEnabled={true}
-                    playButtonEnabled={true}
-                    autoPlayInterval={2000}
-                    autoPlayDirection="ltr"
-                    autoPlayActionDisabled={true}
-                    onSlideChange={this.onSlideChange}
-                    onSlideChanged={this.onSlideChanged}
-                >
-                    {this.list_productcade()}
-                </AliceCarousel>
-            </Row>
+            <>
+                {
+                    (this.state.statusDataProduct) ?
+                        (this.state.product.length > 0) ?
+                            <Row id="Row-Product">
+                                <AliceCarousel
+                                    duration={400}
+                                    autoPlay={true}
+                                    responsive={responsive}
+                                    startIndex={1}
+                                    fadeOutAnimation={true}
+                                    mouseDragEnabled={true}
+                                    playButtonEnabled={true}
+                                    autoPlayInterval={2000}
+                                    autoPlayDirection="ltr"
+                                    autoPlayActionDisabled={true}
+                                    onSlideChange={this.onSlideChange}
+                                    onSlideChanged={this.onSlideChanged}
+                                >
+                                    {this.list_productcade()}
+                                </AliceCarousel>
+                            </Row>
+                            :
+                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        :
+                        <Row id="row-spin-slide">
+                            <Spin size="large" />
+                        </Row>
+                }
+            </>
         )
 
     }

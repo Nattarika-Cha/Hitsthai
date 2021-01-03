@@ -221,6 +221,21 @@ a {
     margin-bottom: 10%;
 }
 
+#row-spin {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+  }
+
+#row-spin-slide {
+    display: flex;
+    justify-content: center;
+}
+
+#bg {
+    background-color: #fbfbfb00;
+}
+
 @media screen and (max-width: 683px) {
     .ant-pagination {
         position: absolute;

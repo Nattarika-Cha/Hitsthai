@@ -78,7 +78,7 @@ export default class Header2 extends Component {
 
     tab_product() {
         return this.state.catalog.map((cat) => {
-            return <Menu.Item key={cat.catId}><NavLink to={"/ProductList/" + cat.catId + "/grid"}>{cat.catName}</NavLink></Menu.Item>
+            return <Menu.Item key={cat.catId} id="cat-option"><NavLink to={"/ProductList/" + cat.catId + "/grid"}>{cat.catName}</NavLink></Menu.Item>
         });
     }
 

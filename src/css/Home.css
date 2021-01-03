@@ -80,3 +80,8 @@
 #head-card{
   text-align: center;
 }
+
+#row-spin {
+  display: flex;
+  justify-content: center;
+}
