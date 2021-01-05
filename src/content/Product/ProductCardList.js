@@ -13,6 +13,49 @@ export default class ProductCardList extends Component {
         };
     }
 
+    showPrice() {
+        if (this.props.product.memberCode === "Admin") {
+            return <div id="price-list-product" >ดูข้อมูลราคา</div>
+        }
+        else if (this.props.product.memberCode === "EndUser") {
+            return <div id="price-list-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+        }
+        else if (this.props.product.memberCode === "member1") {
+            return <>
+                {
+                    (this.props.product.priceend !== null) ?
+                        <div id="price-list-product2" > {"฿ " + (((this.props.product.priceend === null) || (this.props.product.priceend === "")) ? "-" : this.props.product.priceend) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                        :
+                        <div id="price-list-product3">0</div>
+                }
+
+                <div id="price-list-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+            </>
+        }
+        else if (this.props.product.memberCode === "member2") {
+            return <>
+                <div id="price-list-product" > {"฿ " + (((this.props.product.priceend === null) || (this.props.product.priceend === "")) ? "-" : this.props.product.priceend) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                {
+                    (this.props.product.price !== null) ?
+                        <div id="price-list-product4" > {"Commission " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + " /" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                        :
+                        <div id="price-list-product3">0</div>
+                }
+            </>
+        }
+        else if (this.props.product.memberCode === "member3") {
+            return <>
+                <div id="price-list-product" > {"฿ " + (((this.props.product.priceend === null) || (this.props.product.priceend === "")) ? "-" : this.props.product.priceend) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                {
+                    (this.props.product.price !== null) ?
+                        <div id="price-list-product5" > {(((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + " Point/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                        :
+                        <div id="price-list-product3">0</div>
+                }
+            </>
+        }
+    }
+
     render() {
         return (
             <Col xs={24} md={12} lg={12}>
@@ -22,10 +65,10 @@ export default class ProductCardList extends Component {
                         style={{ width: "auto", border: "10px solid #f0f2f5" }}
                     >
                         <Row>
-                            <Col xs={6} md={6} lg={6}>
+                            <Col xs={8} md={8} lg={8}>
                                 <img id="img-product" alt="example" src={imgm} />
                             </Col>
-                            <Col xs={18} md={18} lg={18} id="product-card-list-col">
+                            <Col xs={16} md={16} lg={16} id="product-card-list-col">
                                 <Row id="text-detail">
                                     <Meta id="text-title" title={this.props.product.name} />
                                 </Row>
@@ -61,7 +104,21 @@ export default class ProductCardList extends Component {
                                 </Row>
                                 <Row id="text-detail">
                                     <Col id="textdescription" xs={24} md={24} xl={24}>
-                                        <div id="price-list-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                                        {this.showPrice()}
+                                        {/* {
+                                            (this.props.product.memberCode === "Admin") ?
+                                                <div id="price-list-product" >ดูข้อมูลราคา</div>
+                                                :
+                                                <>
+                                                    {
+                                                        (this.props.product.priceend !== null) ?
+                                                            <div id="price-list-product2" > {"฿ " + (((this.props.product.priceend === null) || (this.props.product.priceend === "")) ? "-" : this.props.product.priceend) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                                                            :
+                                                            <div id="price-list-product3">0</div>
+                                                    }
+                                                    <div id="price-list-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                                                </>
+                                        } */}
                                     </Col>
                                 </Row>
                             </Col>

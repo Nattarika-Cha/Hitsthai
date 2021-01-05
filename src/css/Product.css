@@ -202,6 +202,36 @@ a {
     background-color: #da213d;
 }
 
+#price-card-product2 {
+    color: #a5a1a1;
+    font-size: 120%;
+    text-align: end;
+    padding-right: 7%;
+    text-decoration: line-through;
+}
+
+#price-card-product3 {
+    color: #ffffff;
+    font-size: 120%;
+    text-align: end;
+    padding-right: 7%;
+    text-decoration: line-through;
+}
+
+#price-card-product4 {
+    color: #2c0aec;
+    font-size: 120%;
+    text-align: end;
+    padding-right: 7%;
+}
+
+#price-card-product5 {
+    color: #038b0f;
+    font-size: 130%;
+    text-align: end;
+    padding-right: 7%;
+}
+
 #price-card-product {
     color: #DA213D;
     font-size: 140%;
@@ -212,6 +242,48 @@ a {
 #price-list-product {
     color: #DA213D;
     font-size: 140%;
+}
+
+#price-list-product-detail {
+    color: #DA213D;
+    font-size: 100%;
+}
+
+#price-list-product-detail1 {
+    color: #6f6c6c;
+    font-size: 100%;
+}
+
+#price-list-product-detail2 {
+    color: #2c0aec;
+    font-size: 100%;
+}
+
+#price-list-product-detail3 {
+    color: #038b0f;
+    font-size: 100%;
+}
+
+#price-list-product2 {
+    color: #a5a1a1;
+    font-size: 120%;
+    text-decoration: line-through;
+}
+
+#price-list-product3 {
+    color: #ffffff;
+    font-size: 120%;
+    text-decoration: line-through;
+}
+
+#price-list-product4 {
+    color: #2c0aec;
+    font-size: 120%;
+}
+
+#price-list-product5 {
+    color: #038b0f;
+    font-size: 130%;
 }
 
 #row-search {
