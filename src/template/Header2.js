@@ -162,7 +162,7 @@ export default class Header2 extends Component {
                                             <>
                                                 <Row id="div-sidebar2">
                                                     <Col xs={4}><Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" /></Col>
-                                                    <Col xs={20} style={{ paddingLeft: "2%" }}>สวัสดี</Col>
+                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>สวัสดี</Col>
                                                 </Row>
                                                 <Row id="div-sidebar3">
                                                     <NavLink to="/Login" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >เข้าสู่ระบบ</NavLink >
@@ -172,7 +172,7 @@ export default class Header2 extends Component {
                                             <>
                                                 <Row id="div-sidebar2">
                                                     <Col xs={4}><Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" style={{borderRadius: "50%"}} fluid responsive /></Col>
-                                                    <Col xs={20} style={{ paddingLeft: "2%" }}>สวัสดี</Col>
+                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden"  }}>{this.state.user?.name}</Col>
                                                 </Row>
                                                 <Row id="div-sidebar3">
                                                     <Col xs={7} id="col-sidbar3"><NavLink to="/Profile" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >แก้ไขโปรไฟล์</NavLink ></Col>

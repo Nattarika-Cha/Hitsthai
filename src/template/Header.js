@@ -69,6 +69,7 @@ export default withRouter(class Header extends Component {
             user: cookies.get('user', { path: '/' })
         });
 
+
         // img_profile = ip_img_profile + this.state.user.img;
     }
 
@@ -93,7 +94,6 @@ export default withRouter(class Header extends Component {
     // }
 
     onSearch(value) {
-        console.log(value, " value3333");
         if (value !== "") {
             this.props.history.push("/SearchProduct/grid/" + value);
         }
@@ -123,6 +123,7 @@ export default withRouter(class Header extends Component {
     }
 
     render() {
+        console.log(this.state.user, " userrrr");
         // img_profile = ip_img_profile + this.state.user.img;
         // console.log(this.state.user, " this.state.user")
         // console.log(img_profile, " img_profile")
@@ -176,8 +177,13 @@ export default withRouter(class Header extends Component {
                                 </AutoComplete>
                                 {/* <Input.Search allowClear style={{ width: '70%' }} placeholder="ค้นหา" onSearch={this.onSearch} /> */}
                             </Col>
-                            <Col xs={6} xl={6} style={{ textAlign: "end" }}>
-                                <strong style={{ paddingRight: "15%" }}> TH | EN </strong>
+                            <Col xs={4} xl={5} style={{ textAlign: "end", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
+                                {/* <strong style={{ paddingRight: "15%" }}> TH | EN </strong> */}
+                                <span style={{ paddingRight: "5%" }}> {this.state.user?.name}</span>
+                            </Col>
+                            <Col xs={2} xl={1} style={{ textAlign: "end" }}>
+                                {/* <strong style={{ paddingRight: "15%" }}> TH | EN </strong> */}
+                                {/* <span style={{ paddingRight: "5%" }}> {this.state.user?.name}</span> */}
                                 {
                                     (this.state.token === "" || this.state.token === null || this.state.token === undefined) ?
                                         <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" arrow>

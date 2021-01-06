@@ -160,11 +160,6 @@ export default class Abount extends Component {
                     });
                 }
             }
-
-            console.log(this.state.priceAdmin, " priceAdmin");
-            console.log(this.state.member, " member");
-            console.log(this.state.level, " level");
-            console.log(product[0], " product");
         }
     }
 
