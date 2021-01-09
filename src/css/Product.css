@@ -57,7 +57,7 @@
 }
 
 #Row-Product-Search{
-    font-size: 200%;
+    font-size: 150%;
     margin-top: 1%;
     margin-bottom: 1%;
     margin-left: 10%;
@@ -98,6 +98,10 @@
 
 #text-detail{
     margin-bottom: 3%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 #textdescription{
@@ -170,6 +174,9 @@
 #product-footer-page {
     display: flex;
     justify-content: flex-end;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    z-index: 200;
 }
 
 #product-footer-page-search {
@@ -193,6 +200,122 @@ a {
 .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary) {
     color: rgb(255 255 255 / 90%);
     background-color: #da213d;
+}
+
+#price-card-product2 {
+    color: #a5a1a1;
+    font-size: 120%;
+    text-align: end;
+    padding-right: 7%;
+    text-decoration: line-through;
+}
+
+#price-card-product3 {
+    color: #ffffff;
+    font-size: 120%;
+    text-align: end;
+    padding-right: 7%;
+    text-decoration: line-through;
+}
+
+#price-card-product4 {
+    color: #2c0aec;
+    font-size: 120%;
+    text-align: end;
+    padding-right: 7%;
+}
+
+#price-card-product5 {
+    color: #038b0f;
+    font-size: 130%;
+    text-align: end;
+    padding-right: 7%;
+}
+
+#price-card-product {
+    color: #DA213D;
+    font-size: 140%;
+    text-align: end;
+    padding-right: 7%;
+}
+
+#price-list-product {
+    color: #DA213D;
+    font-size: 140%;
+}
+
+#price-list-product-detail {
+    color: #DA213D;
+    font-size: 100%;
+}
+
+#price-list-product-detail1 {
+    color: #6f6c6c;
+    font-size: 100%;
+}
+
+#price-list-product-detail2 {
+    color: #2c0aec;
+    font-size: 100%;
+}
+
+#price-list-product-detail3 {
+    color: #038b0f;
+    font-size: 100%;
+}
+
+#price-list-product2 {
+    color: #a5a1a1;
+    font-size: 120%;
+    text-decoration: line-through;
+}
+
+#price-list-product3 {
+    color: #ffffff;
+    font-size: 120%;
+    text-decoration: line-through;
+}
+
+#price-list-product4 {
+    color: #2c0aec;
+    font-size: 120%;
+}
+
+#price-list-product5 {
+    color: #038b0f;
+    font-size: 130%;
+}
+
+#row-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#row-spin {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+  }
+
+#row-spin-slide {
+    display: flex;
+    justify-content: center;
+}
+
+#bg {
+    background-color: #fbfbfb00;
+}
+
+@media screen and (max-width: 683px) {
+    .ant-pagination {
+        position: absolute;
+    }
+
+    #product-footer-page {
+        margin-bottom: 15%;
+    }
 }
 
 @media screen and (max-width: 1300px) {

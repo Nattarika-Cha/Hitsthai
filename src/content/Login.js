@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Form, Input, Row, Button, } from 'antd';
+import { Col, Form, Input, Row, Button, Spin } from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Login.css';
 import axios from 'axios';
@@ -31,7 +31,8 @@ export default class Login extends Component {
         this.state = {
             loading: false,
             token: "",
-            user: []
+            user: [],
+            statusSend: false
         };
 
         this.onLogin = this.onLogin.bind(this);
@@ -45,6 +46,9 @@ export default class Login extends Component {
     }
 
     async onLogin(values) {
+        this.setState({
+            statusSend: true
+        });
         const data = {
             userName: values.username,
             passWord: values.password
@@ -61,13 +65,16 @@ export default class Login extends Component {
 
         const login = await axios(config);
         const data_login = login.data;
+        console.log(data_login, " data_login");
         if (data_login.statusCode === 200) {
             const user_data = {
                 id: data_login.id,
                 username: data_login.user,
                 name: data_login.name,
-                img: data_login.img
+                img: data_login.img,
+                levelId: data_login.levelId
             }
+            // console.log(data_login, " user_data");
             cookies.set('user', JSON.stringify(user_data), { path: '/' });
             cookies.set('token', data_login.token, { path: '/' });
             this.setState({
@@ -76,6 +83,9 @@ export default class Login extends Component {
                window.location.replace('/Home', false);    
         } else {
             swal("Error!", "Username หรือ Password ผิดพลาด", "error").then((value) => {
+                this.setState({
+                    statusSend: false
+                });
             });
 
         }
@@ -126,9 +136,10 @@ export default class Login extends Component {
                                 </Col>
                             </Row>
                             <Row id="Row">
-                                <Button type="primary" htmlType="submit" id="Button-submit">
-                                    เข้าสู่ระบบ
-                                </Button>
+                                {/* <Button type="primary" htmlType="submit" id="Button-submit">เข้าสู่ระบบ</Button> */}
+                                {
+                                    (!this.state.statusSend) ? <Button type="primary" htmlType="submit" id="Button-submit">เข้าสู่ระบบ</Button> : <Spin />
+                                }
                             </Row>
                         </Col>
                         <Col xs={2} md={8} xl={6}></Col>

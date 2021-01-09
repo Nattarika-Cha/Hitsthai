@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Empty } from 'antd';
+import { Row, Col, Empty, Spin } from 'antd';
 import { Container, } from 'react-bootstrap';
 import '../css/Product.css';
 
@@ -20,6 +20,7 @@ export default class Product extends Component {
             token: "",
             user: [],
             catalog: [],
+            statusDataCat: false,
             mode: ""
         };
     }
@@ -35,7 +36,8 @@ export default class Product extends Component {
         var url_catalog = ip + "/Catalog/find/all";
         const catalog = await (await axios.get(url_catalog)).data;
         this.setState({
-            catalog: catalog
+            catalog: catalog,
+            statusDataCat: true
         });
     }
 
@@ -45,18 +47,23 @@ export default class Product extends Component {
                 <Row id="Product">
                 </Row>
                 {
-                    (this.state.catalog.length > 0) ?
-                        this.state.catalog.map((cat, i) => {
-                            return <>
-                                <Row id="Rowgroup-product">
-                                    <Col xs={14} md={20} xl={20}>{cat.catName}</Col>
-                                    <Col id="List-all" xs={10} md={4} xl={4}><NavLink to={"/ProductList/" + cat.catId + "/grid"}>ดูทั้งหมด</NavLink></Col>
-                                </Row>
-                                <ProductSlide catId={cat.catId}/>
-                            </>
-                        })
+                    (this.state.statusDataCat) ?
+                        (this.state.catalog.length > 0) ?
+                            this.state.catalog.map((cat, i) => {
+                                return <>
+                                    <Row id="Rowgroup-product">
+                                        <Col xs={14} md={20} xl={20}>{cat.catName}</Col>
+                                        <Col id="List-all" xs={10} md={4} xl={4}><NavLink to={"/ProductList/" + cat.catId + "/grid"}>ดูทั้งหมด</NavLink></Col>
+                                    </Row>
+                                    <ProductSlide catId={cat.catId} />
+                                </>
+                            })
+                            :
+                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
                         :
-                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        <Row id="row-spin">
+                            <Spin size="large"/>
+                        </Row>
 
                 }
             </Container>

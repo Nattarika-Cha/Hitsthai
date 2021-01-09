@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, } from 'react-bootstrap';
-import { Tabs, Empty } from 'antd';
+import { Tabs, Empty, Spin, Row } from 'antd';
 import '../../css/Profile.css';
 import axios from 'axios';
 // import swal from 'sweetalert';
@@ -24,6 +24,7 @@ export default class ProductList extends Component {
             token: "",
             user: [],
             catalog: [],
+            statusDataCat: false,
             mode: "",
             page: "",
             tab: "",
@@ -50,7 +51,8 @@ export default class ProductList extends Component {
         var url_catalog = ip + "/Catalog/find/all";
         const catalog = await (await axios.get(url_catalog)).data;
         this.setState({
-            catalog: catalog
+            catalog: catalog,
+            statusDataCat: true
         });
     }
 
@@ -87,15 +89,20 @@ export default class ProductList extends Component {
         // size = this.props.match.params.size;
         return (
             <Container fluid id="container-productlist">
-                <Tabs activeKey={this.state.tab.toString()} onChange={this.callback}>
-                    {this.state.catalog.length > 0 ?
-                        this.tab_product()
+                {
+                    (this.state.statusDataCat) ?
+                        (this.state.catalog.length > 0) ?
+                            <Tabs activeKey={this.state.tab.toString()} onChange={this.callback}>
+                                {this.tab_product()}
+                            </Tabs>
+                            :
+                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
                         :
-                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-                    }
-                </Tabs>
+                        <Row id="row-spin">
+                            <Spin size="large" />
+                        </Row>
 
-                
+                }
             </Container>
         )
     }
