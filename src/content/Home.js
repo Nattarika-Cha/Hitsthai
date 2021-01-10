@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-// import Close from '../img/Close.png';
-import { Row, Col, Spin, Empty } from 'antd';
+import Close from '../img/logoanime.mp4';
+import { Row, Col, Empty, Spin } from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Home.css';
-
 import ProductHomeCard from './Home/ProductHomeCard';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import ReactPlayer from 'react-player'
 import swal from 'sweetalert';
 
 const cookies = new Cookies();
@@ -113,6 +113,14 @@ export default class Home extends Component {
                 <Row id="home">
                     <Col xs={14} xl={14} id="col-img-head1">
                         {/* <img src={Close} alt="logo" width="70%" /> */}
+                        <ReactPlayer 
+                            url={Close} 
+                            width='100%'
+                            height='100%'
+                            // controls = {true}
+                            autoplay = {true}
+                            playing = {true}
+                            loop = {true}/>
                     </Col>
                     <Col xs={10} xl={10} id="col-img-head2">
                         <Row id="row-col-img-head2">
