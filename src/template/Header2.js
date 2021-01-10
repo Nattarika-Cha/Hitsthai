@@ -199,9 +199,9 @@ export default class Header2 extends Component {
                                     <NavLink to="/Abount" onClick={() => this.onSetSidebarOpen(false)}><Row id="div-sidebar5">เกี่ยวกับ</Row></NavLink>
                                     <NavLink to="/Product" onClick={() => this.onSetSidebarOpen(false)}><Row id="div-sidebar5">สินค้า</Row></NavLink>
                                     <NavLink to="/Contact" onClick={() => this.onSetSidebarOpen(false)}><Row id="div-sidebar5">ติดต่อเรา</Row></NavLink>
-                                    <Row id="div-sidebar6">
+                                    {/* <Row id="div-sidebar6">
                                         <div>TH | EN</div>
-                                    </Row>
+                                    </Row> */}
                                 </div>}
                                 // docked= {true}
                                 sidebarClassName="custom-sidebar-class"

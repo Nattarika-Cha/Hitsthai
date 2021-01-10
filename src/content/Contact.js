@@ -27,10 +27,13 @@ export default class Contact extends Component {
             // contactId: 1,
             name: values.name,
             email: values.email,
+            line: values.line,
             phone: values.phone,
             type: values.type,
             msg: values.msg,
-            contactStatus: "A"
+            numCall: 0,
+            contactStatus: "A",
+            acceptStatus: "N"
         };
 
         var config = {
@@ -68,9 +71,7 @@ export default class Contact extends Component {
                         </Col>
                         <Col xs={24} md={24} xl={12} id="form-contact">
                             <Row id="form">
-                                <Col xs={24} md={6} xl={6} id="List">
-                                    ชื่อ - นามสกุล
-                            </Col>
+                                <Col xs={24} md={6} xl={6} id="List">ชื่อผู้ติดต่อ</Col>
                                 <Col xs={22} md={14} xl={14} >
                                     <Form.Item
                                         name="name"
@@ -78,14 +79,10 @@ export default class Contact extends Component {
                                         <Input id="Input" />
                                     </Form.Item>
                                 </Col>
-                                <Col xs={2} md={4} xl={4} id="request-mask">
-                                    *
-                            </Col>
+                                <Col xs={2} md={4} xl={4} id="request-mask">*</Col>
                             </Row>
                             <Row id="form">
-                                <Col xs={24} md={6} xl={6} id="List">
-                                    เบอร์โทรศัพท์
-                            </Col>
+                                <Col xs={24} md={6} xl={6} id="List">เบอร์โทรศัพท์</Col>
                                 <Col xs={22} md={14} xl={14} >
                                     <Form.Item
                                         name="phone"
@@ -93,39 +90,42 @@ export default class Contact extends Component {
                                         <Input id="Input" />
                                     </Form.Item>
                                 </Col>
-                                <Col xs={2} md={4} xl={4} id="request-mask">
-                                    *
-                            </Col>
+                                <Col xs={2} md={4} xl={4} id="request-mask">*</Col>
                             </Row>
                             <Row id="form">
-                                <Col xs={24} md={6} xl={6} id="List">
-                                    E - mail
-                            </Col>
+                                <Col xs={24} md={6} xl={6} id="List">Line Id</Col>
+                                <Col xs={22} md={14} xl={14} >
+                                    <Form.Item
+                                        name="line"
+                                        >
+                                        <Input id="Input" />
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={2} md={4} xl={4} id="mask"></Col>
+                            </Row>
+                            <Row id="form">
+                                <Col xs={24} md={6} xl={6} id="List">E - mail</Col>
                                 <Col xs={22} md={14} xl={14} >
                                     <Form.Item
                                         name="email"
-                                        rules={[
-                                            {
-                                                type: 'email',
-                                                message: 'E-mail ไม่ถูกต้อง!',
-                                            },
-                                            {
-                                                required: true,
-                                                message: 'กรุณากรอก E-mail!',
-                                            },
-                                        ]}
+                                        // rules={[
+                                        //     {
+                                        //         type: 'email',
+                                        //         message: 'E-mail ไม่ถูกต้อง!',
+                                        //     },
+                                        //     {
+                                        //         required: true,
+                                        //         message: 'กรุณากรอก E-mail!',
+                                        //     },
+                                        // ]}
                                     >
                                         <Input id="Input" />
                                     </Form.Item>
                                 </Col>
-                                <Col xs={2} md={4} xl={4} id="request-mask">
-                                    *
-                            </Col>
+                                <Col xs={2} md={4} xl={4} id="mask"></Col>
                             </Row>
                             <Row id="form">
-                                <Col xs={24} md={6} xl={6} id="List">
-                                    การติดต่อ
-                            </Col>
+                                <Col xs={24} md={6} xl={6} id="List">การติดต่อ</Col>
                                 <Col xs={22} md={14} xl={14} id="select">
                                     <Form.Item
                                         name="type"
@@ -135,17 +135,14 @@ export default class Contact extends Component {
                                             <Option value="สมัครตัวแทนจำหน่าย">สมัครตัวแทนจำหน่าย</Option>
                                             <Option value="สอบถามข้อมูลเพิ่มเติม">สอบถามข้อมูลเพิ่มเติม</Option>
                                             <Option value="สั่งซื้อสินค้า">สั่งซื้อสินค้า</Option>
+                                            <Option value="อื่น ๆ">อื่น ๆ</Option>
                                         </Select>
                                     </Form.Item>
                                 </Col>
-                                <Col xs={2} md={4} xl={4} id="request-mask">
-                                    *
-                            </Col>
+                                <Col xs={2} md={4} xl={4} id="request-mask">*</Col>
                             </Row>
                             <Row id="form">
-                                <Col xs={24} md={6} xl={6} id="List">
-                                    ข้อความ
-                            </Col>
+                                <Col xs={24} md={6} xl={6} id="List">ข้อความ</Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="msg"
@@ -154,9 +151,7 @@ export default class Contact extends Component {
                                         <Input.TextArea id="Input" />
                                     </Form.Item>
                                 </Col>
-                                {/* <Col xs={2} md={4} xl={4} id="request-mask">
-                                    *
-                            </Col> */}
+                                <Col xs={2} md={4} xl={4} id="mask"></Col>
                             </Row>
                             <Row id="Row">
                                 {

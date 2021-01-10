@@ -53,6 +53,12 @@
     font-size:medium;
 }
 
+#mask{
+    padding-left: 5%;
+    color: #070707;
+    font-size:medium;
+}
+
 #Button-submit{
     display: flex;
     justify-content: center;
