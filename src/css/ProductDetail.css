@@ -108,6 +108,21 @@
     padding: 5% 2% 5% 0%;   
 }
 
+#descript-Header{
+    padding-bottom: 2%;
+    font-size: large;
+}
+
+#descript-Header1{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: large;
+}
+
+#descrip-detail{
+    padding-left: 3%;
+}
+
 #dercript-font
 .ant-descriptions-bordered .ant-descriptions-item-label, .ant-descriptions-bordered .ant-descriptions-item-content {
     padding: none;

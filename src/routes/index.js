@@ -15,7 +15,8 @@ import ProductList from "../content/Product/ProductList";
 import Logout from "../content/Logout";
 import SearchProduct from "../content/SearchProduct";
 import ProductDetail from "../content/Product/ProductDetail"
-
+import MemberPoint from "../content/MemberPoint"
+import FormRegister from "../content/FormRegister";
 export default class Index extends Component {
     render() {
         return (
@@ -38,6 +39,8 @@ export default class Index extends Component {
 
                 <Route exact path="/SearchProduct/:mode/:search" component={SearchProduct} />
                 <Route exact path="/SearchProduct/:mode" component={SearchProduct} />
+                <Route exact path="/MemberPoint" component={MemberPoint} />
+                <Route exact path="/FormRegister" component={FormRegister} />
             </Switch>
         );
     }

@@ -1,0 +1,74 @@
+#Header-Point{
+    font-size: x-large;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+}
+
+#MemberPoint{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 3%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #ffffff;
+    border-radius: 5mm;
+    box-shadow: 0 10px 10px rgba(0,0,0,.2);
+}
+
+#Point-Header{
+    font-size: medium;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+}
+
+#Point{
+    font-size: 35px;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+    color: #da213d;
+}
+
+#Point-History{
+    display: flex;
+    justify-content: flex-start;
+    font-size: medium;
+    margin-bottom: 2%;
+}
+
+.ant-table-thead > tr > th {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    text-align: left;
+    background: #ffffff;
+    border-bottom: none;
+}
+
+.ant-table-tbody > tr > td {
+    border-bottom: none;
+}
+
+#row-point{
+    padding-left: 3%;
+}
+
+#col-order{
+    padding-top: 2%;
+}
+
+#col-datepoint{
+    border-bottom: 00.5px solid #e9e6e6;
+    padding-bottom: 1%;
+    color: rgb(158, 156, 156);
+}
+
+#col-point{
+    border-bottom: 00.5px solid #e9e6e6;
+    padding-bottom: 1%;
+    color: #da213d;
+}

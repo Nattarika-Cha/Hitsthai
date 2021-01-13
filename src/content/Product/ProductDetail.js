@@ -379,9 +379,22 @@ export default class Abount extends Component {
                                             </Col>
                                         </Row>
                                         <Row id="dercript">
-                                            <div>
-                                                {this.state.product[0]?.direction}
-                                            </div>
+                                            <Col xs={24} md={24} xl={24} id="descript-Header">วิธีการใช้งาน</Col>
+                                            <Col xs={24} md={24} xl={24}>
+                                                <Col id="descrip-detail">
+                                                    <div>
+                                                        {this.state.product[0]?.direction}
+                                                    </div>
+                                                </Col>
+                                            </Col>
+                                            <Col xs={24} md={24} xl={24} id="descript-Header1">รายละเอียดสินค้า</Col>
+                                            <Col xs={24} md={24} xl={24}>
+                                                <Col id="descrip-detail">
+                                                    <div>
+                                                        {this.state.product[0]?.detail}
+                                                    </div>
+                                                </Col>
+                                            </Col>
                                         </Row>
                                     </Col>
                                 </Row>
@@ -405,7 +418,7 @@ export default class Abount extends Component {
                                         }
                                     </Descriptions.Item>
                                     <Descriptions.Item label="วิธีเก็บรักษา" labelStyle={{ width: "25%" }} span={2}>{this.state.product[0]?.keepespreserve}</Descriptions.Item>
-                                    <Descriptions.Item label="ขั้นตอนการปฐมพยาบาล" span={2}>{this.state.product[0]?.firstaidprocedure}</Descriptions.Item>
+                                    {/* <Descriptions.Item label="ขั้นตอนการปฐมพยาบาล" span={2}>{this.state.product[0]?.firstaidprocedure}</Descriptions.Item> */}
                                 </Descriptions>
                             </Col>
                         </>

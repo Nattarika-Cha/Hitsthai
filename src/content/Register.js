@@ -132,7 +132,7 @@ export default class Register extends Component {
                             <Row>
                                 <Col xs={24} md={8} xl={6} id="List">
                                     Password
-                            </Col>
+                                </Col>
                                 <Col xs={22} md={14} xl={14}>
                                     <Form.Item
                                         name="password"
