@@ -40,15 +40,17 @@ export default class Home extends Component {
 
         var url_product_new = "";
         var url_product_hit = "";
+        var url_statisticsuser = "";
 
         if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
             this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
             url_product_new = ip + "/Product/find/notauthorization/new/16/";
             url_product_hit = ip + "/Product/find/notauthorization/hit/16/";
-
+            url_statisticsuser = ip + "/StatisticsUser/update/enduser/";
         } else {
             url_product_new = ip + "/Product/find/authorization/new/";
             url_product_hit = ip + "/Product/find/authorization/hit/";
+            url_statisticsuser = ip + "/StatisticsUser/update/memberuser/";
         }
 
         const product_new = await (await axios.get(url_product_new, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
@@ -82,6 +84,23 @@ export default class Home extends Component {
                 statusDataHit: true
             });
         }
+
+        await (await axios.put(url_statisticsuser, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        // const statisticsuser = await (await axios.get(url_statisticsuser, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        // if ((statisticsuser.statusCode === 500) || (statisticsuser.statusCode === 400)) {
+        //     swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+        //         this.setState({
+        //             token: cookies.remove('token', { path: '/' }),
+        //             user: cookies.remove('user', { path: '/' })
+        //         });
+        //         window.location.replace('/Login', false);
+        //     });
+        // } else {
+        //     this.setState({
+        //         product_new: product_new,
+        //         statusDataNew: true
+        //     });
+        // }
 
         // var url_product_new = ip + "/Product/find/new/";
         // const product_new = await (await axios.get(url_product_new)).data;

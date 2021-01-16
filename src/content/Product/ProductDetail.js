@@ -59,6 +59,8 @@ export default class Abount extends Component {
     async componentDidMount() {
         // var url_product = ip + "/Product/find/byproduct/authorization/id/" + this.props.match.params.productId;
         var url_product = "";
+        var url_view = ip + "/Product/update/view/" + this.props.match.params.productId;
+        await (await axios.put(url_view, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
         if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
             this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
             url_product = ip + "/Product/find/byproduct/notauthorization/id/" + this.props.match.params.productId + "/16";
