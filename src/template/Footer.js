@@ -53,13 +53,13 @@ export default class Footer extends Component {
                             <Row id="body-footer"> แผ่นสแตนเลส</Row>
                             <Row id="body-footer"> แผ่นสแตนเลสติดผนัง</Row> */}
                         </Col>
-                        <Col xs={12} md={6} xl={6} id="col-footer">
+                        {/* <Col xs={12} md={6} xl={6} id="col-footer">
                             <Row id="header-footer"> อื่นๆ </Row>
                             <Row id="body-footer"> เกี่ยวกับเรา</Row>
                             <Row id="body-footer"> สินค้า</Row>
                             <Row id="body-footer"> ติดต่อเรา</Row>
                             <Row id="body-footer"> บัญชี</Row>
-                        </Col>
+                        </Col> */}
                         <Col xs={12} md={6} xl={6} id="col-footer">
 
                         </Col>

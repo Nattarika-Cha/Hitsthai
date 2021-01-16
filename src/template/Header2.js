@@ -171,15 +171,17 @@ export default class Header2 extends Component {
                                             :
                                             <>
                                                 <Row id="div-sidebar2">
-                                                    <Col xs={4}><Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" style={{borderRadius: "50%"}} fluid responsive /></Col>
-                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden"  }}>{this.state.user?.name}</Col>
+                                                    <Col xs={4}><Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" style={{ borderRadius: "50%" }} fluid responsive /></Col>
+                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>{this.state.user?.name}</Col>
                                                 </Row>
                                                 <Row id="div-sidebar3">
-                                                    <Col xs={7} id="col-sidbar3"><NavLink to="/Profile" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >แก้ไขโปรไฟล์</NavLink ></Col>
+                                                    {/* <Col xs={11} id="col-sidbar3"><NavLink to="/MemberPoint" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >Point</NavLink ></Col>
                                                     <Col xs={1} id="col-sidbar3-k">|</Col>
-                                                    <Col xs={8} id="col-sidbar3"><NavLink to="/Changepass" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >เปลี่ยนรหัสผ่าน</NavLink ></Col>
+                                                    <Col xs={12} id="col-sidbar3"><NavLink to="/Profile" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >แก้ไขโปรไฟล์</NavLink ></Col>
+
+                                                    <Col xs={11} id="col-sidbar3"><NavLink to="/Changepass" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >เปลี่ยนรหัสผ่าน</NavLink ></Col>
                                                     <Col xs={1} id="col-sidbar3-k">|</Col>
-                                                    <Col xs={7} id="col-sidbar3"><NavLink to="/Logout" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >ออกจากระบบ</NavLink ></Col>
+                                                    <Col xs={12} id="col-sidbar3"><NavLink to="/Logout" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >ออกจากระบบ</NavLink ></Col> */}
                                                 </Row>
                                             </>
                                     }
@@ -199,6 +201,24 @@ export default class Header2 extends Component {
                                     <NavLink to="/Abount" onClick={() => this.onSetSidebarOpen(false)}><Row id="div-sidebar5">เกี่ยวกับ</Row></NavLink>
                                     <NavLink to="/Product" onClick={() => this.onSetSidebarOpen(false)}><Row id="div-sidebar5">สินค้า</Row></NavLink>
                                     <NavLink to="/Contact" onClick={() => this.onSetSidebarOpen(false)}><Row id="div-sidebar5">ติดต่อเรา</Row></NavLink>
+                                    {
+                                        (this.state.token === "" || this.state.token === null || this.state.token === undefined) ?
+                                            <>
+                                            </>
+                                            :
+                                            <>
+                                                <Row id="div-sidebar7">
+                                                    <Collapse expandIcon={() => <UserOutlined />} >
+                                                        <Panel showArrow={false} header="ตั้งค่า" key="1">
+                                                            <div id="cat-content"><NavLink to="/MemberPoint" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> Point</NavLink></div>
+                                                            <div id="cat-content"><NavLink to="/Profile" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> แก้ไขโปรไฟล์</NavLink></div>
+                                                            <div id="cat-content"><NavLink to="/Changepass" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> เปลี่ยนรหัสผ่าน</NavLink></div>
+                                                            <div id="cat-content"><NavLink to="/Logout" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> ออกจากระบบ</NavLink></div>
+                                                        </Panel>
+                                                    </Collapse>
+                                                </Row>
+                                            </>
+                                    }
                                     {/* <Row id="div-sidebar6">
                                         <div>TH | EN</div>
                                     </Row> */}

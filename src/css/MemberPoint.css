@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-#MemberPoint{
+#MemberPointCss{
     margin-left: 15%;
     margin-right: 15%;
     margin-bottom: 3%;
@@ -71,4 +71,26 @@
     border-bottom: 00.5px solid #e9e6e6;
     padding-bottom: 1%;
     color: #da213d;
+}
+
+#product-footer-page {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    z-index: 200;
+}
+
+#row-spin-slide {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+@media screen and (max-width: 683px) {
+
+    #product-footer-page {
+        margin-bottom: 15%;
+        /* margin-top: 5%; */
+    }
 }
