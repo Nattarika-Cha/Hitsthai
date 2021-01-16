@@ -13,6 +13,7 @@ import PageHeader2 from "./template/Header2";
 import PageFooter from "./template/Footer";
 import LiveChat from "./template/LiveChat";
 import Routing from "./routes";
+// import bg from './img/bg.svg';
 // import { browserHistory } from 'react-router';
 
 
@@ -24,6 +25,7 @@ export default class App extends Component {
     heightContent = (window.innerHeight - 210 - 64 - 47) + "px";
     console.log(window.innerHeight, " window");
     return (
+
       // <div className="App">
       //   <header className="App-header">
       //     <Router>
@@ -34,14 +36,19 @@ export default class App extends Component {
       //     </Router>
       //   </header>
       // </div>
+
       <Router>
         <Layout>
           <Layout className="site-layout">
-            <Header id="layout-header" > <PageHeader /> </Header>
-            <Header id="layout-header" > <PageHeader2 /> </Header>
-            <Content style={{minHeight: heightContent}}> <Routing /> </Content>
-            <Footer style={{ textAlign: 'center' }}><PageFooter /></Footer>
-            <LiveChat />
+            <div id="back-img">
+              <Header id="layout-header" > <PageHeader /> </Header>
+              <Header id="layout-header" > <PageHeader2 /> </Header>
+              <Content style={{ minHeight: heightContent }}>
+                <Routing />
+              </Content>
+              <Footer style={{ textAlign: 'center' }}><PageFooter /></Footer>
+              <LiveChat />
+            </div>
           </Layout>
         </Layout>
       </Router>
