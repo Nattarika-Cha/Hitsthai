@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { Row, Col, Empty, Spin } from 'antd';
-import { Container, } from 'react-bootstrap';
+import { Row, Col, Empty, Spin, Carousel } from 'antd';
+import { Container, Image } from 'react-bootstrap';
 import '../css/Product.css';
-
 import ProductSlide from "./Product/ProductSlide"
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { NavLink } from 'react-router-dom';
+import P1 from '../img/1.jpg';
+import P2 from '../img/2.jpg';
+import P3 from '../img/3.jpg';
 
 const cookies = new Cookies();
 
 var ip = "http://localhost:5000";
-// var ip_img_profile = "http://128.199.198.10/API/profile/";
-
 export default class Product extends Component {
     constructor(props) {
         super(props);
@@ -42,8 +42,27 @@ export default class Product extends Component {
     }
 
     render() {
+        
         return (
             <Container fluid id="bg">
+                <Col xs={24} md={24} xl={24}id="cover-product">  
+                    <Carousel 
+                        autoplay
+                        >
+                            <div>
+                                <h3><Image src={P1} fluid></Image></h3>
+                            </div>
+                            <div>
+                                <h3><Image src={P2} fluid></Image></h3>
+                            </div>
+                            <div>
+                                <h3><Image src={P1} fluid></Image></h3>
+                            </div>
+                            <div>
+                                <h3><Image src={P3} fluid></Image></h3>
+                            </div>
+                    </Carousel>        
+                </Col>
                 <Row id="Product">
                 </Row>
                 {

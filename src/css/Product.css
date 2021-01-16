@@ -9,6 +9,15 @@
     background-color: #ca2a2a;
 }
 
+#row-coverproduct{
+    height: auto;
+    background-color: #222222;
+}
+
+#cover-product{
+    margin: 0% 0% 1% 0%;
+}
+
 #img-product {
     vertical-align: middle;
     border-style: none;
@@ -35,7 +44,7 @@
     justify-content: flex-start;
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 2.5%;
+    /* margin-top: 2.5%; */
     margin-bottom: 1%;
     background-color: #da213d;
     color: #fbfbfb;
@@ -86,8 +95,8 @@
 
 #card-product{
     width: 210px;
-    border-left: 0.3em solid #fbfbfb;
-    border-right: 0.3em solid #fbfbfb;
+    /* border-left: 0.3em solid #fbfbfb;
+    border-right: 0.3em solid #fbfbfb; */
 }
 
 #img-product{

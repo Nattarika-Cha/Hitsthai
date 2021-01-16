@@ -62,7 +62,7 @@ export default class ProductCardTab extends Component {
             <NavLink to={"/ProductDetail/" + this.props.product.productId}>
                 <Card
                     hoverable
-                    style={{ width: "100%", height: "100%", border: "10px solid #f0f2f5" }}
+                    style={{ width: "95%", height: "95%", justifyContent: "space-between" }}
                     //id="card-product"
                     cover={<img id="img-product" alt="example" src={imgm} />}>
                     <Row id="text-detail">

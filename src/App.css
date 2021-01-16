@@ -7,6 +7,14 @@
   pointer-events: none;
 }
 
+#back-img {
+  background: url(./img/bg.svg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -76,3 +84,4 @@
   margin-right: auto;
   margin-left: auto;
 }
+

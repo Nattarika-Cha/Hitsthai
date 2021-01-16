@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Close from '../img/logoanime.mp4';
+import bg from '../img/logo1.mp4';
+import P1 from '../img/P1.png';
+import P2 from '../img/P2.png';
 import { Row, Col, Empty, Spin } from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Home.css';
@@ -111,49 +113,30 @@ export default class Home extends Component {
         return (
             <Container fluid>
                 <Row id="home">
-                    <Col xs={14} xl={14} id="col-img-head1">
+                    <Col xs={24} md={24} xl={14} id="col-img-head1">
                         {/* <img src={Close} alt="logo" width="70%" /> */}
                         <ReactPlayer 
-                            url={Close} 
+                            url={bg} 
                             width='100%'
-                            height='100%'
+                            height='max-content'
                             // controls = {true}
                             autoplay = {true}
                             playing = {true}
-                            loop = {true}/>
+                            loop = {true}
+                            fluid/>
                     </Col>
-                    <Col xs={10} xl={10} id="col-img-head2">
+                    <Col xs={24} md={24}  xl={10} id="col-img-head2">
                         <Row id="row-col-img-head2">
-                            {/* <img src={Close} alt="logo" width="50%" /> */}
+                            <img src={P1} alt="logo" width="100%"  fluid/>
                         </Row>
                         <Row id="row-col-img-head3">
-                            {/* <img src={Close} alt="logo" width="50%" /> */}
+                            <img src={P2} alt="logo" width="100%"  fluid/>
                         </Row>
                     </Col>
                 </Row>
                 <Row id="hade-standate">
                     <div id="standate">สินค้าใหม่</div>
                 </Row>
-                {/* <Row  id="img-standate">
-                    <Col xs={2} xl={2} ></Col>
-                    {this.list_product_new()}
-                    <Col xs={4} xl={4} id="black-img1"> <ProductHomeCard /> </Col>
-                    <Col xs={4} xl={4} id="black-img2"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img3"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img4"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img5"> <ProductHomeCard /></Col>
-                    <Col xs={2} xl={2} ></Col>
-                </Row>
-                <Row  id="img-standate">
-                    <Col xs={2} xl={2} ></Col>
-                    {this.list_product_hit()}
-                    <Col xs={4} xl={4} id="black-img1"> <ProductHomeCard /> </Col>
-                    <Col xs={4} xl={4} id="black-img2"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img3"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img4"> <ProductHomeCard /></Col>
-                    <Col xs={4} xl={4} id="black-img5"> <ProductHomeCard /></Col>
-                    <Col xs={2} xl={2} ></Col>
-                </Row> */}
 
                 {
                     (this.state.statusDataNew) ?
