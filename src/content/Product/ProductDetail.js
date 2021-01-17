@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, } from 'react-bootstrap';
 import { Row, Col, Descriptions, PageHeader, Spin } from 'antd';
 import '../../css/ProductDetail.css';
+import imgm from '../../img/photocomingsoon.svg';
 import ImageGallery from 'react-image-gallery';
 import { CheckCircleTwoTone, CloseCircleTwoTone, ShoppingTwoTone } from '@ant-design/icons';
 import axios from 'axios';
@@ -12,20 +13,20 @@ const cookies = new Cookies();
 var ip = "http://localhost:5000";
 // var ip_img_profile = "http://128.199.198.10/API/profile/";
 
-const images = [
-    {
-        original: 'https://picsum.photos/id/1018/1000/600/',
-        thumbnail: 'https://picsum.photos/id/1018/250/150/',
-    },
-    {
-        original: 'https://picsum.photos/id/1015/1000/600/',
-        thumbnail: 'https://picsum.photos/id/1015/250/150/',
-    },
-    {
-        original: 'https://picsum.photos/id/1019/1000/600/',
-        thumbnail: 'https://picsum.photos/id/1019/250/150/',
-    },
-];
+// const images = [
+//     {
+//         original: imgm,
+//         thumbnail: imgm,
+//     },
+//     {
+//         original: 'https://picsum.photos/id/1015/1000/600/',
+//         thumbnail: 'https://picsum.photos/id/1015/250/150/',
+//     },
+//     {
+//         original: 'https://picsum.photos/id/1019/1000/600/',
+//         thumbnail: 'https://picsum.photos/id/1019/250/150/',
+//     },
+// ];
 
 var routes = [];
 
@@ -44,7 +45,8 @@ export default class Abount extends Component {
             member1: [],
             member2: [],
             member3: [],
-            enduser: []
+            enduser: [],
+            images: []
         };
     }
 
@@ -80,6 +82,22 @@ export default class Abount extends Component {
             this.setState({
                 product: product
             });
+
+            var url_product_img = ip + "/ProductImg/ImgProduct/all/" + this.props.match.params.productId;
+            const product_img = await (await axios.get(url_product_img)).data;
+            console.log(product_img, " product_img");
+            if (product_img.length > 0) {
+                this.setState({
+                    images: product_img
+                });
+            } else {
+                this.setState({
+                    images: [{
+                        original: imgm,
+                        thumbnail: imgm,
+                    }]
+                });
+            };
 
             if (this.state.product[0]?.caution !== null && this.state.product[0]?.caution !== "") {
                 this.setState({
@@ -308,7 +326,7 @@ export default class Abount extends Component {
 
                                 <Row>
                                     <Col xs={24} md={24} xl={10} id="img-showproduct">
-                                        <ImageGallery items={images} />
+                                        <ImageGallery items={this.state.images} />
                                     </Col>
                                     <Col xs={24} md={24} xl={12}>
                                         <Row id="Row-List">
