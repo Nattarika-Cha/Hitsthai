@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from 'antd';
 import '../../css/Product.css';
-import imgm from '../../img/m.png';
+import imgm from '../../img/photocomingsoon.svg';
 import { Card } from 'antd';
 import { NavLink } from 'react-router-dom';
 
@@ -64,7 +64,12 @@ export default class ProductCardTab extends Component {
                         hoverable
                         style={{ width: "auto", border: "10px solid #f0f2f5" }}
                         // id="card-product"
-                        cover={<img id="img-product" alt="example" src={imgm} />}>
+                        cover={
+                            (this.props.product.url === null) ?
+                                <img id="img-product" alt="example" src={imgm} />
+                                :
+                                <img id="img-product" alt="example" src={this.props.product.url} />
+                        }>
                         <Row id="text-detail">
                             <Meta id="text-title" title={this.props.product.name} />
                         </Row>

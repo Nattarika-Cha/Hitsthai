@@ -1,10 +1,14 @@
 #home {
-  padding: 0% 0% 0% 0%;
+  padding: 2% 9.5% 0% 9.5%;
+  justify-content: space-between;
 }
 
 #col-img-head1{
   /* background-color: darkgoldenrod; */
   height: fit-content;
+  justify-content: space-between;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
   /* height: auto; */
   /* margin-top: 2%; */
   
@@ -13,18 +17,22 @@
 #col-img-head2{
   /* margin-top: 2%; */
   height: fit-content;
+  justify-content: space-between;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
   /* margin-left: 1%; */
 }
 
-#row-col-img-head2{
-  background-color: darkgoldenrod;
-  /* height: 200px; */
-  /* border-bottom: 8px solid white; */
-}
+/* #row-col-img-head2{
+  padding-left: 1%;
+  padding-right: 1%;
+} */
 
 #row-col-img-head3{
-  background-color: darkgoldenrod;
-  /* height: 200px; */
+  padding-top: 2%;
+  /* padding-left: 1%;
+  padding-right: 1%; */
+  /* padding-top: 0.4%; */
 }
 
 #hade-standate{

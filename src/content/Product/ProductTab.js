@@ -219,7 +219,7 @@ export default class ProductTab extends Component {
                 {
                     (this.state.statusDataProduct) ?
                         <>
-                            <Row>
+                            <Row style={{marginLeft: "4%", marginRight: "4%"}}>
 
                                 {this.state.product.length > 0 ?
                                     this.props.mode === "grid" ? this.grid_product() : this.list_product()

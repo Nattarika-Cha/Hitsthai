@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import bg from '../img/logo1.mp4';
-import P1 from '../img/P1.png';
-import P2 from '../img/P2.png';
+import bg from '../img/Comp1.mp4';
+// import P1 from '../img/h1.svg';
+// import P2 from '../img/h2.svg';
+import P1 from '../img/ho1.svg';
+import P2 from '../img/ho2.svg';
 import { Row, Col, Empty, Spin } from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Home.css';
@@ -132,7 +134,7 @@ export default class Home extends Component {
         return (
             <Container fluid>
                 <Row id="home">
-                    <Col xs={24} md={24} xl={14} id="col-img-head1">
+                    <Col xs={24} md={24} xl={12} id="col-img-head1">
                         {/* <img src={Close} alt="logo" width="70%" /> */}
                         <ReactPlayer 
                             url={bg} 
@@ -144,7 +146,7 @@ export default class Home extends Component {
                             loop = {true}
                             fluid/>
                     </Col>
-                    <Col xs={24} md={24}  xl={10} id="col-img-head2">
+                    <Col xs={24} md={24} xl={12} id="col-img-head2">
                         <Row id="row-col-img-head2">
                             <img src={P1} alt="logo" width="100%"  fluid/>
                         </Row>
