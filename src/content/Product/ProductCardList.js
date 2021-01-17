@@ -62,22 +62,26 @@ export default class ProductCardList extends Component {
                 <NavLink to={"/ProductDetail/" + this.props.product.productId}>
                     <Card
                         hoverable
-                        style={{ width: "auto", border: "10px solid #f0f2f5" }}
+                        style={{ width: "95%", height:"95%", justifyContent: "space-between" }}
                     >
                         <Row>
                             <Col xs={8} md={8} lg={8}>
+                                
                                 {
                                     (this.props.product.url === null) ?
-                                        <img id="img-product" alt="example" src={imgm} />
+                                        <img id="img-productCardList" alt="example" src={imgm}/>
                                         :
-                                        <img id="img-product" alt="example" src={this.props.product.url} />
+                                        <img id="img-productCardList" alt="example" src={this.props.product.url} />
                                 }
                             </Col>
                             <Col xs={16} md={16} lg={16} id="product-card-list-col">
                                 <Row id="text-detail">
+                                    <Col id="textdescription" xs={24} md={24} xl={24}>
                                     <Meta id="text-title" title={this.props.product.name} />
+                                    </Col>
                                 </Row>
                                 <Row id="text-detail">
+                                    <Col id="textdescription" xs={24} md={24} xl={24}>
                                     {/* <div>{"ขนาด : " + this.props.product.size}</div> */}
                                     <Meta description={"ขนาด : " + this.props.product.size} />
                                     {/* <Col id="textdescription" xs={2} md={2} xl={2}>
@@ -86,8 +90,10 @@ export default class ProductCardList extends Component {
                                     <Col xs={21} md={21} xl={21}>
                                         <Meta id="description" description={this.props.product.size} />
                                     </Col> */}
+                                    </Col>
                                 </Row>
                                 <Row id="text-detail">
+                                    <Col id="textdescription" xs={24} md={24} xl={24}>
                                     {/* <div>{"สี : " + this.props.product.color}</div> */}
                                     <Meta description={"สี : " + this.props.product.color} />
                                     {/* <Col id="textdescription" xs={1} md={1} xl={1}>
@@ -96,9 +102,11 @@ export default class ProductCardList extends Component {
                                     <Col xs={23} md={23} xl={23}>
                                         <Meta id="description" description={this.props.product.color} />
                                     </Col> */}
+                                    </Col>
                                 </Row>
                                 <Row id="text-detail">
                                     {/* <div>{"วิธีการใช้งาน : " + this.props.product.direction}</div> */}
+                                    <Col id="textdescription" xs={24} md={24} xl={24}>
                                     <Meta description={"วิธีการใช้งาน : " + this.props.product.direction} />
                                     {/* <Col id="textdescription" xs={4} md={4} xl={4}>
                                         <Meta description="วิธีการใช้งาน : " />
@@ -106,6 +114,7 @@ export default class ProductCardList extends Component {
                                     <Col xs={19} md={19} xl={19}>
                                         <Meta id="description" description={this.props.product.direction} />
                                     </Col> */}
+                                    </Col>
                                 </Row>
                                 <Row id="text-detail">
                                     <Col id="textdescription" xs={24} md={24} xl={24}>

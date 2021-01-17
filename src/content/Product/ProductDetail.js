@@ -418,6 +418,43 @@ export default class Abount extends Component {
                                         </Row>
                                     </Col>
                                 </Row>
+                                <Row>
+                                <Row id="level-price">          
+                                            <Col xs={4} md={4} xl={4}>ระดับ</Col>
+                                            <Col xs={4} md={4} xl={4}>level1</Col>
+                                            <Col xs={4} md={4} xl={4}>level2</Col>
+                                            <Col xs={4} md={4} xl={4}>level3</Col>
+                                            <Col xs={4} md={4} xl={4}>level4</Col>
+                                            <Col xs={4} md={4} xl={4}>level5</Col>
+                                        
+                                        
+                                            <Col xs={4} md={4} xl={4}>Buyer</Col>
+                                            <Col xs={4} md={4} xl={4}>level1</Col>
+                                            <Col xs={4} md={4} xl={4}>level2</Col>
+                                            <Col xs={4} md={4} xl={4}>level3</Col>
+                                            <Col xs={4} md={4} xl={4}>level4</Col>
+                                            <Col xs={4} md={4} xl={4}>level5</Col>
+                                        
+                                        
+                                            <Col xs={4} md={4} xl={4}>Dealer</Col>
+                                            <Col xs={4} md={4} xl={4}>level1</Col>
+                                            <Col xs={4} md={4} xl={4}>level2</Col>
+                                            <Col xs={4} md={4} xl={4}>level3</Col>
+                                            <Col xs={4} md={4} xl={4}>level4</Col>
+                                            <Col xs={4} md={4} xl={4}>level5</Col>
+
+                                            <Col xs={4} md={4} xl={4}>Adviser</Col>
+                                            <Col xs={4} md={4} xl={4}>level1</Col>
+                                            <Col xs={4} md={4} xl={4}>level2</Col>
+                                            <Col xs={4} md={4} xl={4}>level3</Col>
+                                            <Col xs={4} md={4} xl={4}>level4</Col>
+                                            <Col xs={4} md={4} xl={4}>level5</Col>    
+
+                                            <Col xs={4} md={4} xl={4}>Price tag</Col>
+                                            <Col xs={4} md={4} xl={4}>level1</Col> 
+                                    </Row>
+
+                                </Row>
 
                             </Col>
 

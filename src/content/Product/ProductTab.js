@@ -163,7 +163,7 @@ export default class ProductTab extends Component {
         // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
         return (
             <Container fluid>
-                <Row>
+                <Row id="product-tab">
                     <Col xs={12} md={12} lg={12}>
                         {this.props.mode === "grid" ?
                             <Space>

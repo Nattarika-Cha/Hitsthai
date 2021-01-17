@@ -62,7 +62,7 @@ export default class ProductCardTab extends Component {
                 <NavLink to={"/ProductDetail/" + this.props.product.productId}>
                     <Card
                         hoverable
-                        style={{ width: "auto", border: "10px solid #f0f2f5" }}
+                        style={{ width: "95%", height:"95%", justifyContent: "space-between" }}
                         // id="card-product"
                         cover={
                             (this.props.product.url === null) ?
@@ -71,9 +71,12 @@ export default class ProductCardTab extends Component {
                                 <img id="img-product" alt="example" src={this.props.product.url} />
                         }>
                         <Row id="text-detail">
+                            <Col id="textdescription" xs={24} md={24} xl={24}>
                             <Meta id="text-title" title={this.props.product.name} />
+                            </Col>
                         </Row>
                         <Row id="text-detail">
+                            <Col id="textdescription" xs={24} md={24} xl={24}>
                             {/* <div>{"ขนาด : " + this.props.product.size}</div> */}
                             <Meta description={"ขนาด : " + this.props.product.size} />
                             {/* <Col id="textdescription" xs={3} md={3} xl={3}>
@@ -85,8 +88,10 @@ export default class ProductCardTab extends Component {
                             <Col xs={21} md={21} xl={21}>
                                 <Meta id="description" description={this.props.product.size} />
                             </Col> */}
+                            </Col>
                         </Row>
                         <Row id="text-detail">
+                        <Col   Col id="textdescription" xs={24} md={24} xl={24}> 
                             {/* <div>{"สี : " + this.props.product.color}</div> */}
                             <Meta description={"สี : " + this.props.product.color} />
                             {/* <Col id="textdescription" xs={2} md={2} xl={2}>
@@ -98,8 +103,10 @@ export default class ProductCardTab extends Component {
                             <Col xs={22} md={22} xl={22}>
                                 <Meta id="description" description={this.props.product.color} />
                             </Col> */}
+                            </Col>
                         </Row>
                         <Row id="text-detail">
+                            <Col id="textdescription" xs={24} md={24} xl={24}>
                             <Col id="textdescription" xs={24} md={24} xl={24}>
                                 {this.showPrice()}
                                 {/* {
@@ -116,6 +123,7 @@ export default class ProductCardTab extends Component {
                                             <div id="price-card-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
                                         </>
                                 } */}
+                                </Col>
                             </Col>
                         </Row>
                     </Card>
