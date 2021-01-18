@@ -156,6 +156,43 @@
 }
 
 #level-price{
+    text-align: center;
     margin-top: 1%;
     margin-bottom: 2%;
+}
+
+#header-price {
+    text-align: center;
+    font-size: 130%;
+}
+
+#solid-col {
+    border: 1px solid;
+    background-color: #da213d;
+    color: aliceblue;
+    font-size: 120%;
+}
+
+#solid-col-detail {
+    border-top: 1px solid;
+    border-left: 1px solid;
+}
+
+#solid-col-detail-r {
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+
+#solid-col-detail-b {
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+}
+
+#solid-col-detail-e {
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
 }
