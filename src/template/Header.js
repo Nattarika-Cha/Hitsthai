@@ -140,11 +140,11 @@ export default withRouter(class Header extends Component {
                             <Col xs={6} xl={6}>
                                 <img
                                     src={logo}
-                                    width="110px"
+                                    width="90px"
                                     height="auto"
                                     className="d-inline-block align-top"
                                     alt="React Bootstrap logo"
-                                    style={{ paddingBottom: "0.3%", paddingTop: "0.3%" }}
+                                    style={{ paddingBottom: "0.3%", paddingTop: "1%" }}
                                 />
                             </Col>
                             <Col xs={12} xl={12} id="col-Headder-center">
@@ -209,7 +209,7 @@ export default withRouter(class Header extends Component {
                             <img
                                 src={logo}
                                 width="25%"
-                                height="auto"
+                                height="25%"
                                 className="d-inline-block align-top"
                                 alt="React Bootstrap logo"
                                 style={{ paddingBottom: "0.9%", paddingTop: "0.9%" }}

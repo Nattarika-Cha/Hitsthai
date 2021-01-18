@@ -31,7 +31,7 @@ export default withRouter(class Sidebar extends Component {
                 </Row>
                 <Row id="div-sidebar2">
                     <Col xs={4}><Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" /></Col>
-                    <Col xs={20} style={{ paddingLeft: "2%" }}>สวัสดี</Col>
+                    <Col xs={20} style={{ paddingLeft: "2%", paddingTop: "2%" }}>สวัสดี</Col>
                 </Row>
                 <Row id="div-sidebar3">
                     <NavLink to="/Login" id="div-sidebar3" >เข้าสู่ระบบ</NavLink >

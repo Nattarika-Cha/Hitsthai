@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Container } from 'react-bootstrap';
+import { Container, Image } from 'react-bootstrap';
 import { Row, Col, Form, Input, Button, Select, Spin } from 'antd';
 import '../css/Contact.css';
 import axios from 'axios';
 import swal from 'sweetalert';
+import map from'../img/map.png';
 var ip = "http://localhost:5000";
 
 const { Option } = Select;
@@ -33,7 +34,8 @@ export default class Contact extends Component {
             msg: values.msg,
             numCall: 0,
             contactStatus: "A",
-            acceptStatus: "N"
+            acceptStatus: "N",
+            registerStatus: "N"
         };
 
         var config = {
@@ -68,6 +70,7 @@ export default class Contact extends Component {
                 <Form onFinish={this.onRegister}>
                     <Row id="contact">
                         <Col xs={24} md={24} xl={12} id="map" >
+                            <Image src={map} fluid></Image>
                         </Col>
                         <Col xs={24} md={24} xl={12} id="form-contact">
                             <Row id="form">

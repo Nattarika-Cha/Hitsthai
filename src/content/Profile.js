@@ -115,8 +115,10 @@ export default class Login extends Component {
             img = values.upload[length];
         }
         const data = {
+            userCode:values.userCode,
             name: values.name,
             email: values.email,
+            line: values.line,
             phone: values.phone,
             address: values.address,
             img: img,
@@ -186,7 +188,9 @@ export default class Login extends Component {
                         <Form
                             id="displaycenter"
                             initialValues={{
+                                userCode: this.state.userEdit.userCode,
                                 name: this.state.userEdit.name,
+                                line: this.state.userEdit.line,
                                 email: this.state.userEdit.email,
                                 phone: this.state.userEdit.phone,
                                 address: this.state.userEdit.address
@@ -225,12 +229,42 @@ export default class Login extends Component {
                                             <></> // <div onClick={this.changeFlagEdit} id="cancelButtom">ยกเลิก</div>
                                     }
                                 </Row>
-                                <Row style={{ marginTop: "2%" }}>
+                                <Row  style={{ marginTop: "5%" }}>
+                                    <Col xs={24} md={8} xl={6} id="List">รหัสสมาชิก</Col>
+                                    <Col xs={22} md={14} xl={14}>
+                                        <Form.Item
+                                            name="userCode"
+                                            >
+                                            <Input
+                                                id="Input"
+                                                disabled={true}
+                                            />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col xs={2} md={2} xl={4}></Col>
+                                </Row>
+                                <Row>
                                     <Col xs={24} md={8} xl={6} id="List">ชื่อ - นามสกุล</Col>
                                     <Col xs={22} md={14} xl={14}>
                                         <Form.Item
                                             name="name"
                                             rules={[{ required: true, message: 'กรุณากรอก ชื่อ-นามสกุล!' }]}>
+                                            <Input
+                                                id="Input"
+                                                disabled={this.state.flagEdit}
+                                            // defaultValue={this.state.userEdit.name} 
+                                            // onChange={this.onChange}
+                                            />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col xs={2} md={2} xl={4} id="request-mask" hidden={this.state.flagEdit}> * </Col>
+                                </Row>
+                                <Row>
+                                    <Col xs={24} md={8} xl={6} id="List">Line</Col>
+                                    <Col xs={22} md={14} xl={14}>
+                                    <Form.Item
+                                            name="line"
+                                            rules={[{ required: true, message: 'กรุณากรอกที่อยู่ไลน์!' }]}>
                                             <Input
                                                 id="Input"
                                                 disabled={this.state.flagEdit}
