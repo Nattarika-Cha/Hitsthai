@@ -65,7 +65,6 @@ export default class Login extends Component {
 
         const login = await axios(config);
         const data_login = login.data;
-        console.log(data_login, " data_login");
         if (data_login.statusCode === 200) {
             const user_data = {
                 id: data_login.id,
