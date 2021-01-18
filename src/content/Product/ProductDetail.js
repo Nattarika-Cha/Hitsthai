@@ -135,15 +135,15 @@ export default class Abount extends Component {
                     return level.memberCode === "member3"
                 });
 
-                // let enduser = this.state.level.filter(function (level) {
-                //     return level.memberCode === "EndUser"
-                // });
+                let enduser = this.state.level.filter(function (level) {
+                    return level.memberCode === "EndUser"
+                });
 
                 this.setState({
                     member1: member1,
                     member2: member2,
                     member3: member3,
-                    // enduser: enduser
+                    enduser: enduser
                 });
 
                 //member
@@ -185,8 +185,8 @@ export default class Abount extends Component {
 
     showPrice() {
         if (this.state.product[0]?.memberCode === "Admin") {
-            return <>
-                <Row>
+            return <> <div id="price-list-product" >ดูข้อมูลราคาด้านล่าง</div>
+                {/* <Row>
                     <Col xs={24} md={8} xl={8}><div id="price-list-product" > {"ลูกค้าทั่วไป"} </div></Col>
                     <Col xs={0} md={4} xl={4}><div id="price-list-product-detail" ></div></Col>
                     <Col xs={24} md={12} xl={12}><div id="price-list-product-detail" > {"฿ " + (((this.state.product[0]?.priceend === null) || (this.state.product[0]?.priceend === "")) ? "-" : this.state.product[0]?.priceend) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
@@ -250,7 +250,7 @@ export default class Abount extends Component {
                             }
                         </Row>
                     })
-                }
+                } */}
             </>
         }
         else if (this.state.product[0]?.memberCode === "EndUser") {
@@ -288,6 +288,76 @@ export default class Abount extends Component {
                         :
                         <div id="price-list-product3">0</div>
                 }
+            </>
+        }
+    }
+
+    showPriceAdmin() {
+        if (this.state.product[0]?.memberCode === "Admin") {
+            return <>
+                <Row id="level-price">
+                    <Col xs={24} md={24} xl={24} id="header-price">ตารางเปลียบเทียบราคา</Col>
+                    <Col xs={24} md={24} xl={24} id="header-price"></Col>
+
+                    <Col xs={4} md={4} xl={4} id="solid-col">ระดับ</Col>
+                    <Col xs={4} md={4} xl={4} id="solid-col">level1</Col>
+                    <Col xs={4} md={4} xl={4} id="solid-col">level2</Col>
+                    <Col xs={4} md={4} xl={4} id="solid-col">level3</Col>
+                    <Col xs={4} md={4} xl={4} id="solid-col">level4</Col>
+                    <Col xs={4} md={4} xl={4} id="solid-col">level5</Col>
+
+                    <Col xs={4} md={4} xl={4} id="solid-col">{this.state.member1[0]?.memberName}</Col>
+                    {
+                        this.state.member1.map((member1) => {
+                            return <>
+                                {
+                                    (member1.name === "level1") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail1" > {"฿ " + (((this.state.priceAdmin[0]?.level1 === null) || (this.state.priceAdmin[0]?.level1 === "")) ? "-" : this.state.priceAdmin[0]?.level1) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                        : (member1.name === "level2") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail1" > {"฿ " + (((this.state.priceAdmin[0]?.level2 === null) || (this.state.priceAdmin[0]?.level2 === "")) ? "-" : this.state.priceAdmin[0]?.level2) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                            : (member1.name === "level3") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail1" > {"฿ " + (((this.state.priceAdmin[0]?.level3 === null) || (this.state.priceAdmin[0]?.level3 === "")) ? "-" : this.state.priceAdmin[0]?.level3) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                : (member1.name === "level4") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail1" > {"฿ " + (((this.state.priceAdmin[0]?.level4 === null) || (this.state.priceAdmin[0]?.level4 === "")) ? "-" : this.state.priceAdmin[0]?.level4) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                    : (member1.name === "level5") ? <Col xs={4} md={4} xl={4} id="solid-col-detail-r"><div id="price-list-product-detail1" > {"฿ " + (((this.state.priceAdmin[0]?.level5 === null) || (this.state.priceAdmin[0]?.level5 === "")) ? "-" : this.state.priceAdmin[0]?.level5) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                        : <></>
+                                }
+                            </>
+                        })
+                    }
+
+
+                    <Col xs={4} md={4} xl={4} id="solid-col">{this.state.member2[0]?.memberName}</Col>
+                    {
+                        this.state.member2.map((member2) => {
+                            return <>
+                                {
+                                    (member2.name === "level6") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail2" > {"Commission " + (((this.state.priceAdmin[0]?.level6 === null) || (this.state.priceAdmin[0]?.level6 === "")) ? "-" : this.state.priceAdmin[0]?.level6) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                        : (member2.name === "level7") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail2" > {"Commission " + (((this.state.priceAdmin[0]?.level7 === null) || (this.state.priceAdmin[0]?.level7 === "")) ? "-" : this.state.priceAdmin[0]?.level7) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                            : (member2.name === "level8") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail2" > {"Commission " + (((this.state.priceAdmin[0]?.level8 === null) || (this.state.priceAdmin[0]?.level8 === "")) ? "-" : this.state.priceAdmin[0]?.level8) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                : (member2.name === "level9") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail2" > {"Commission " + (((this.state.priceAdmin[0]?.level9 === null) || (this.state.priceAdmin[0]?.level9 === "")) ? "-" : this.state.priceAdmin[0]?.level9) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                    : (member2.name === "level10") ? <Col xs={4} md={4} xl={4} id="solid-col-detail-r"><div id="price-list-product-detail2" > {"Commission " + (((this.state.priceAdmin[0]?.level10 === null) || (this.state.priceAdmin[0]?.level10 === "")) ? "-" : this.state.priceAdmin[0]?.level10) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                        : <></>
+                                }
+                            </>
+                        })
+                    }
+
+                    <Col xs={4} md={4} xl={4} id="solid-col">{this.state.member3[0]?.memberName}</Col>
+                    {
+                        this.state.member3.map((member3) => {
+                            return <>
+                                {
+                                    (member3.name === "level11") ? <Col xs={4} md={4} xl={4} id="solid-col-detail"><div id="price-list-product-detail3" > {(((this.state.priceAdmin[0]?.level11 === null) || (this.state.priceAdmin[0]?.level11 === "")) ? "-" : this.state.priceAdmin[0]?.level11) + " Point/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                        : (member3.name === "level12") ? <Col xs={4} md={4} xl={4} id="solid-col-detail-b"><div id="price-list-product-detail3" > {(((this.state.priceAdmin[0]?.level12 === null) || (this.state.priceAdmin[0]?.level12 === "")) ? "-" : this.state.priceAdmin[0]?.level12) + " Point/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                            : (member3.name === "level13") ? <Col xs={4} md={4} xl={4} id="solid-col-detail-b"><div id="price-list-product-detail3" > {(((this.state.priceAdmin[0]?.level13 === null) || (this.state.priceAdmin[0]?.level13 === "")) ? "-" : this.state.priceAdmin[0]?.level13) + " Point/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                : (member3.name === "level14") ? <Col xs={4} md={4} xl={4} id="solid-col-detail-b"><div id="price-list-product-detail3" > {(((this.state.priceAdmin[0]?.level14 === null) || (this.state.priceAdmin[0]?.level14 === "")) ? "-" : this.state.priceAdmin[0]?.level14) + " Point/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                    : (member3.name === "level15") ? <Col xs={4} md={4} xl={4} id="solid-col-detail-e"><div id="price-list-product-detail3" > {(((this.state.priceAdmin[0]?.level15 === null) || (this.state.priceAdmin[0]?.level15 === "")) ? "-" : this.state.priceAdmin[0]?.level15) + " Point/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                                                        : <></>
+                                }
+                            </>
+                        })
+                    }
+
+                    <Col xs={4} md={4} xl={4} id="solid-col">{this.state.enduser[0]?.memberName}</Col>
+                    <Col xs={4} md={4} xl={4} id="solid-col-detail-e"><div id="price-list-product-detail" > {"฿ " + (((this.state.product[0]?.priceend === null) || (this.state.product[0]?.priceend === "")) ? "-" : this.state.product[0]?.priceend) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div></Col>
+                </Row>
             </>
         }
     }
@@ -419,40 +489,9 @@ export default class Abount extends Component {
                                     </Col>
                                 </Row>
                                 <Row>
-                                <Row id="level-price">          
-                                            <Col xs={4} md={4} xl={4}>ระดับ</Col>
-                                            <Col xs={4} md={4} xl={4}>level1</Col>
-                                            <Col xs={4} md={4} xl={4}>level2</Col>
-                                            <Col xs={4} md={4} xl={4}>level3</Col>
-                                            <Col xs={4} md={4} xl={4}>level4</Col>
-                                            <Col xs={4} md={4} xl={4}>level5</Col>
-                                        
-                                        
-                                            <Col xs={4} md={4} xl={4}>Buyer</Col>
-                                            <Col xs={4} md={4} xl={4}>level1</Col>
-                                            <Col xs={4} md={4} xl={4}>level2</Col>
-                                            <Col xs={4} md={4} xl={4}>level3</Col>
-                                            <Col xs={4} md={4} xl={4}>level4</Col>
-                                            <Col xs={4} md={4} xl={4}>level5</Col>
-                                        
-                                        
-                                            <Col xs={4} md={4} xl={4}>Dealer</Col>
-                                            <Col xs={4} md={4} xl={4}>level1</Col>
-                                            <Col xs={4} md={4} xl={4}>level2</Col>
-                                            <Col xs={4} md={4} xl={4}>level3</Col>
-                                            <Col xs={4} md={4} xl={4}>level4</Col>
-                                            <Col xs={4} md={4} xl={4}>level5</Col>
 
-                                            <Col xs={4} md={4} xl={4}>Adviser</Col>
-                                            <Col xs={4} md={4} xl={4}>level1</Col>
-                                            <Col xs={4} md={4} xl={4}>level2</Col>
-                                            <Col xs={4} md={4} xl={4}>level3</Col>
-                                            <Col xs={4} md={4} xl={4}>level4</Col>
-                                            <Col xs={4} md={4} xl={4}>level5</Col>    
+                                    {this.showPriceAdmin()}
 
-                                            <Col xs={4} md={4} xl={4}>Price tag</Col>
-                                            <Col xs={4} md={4} xl={4}>level1</Col> 
-                                    </Row>
 
                                 </Row>
 
