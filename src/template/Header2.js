@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/Header.css';
 import '../css/Sidebar.css';
 import { Row, Col, Menu, Empty, Collapse, Avatar, Image } from 'antd';
-import { MenuOutlined, UserOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { MenuOutlined, UserOutlined, CaretRightOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
@@ -116,12 +116,12 @@ export default class Header2 extends Component {
                             <Col xs={6} xl={6} id="col-Headder-center2">
                                 <Menu
                                     // onClick={this.handleClick}
-                                    style={{ width: 360, borderRight: "2px solid rgba(110, 109, 109, 0.30)", lineHeight: "inherit" }}
+                                    style={{ width: 360, lineHeight: "inherit", fontSize: "medium", color: "#000000" }}
                                     // defaultSelectedKeys={['1']}
                                     // defaultOpenKeys={['sub1']}
                                     mode="horizontal"
                                 >
-                                    <SubMenu key="sub1" icon={<MenuOutlined />} title="ประเภทสินค้าทั้งหมด">
+                                    <SubMenu key="sub1" icon={<MenuOutlined style={{display: "inline-flex"}}/>} title="ประเภทสินค้าทั้งหมด">
                                         {this.state.catalog.length > 0 ?
                                             this.tab_product()
                                             :
@@ -130,14 +130,14 @@ export default class Header2 extends Component {
                                     </SubMenu>
                                 </Menu>
                             </Col>
-                            <Col xs={12} xl={12} id="col-Headder-center4">
-                                <NavLink to="/Home" id="nav-Header" activeStyle={active}>หน้าแรก</NavLink >
-                                <NavLink to="/Abount" id="nav-Header" activeStyle={active}>เกี่ยวกับ</NavLink>
-                                <NavLink to="/Product" id="nav-Header" activeStyle={active}>สินค้า</NavLink>
-                                <NavLink to="/Contact" id="nav-Header" activeStyle={active}>ติดต่อเรา</NavLink>
+                            <Col xs={12} xl={12} id="col-Headder-center4" >
+                                <NavLink to="/Home" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>หน้าแรก</NavLink >
+                                <NavLink to="/Abount" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>เกี่ยวกับ</NavLink>
+                                <NavLink to="/Product" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>สินค้า</NavLink>
+                                <NavLink to="/Contact" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>ติดต่อเรา</NavLink>
                             </Col>
                             <Col xs={6} xl={6} id="col-Headder-center3">
-                                <div>Call us : 090-543-6000</div>
+                                <div style={{fontSize: "medium", color: "#000000", paddingTop:"1%"}}><PhoneOutlined rotate={90} style={{display:"inline-flex", color: "#000000", marginRight:"2%", paddingTop:"0%"}}/>Call us : 090-543-6000</div>
                             </Col>
                         </Row>
                         :
@@ -162,7 +162,7 @@ export default class Header2 extends Component {
                                             <>
                                                 <Row id="div-sidebar2">
                                                     <Col xs={4}><Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" /></Col>
-                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>สวัสดี</Col>
+                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontSize:"Medium", marginTop:"1.5%" }}>สวัสดี</Col>
                                                 </Row>
                                                 <Row id="div-sidebar3">
                                                     <NavLink to="/Login" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >เข้าสู่ระบบ</NavLink >
