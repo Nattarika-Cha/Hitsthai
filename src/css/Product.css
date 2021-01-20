@@ -63,6 +63,7 @@
 #Row-Product{
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 2%;
 }
 
 #Row-Product-img{
@@ -71,9 +72,9 @@
 }
 
 #Row-Product-Search{
-    font-size: 150%;
+    font-size: 'fit-content';
     margin-top: 1%;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -324,8 +325,10 @@ a {
     display: flex;
     justify-content: center;
     margin-top: 10%;
-    margin-bottom: 10%;
+    margin-bottom: 3%;
 }
+
+
 
 #row-spin {
     margin-top: 10%;

@@ -44,8 +44,8 @@ export default withRouter(class Sidebar extends Component {
                     <Col xs={7} id="col-sidbar3"><NavLink to="/Logout" id="div-sidebar3" >ออกจากระบบ</NavLink ></Col>
                 </Row>
                 <hr width="90%" size="3" />
-                <Row id="div-sidebar4">
-                    <Collapse expandIcon={() => <UserOutlined />} >
+                <Row id="div-sidebar5">
+                    <Collapse id="div-sidebar5" expandIcon={() => <UserOutlined />} >
                         <Panel showArrow={false} header="ประเภทสินค้า" key="1">
                             <div>testttttttttttttt</div>
                         </Panel>

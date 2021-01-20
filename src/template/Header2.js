@@ -150,7 +150,7 @@ export default class Header2 extends Component {
                                     <Row id="div-sidebar1">
                                         <img
                                             src={logo}
-                                            width="25%"
+                                            width="19%"
                                             height="auto"
                                             className="d-inline-block align-top"
                                             alt="React Bootstrap logo"
@@ -162,7 +162,7 @@ export default class Header2 extends Component {
                                             <>
                                                 <Row id="div-sidebar2">
                                                     <Col xs={4}><Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" /></Col>
-                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontSize:"Medium", marginTop:"1.5%" }}>สวัสดี</Col>
+                                                    <Col xs={20} style={{ paddingLeft: "5%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", fontSize:"Medium", marginTop:"5%" }}>สวัสดี</Col>
                                                 </Row>
                                                 <Row id="div-sidebar3">
                                                     <NavLink to="/Login" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >เข้าสู่ระบบ</NavLink >
@@ -172,7 +172,7 @@ export default class Header2 extends Component {
                                             <>
                                                 <Row id="div-sidebar2">
                                                     <Col xs={4}><Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" style={{ borderRadius: "50%" }} fluid responsive /></Col>
-                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>{this.state.user?.name}</Col>
+                                                    <Col xs={20} style={{ paddingLeft: "2%", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", marginTop: "1.5%" }}>{this.state.user?.name}</Col>
                                                 </Row>
                                                 <Row id="div-sidebar3">
                                                     {/* <Col xs={11} id="col-sidbar3"><NavLink to="/MemberPoint" id="div-sidebar3" onClick={() => this.onSetSidebarOpen(false)} >Point</NavLink ></Col>
@@ -185,10 +185,10 @@ export default class Header2 extends Component {
                                                 </Row>
                                             </>
                                     }
-                                    <hr width="90%" size="3" />
+                                    <hr width="90%" size="2" />
                                     <Row id="div-sidebar4">
                                         <Collapse expandIcon={() => <UserOutlined />} >
-                                            <Panel showArrow={false} header="ประเภทสินค้า" key="1">
+                                            <Panel showArrow={false} header="ประเภทสินค้า" key="1" style={{fontSize:"Medium", backgroundColor: "#ffffff"}}>
                                                 {this.state.catalog.length > 0 ?
                                                     this.tab_product_mobile()
                                                     :
@@ -209,7 +209,7 @@ export default class Header2 extends Component {
                                             <>
                                                 <Row id="div-sidebar7">
                                                     <Collapse expandIcon={() => <UserOutlined />} >
-                                                        <Panel showArrow={false} header="ตั้งค่า" key="1">
+                                                        <Panel showArrow={false} header="ตั้งค่า" key="1" style={{fontSize:"Medium", backgroundColor: "#ffffff"}}>
                                                             <div id="cat-content"><NavLink to="/MemberPoint" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> Point</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Profile" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> แก้ไขโปรไฟล์</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Changepass" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> เปลี่ยนรหัสผ่าน</NavLink></div>
@@ -236,7 +236,7 @@ export default class Header2 extends Component {
                                 transitions={true}
                                 styles={{ sidebar: { background: "white", width: widthSideber, height: heightSideber, zIndex: "10", position: "inherit" } }}
                             >
-                                <FiAlignJustify style={{ fontSize: 40, color: "aliceblue" }} onClick={() => this.onSetSidebarOpen(true)} />
+                                <FiAlignJustify style={{ fontSize: 25, color: "aliceblue", marginLeft: "2%",marginTop: "2%" }} onClick={() => this.onSetSidebarOpen(true)} />
                             </Sidebar>
                         </Container>
                     }
