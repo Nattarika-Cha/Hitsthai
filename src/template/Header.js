@@ -30,19 +30,19 @@ const menu = (
 const menuuser = (
     <Menu>
         <Menu.Item key="0">
-            <NavLink to="/MemberPoint" id="sub-icon-profile" >Point</NavLink >
+            <NavLink to="/MemberPoint" id="sub-icon-profile" style={{fontSize: "16px"}}>Point</NavLink >
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="1">
-            <NavLink to="/Profile" id="sub-icon-profile" >แก้ไขโปรไฟล์</NavLink >
+            <NavLink to="/Profile" id="sub-icon-profile" style={{fontSize: "16px"}}>แก้ไขโปรไฟล์</NavLink >
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="2">
-            <NavLink to="/Changepass" id="sub-icon-profile" >เปลี่ยนรหัสผ่าน</NavLink >
+            <NavLink to="/Changepass" id="sub-icon-profile" style={{fontSize: "16px"}}>เปลี่ยนรหัสผ่าน</NavLink >
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="3">
-            <NavLink to="/Logout" id="sub-icon-profile" >ออกจากระบบ</NavLink >
+            <NavLink to="/Logout" id="sub-icon-profile" style={{fontSize: "16px"}}>ออกจากระบบ</NavLink >
         </Menu.Item>
     </Menu>
 );

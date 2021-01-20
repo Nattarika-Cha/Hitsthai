@@ -220,7 +220,7 @@ export default class ProductTab extends Component {
                     <></>
                 }
                 <Row id="Row-Product-Search">
-                    ค้าหาคำว่า "{this.props.match.params.search}" จำนวน {this.state.product_count} รายการ
+                    ค้นหาคำว่า "{this.props.match.params.search}" จำนวน {this.state.product_count} รายการ
                 </Row>
                 <Row id="Row-Product">
                     <Col xs={12} md={12} lg={12}>
