@@ -195,11 +195,11 @@ export default withRouter(class Header extends Component {
                                         </Dropdown>
                                         :
                                         <Dropdown overlay={menuuser} trigger={['click']} placement="bottomRight" arrow>
-                                            {/* <> */}
-                                            {/* <Avatar size="large" icon={<UserOutlined />} /> */}
-                                            <Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" fluid responsive />
-                                            {/* </> */}
-                                            {/* <img src={ip_img_profile + this.state.user.img} /> */}
+                                            {(this.state.user.img === null) ?
+                                                <Avatar size="large" icon={<UserOutlined />} id="img-profile-avatar" />
+                                                :
+                                                <Image src={ip_img_profile + this.state.user.img} alt="imgProfile" id="img-profile" fluid responsive />
+                                            }
                                         </Dropdown>
                                 }
                             </Col>
@@ -214,7 +214,7 @@ export default withRouter(class Header extends Component {
                                 alt="React Bootstrap logo"
                                 style={{ paddingBottom: "0.9%", paddingTop: "0.9%" }}
                             />
-                            <NavLink to="/SearchProduct/grid"><SearchOutlined id="icon-search"/></NavLink>
+                            <NavLink to="/SearchProduct/grid"><SearchOutlined id="icon-search" /></NavLink>
                         </Row>
                     }
                 </div>

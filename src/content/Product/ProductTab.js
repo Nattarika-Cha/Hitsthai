@@ -3,7 +3,6 @@ import { Container, Image } from 'react-bootstrap';
 import { Row, Space, Empty, Select, Col, Pagination, Spin } from 'antd';
 import '../../css/Profile.css';
 import axios from 'axios';
-// import swal from 'sweetalert';
 import Cookies from 'universal-cookie';
 import ProductCardGrid from './ProductCardGrid';
 import ProductCardList from './ProductCardList';

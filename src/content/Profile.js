@@ -104,7 +104,6 @@ export default class Login extends Component {
     }
 
     async onEditProfile(values) {
-        console.log(values, " values");
         this.setState({
             statusSend: true
         });
@@ -217,7 +216,11 @@ export default class Login extends Component {
                                             beforeUpload={beforeUpload}
                                             onChange={this.handleChange}
                                             disabled={this.state.flagEdit}>
-                                            {imageUrl ? <div><Image src={imageUrl} alt="imgProfile" id="imgprofile" responsive /></div> : uploadButton}
+                                            {
+                                                (imageUrl && this.state.userEdit.img) ? 
+                                                    <div><Image src={imageUrl} alt="imgProfile" id="imgprofile" responsive /></div> 
+                                                    :
+                                                    uploadButton}
                                         </Upload >
                                     </Form.Item>
                                 </Row>

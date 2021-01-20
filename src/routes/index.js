@@ -7,7 +7,7 @@ import Product from "../content/Product";
 import Contact from "../content/Contact";
 
 // import Davelop from "../content/Davelop";
-import Register from "../content/Register";
+// import Register from "../content/Register";
 import Login from "../content/Login";
 import Changepass from "../content/Changepass";
 import Profile from "../content/Profile";
@@ -27,7 +27,7 @@ export default class Index extends Component {
                 <Route exact path="/Product" component={Product} />
                 <Route exact path="/Contact" component={Contact} />
                 <Route exact path="/Login" component={Login} />
-                <Route exact path="/Register" component={Register} />
+                {/* <Route exact path="/Register" component={Register} /> */}
                 <Route exact path="/Changepass" component={Changepass} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/Logout" component={Logout} />
@@ -40,7 +40,7 @@ export default class Index extends Component {
                 <Route exact path="/SearchProduct/:mode/:search" component={SearchProduct} />
                 <Route exact path="/SearchProduct/:mode" component={SearchProduct} />
                 <Route exact path="/MemberPoint" component={MemberPoint} />
-                <Route exact path="/FormRegister" component={FormRegister} />
+                <Route exact path="/FormRegister/:key" component={FormRegister} />
             </Switch>
         );
     }

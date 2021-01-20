@@ -49,7 +49,6 @@ export default class Product extends Component {
                     <Carousel autoplay>
                         <Image src={P1} fluid></Image>
                         <Image src={P2} fluid></Image>
-                        <Image src={P1} fluid></Image>
                         <Image src={P3} fluid></Image>
                     </Carousel>
                 </Col>
