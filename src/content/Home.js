@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import bg from '../img/Comp1.mp4';
 // import P1 from '../img/h1.svg';
 // import P2 from '../img/h2.svg';
-import P1 from '../img/ho1.svg';
-import P2 from '../img/ho2.svg';
+// import P1 from '../img/ho1.svg';
+// import P2 from '../img/ho2.svg';
 import { Row, Col, Empty, Spin } from 'antd';
 import { Container } from 'react-bootstrap';
 import '../css/Home.css';
@@ -27,7 +27,9 @@ export default class Home extends Component {
             product_new: [],
             product_hit: [],
             statusDataNew: false,
-            statusDataHit: false
+            statusDataHit: false,
+            img_top: [], 
+            img_buttom: []
         };
     }
 
@@ -88,33 +90,18 @@ export default class Home extends Component {
         }
 
         await (await axios.put(url_statisticsuser, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
-        // const statisticsuser = await (await axios.get(url_statisticsuser, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
-        // if ((statisticsuser.statusCode === 500) || (statisticsuser.statusCode === 400)) {
-        //     swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
-        //         this.setState({
-        //             token: cookies.remove('token', { path: '/' }),
-        //             user: cookies.remove('user', { path: '/' })
-        //         });
-        //         window.location.replace('/Login', false);
-        //     });
-        // } else {
-        //     this.setState({
-        //         product_new: product_new,
-        //         statusDataNew: true
-        //     });
-        // }
 
-        // var url_product_new = ip + "/Product/find/new/";
-        // const product_new = await (await axios.get(url_product_new)).data;
-        // this.setState({
-        //     product_new: product_new
-        // });
+        var url_img_top = ip + "/ImgSetting/find/home/top";
+        const img_top = await (await axios.get(url_img_top)).data;
+        this.setState({
+            img_top: img_top[0]
+        });
 
-        // var url_product_hit = ip + "/Product/find/hit/";
-        // const product_hit = await (await axios.get(url_product_hit)).data;
-        // this.setState({
-        //     product_hit: product_hit
-        // });
+        var url_img_buttom = ip + "/ImgSetting/find/home/bottom";
+        const img_buttom = await (await axios.get(url_img_buttom)).data;
+        this.setState({
+            img_buttom: img_buttom[0]
+        });
     }
 
     list_product_new() {
@@ -127,6 +114,14 @@ export default class Home extends Component {
         return this.state.product_hit.map((product) => {
             return <Col xs={12} md={8} xl={4}> <ProductHomeCard product={product} /> </Col>
         });
+    }
+
+    linkTop() {
+        this.props.history.push(this.state.img_top?.url);
+    }
+
+    linkButtom() {
+        this.props.history.push(this.state.img_buttom?.url);
     }
 
     render() {
@@ -148,10 +143,10 @@ export default class Home extends Component {
                     </Col>
                     <Col xs={24} md={24} xl={12} id="col-img-head2">
                         <Row id="row-col-img-head2">
-                            <img src={P1} alt="logo" width="100%"  fluid/>
+                            <img src={this.state.img_top?.urlimg} alt="logo" width="100%" onClick={() => this.linkTop()} style={{cursor: "pointer"}} fluid/>
                         </Row>
                         <Row id="row-col-img-head3">
-                            <img src={P2} alt="logo" width="100%"  fluid/>
+                            <img src={this.state.img_buttom?.urlimg} alt="logo" width="100%" onClick={() => this.linkButtom()} style={{cursor: "pointer"}} fluid/>
                         </Row>
                     </Col>
                 </Row>

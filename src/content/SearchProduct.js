@@ -53,68 +53,27 @@ export default class ProductTab extends Component {
             pageOld: 1,
             size: "12",
             sizeOld: "12",
-            search: this.props.match.params.search
+            search: this.props.match.url.substring(20)
         });
     }
 
     async componentDidMount() {
-
+        // var dataSearch = {};
         var url_product = "";
         if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
             this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
-            url_product = ip + "/Product/find/notauthorization/search/16/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
-        } else {
-            url_product = ip + "/Product/find/authorization/search/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
-        }
-
-        const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
-        if ((product.statusCode === 500) || (product.statusCode === 400)) {
-            swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
-                this.setState({
-                    token: cookies.remove('token', { path: '/' }),
-                    user: cookies.remove('user', { path: '/' })
-                });
-                window.location.replace('/Login', false);
-            });
-        } else {
-            this.setState({
-                product: product,
-                statusDataProduct: true
-            });
-        }
-
-        // var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + this.state.page + "/" + this.state.size;
-        // const product = await (await axios.get(url_product)).data;
-        // this.setState({
-        //     product: product
-        // });
-
-        var url_product_count = ip + "/Product/count/search/" + this.props.match.params.search;
-        const product_count = await (await axios.get(url_product_count)).data;
-        this.setState({
-            product_count: product_count[0].num
-        });
-    }
-
-    async componentDidUpdate() {
-        // if (this.props.props.match.params.size !== this.state.sizeOld) {  
-        if ((this.state.size !== this.state.sizeOld) || (this.state.page !== this.state.pageOld) || (this.state.search !== this.props.match.params.search)) {
-            var page = 1;
-            if (this.state.size <= this.state.product_count) {
-                page = parseInt(this.state.page);
+            // url_product = ip + "/Product/find/notauthorization/search/16/" + this.props.match.url.substring(20) + "/" + this.state.page + "/" + this.state.size;
+            url_product = ip + "/Product/find/notauthorization/search2/";
+            const dataSearch = {
+                search: this.props.match.url.substring(20),
+                page: this.state.page,
+                size: this.state.size,
+                levelId: 16
             }
 
-            var size = parseInt(this.state.size);
+            console.log(dataSearch, " dataSearch")
 
-            var url_product = "";
-            if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
-                this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
-                url_product = ip + "/Product/find/notauthorization/search/16/" + this.props.match.params.search + "/" + page + "/" + size;
-            } else {
-                url_product = ip + "/Product/find/authorization/search/" + this.props.match.params.search + "/" + page + "/" + size;
-            }
-
-            const product = await (await axios.get(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+            const product = await (await axios.post(url_product, dataSearch, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
             if ((product.statusCode === 500) || (product.statusCode === 400)) {
                 swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
                     this.setState({
@@ -126,23 +85,155 @@ export default class ProductTab extends Component {
             } else {
                 this.setState({
                     product: product,
-                    sizeOld: this.state.size,
-                    pageOld: this.state.page,
-                    search: this.props.match.params.search
+                    statusDataProduct: true
                 });
             }
 
-            // var url_product = ip + "/Product/find/search/" + this.props.match.params.search + "/" + page + "/" + size;
-            // const product = await (await axios.get(url_product)).data;
-            // this.setState({
-            //     product: product,
-            //     sizeOld: this.state.size,
-            //     pageOld: this.state.page,
-            //     search: this.props.match.params.search
-            // });
+        } else {
+            // url_product = ip + "/Product/find/authorization/search/" + this.props.match.url.substring(20) + "/" + this.state.page + "/" + this.state.size;
+            url_product = ip + "/Product/find/authorization/search/";
+            const dataSearch1 = {
+                search: this.props.match.url.substring(20),
+                page: this.state.page,
+                size: this.state.size,
+                levelId: 0
+            }
 
-            var url_product_count = ip + "/Product/count/search/" + this.props.match.params.search;
-            const product_count = await (await axios.get(url_product_count)).data;
+            const product = await (await axios.post(url_product, dataSearch1, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+            if ((product.statusCode === 500) || (product.statusCode === 400)) {
+                swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                    this.setState({
+                        token: cookies.remove('token', { path: '/' }),
+                        user: cookies.remove('user', { path: '/' })
+                    });
+                    window.location.replace('/Login', false);
+                });
+            } else {
+                this.setState({
+                    product: product,
+                    statusDataProduct: true
+                });
+            }
+        }
+
+        // const product = await (await axios.post(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username }, dataSearch })).data;
+        // if ((product.statusCode === 500) || (product.statusCode === 400)) {
+        //     swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+        //         this.setState({
+        //             token: cookies.remove('token', { path: '/' }),
+        //             user: cookies.remove('user', { path: '/' })
+        //         });
+        //         window.location.replace('/Login', false);
+        //     });
+        // } else {
+        //     this.setState({
+        //         product: product,
+        //         statusDataProduct: true
+        //     });
+        // }
+
+        const dataSearchCount = {
+            search: this.props.match.url.substring(20)
+        }
+        var url_product_count = ip + "/Product/count/search/";
+        const product_count = await (await axios.post(url_product_count, dataSearchCount)).data;
+        this.setState({
+            product_count: product_count[0].num
+        });
+    }
+
+    async componentDidUpdate() {
+        // if (this.props.props.match.params.size !== this.state.sizeOld) {  
+        if ((this.state.size !== this.state.sizeOld) || (this.state.page !== this.state.pageOld) || (this.state.search !== this.props.match.url.substring(20))) {
+            var page = 1;
+            if (this.state.size <= this.state.product_count) {
+                page = parseInt(this.state.page);
+            }
+
+            var size = parseInt(this.state.size);
+
+            var url_product = "";
+            // var dataSearch = {};
+            if (this.state.token === "" || this.state.token === null || this.state.token === undefined ||
+                this.state.user.levelId === "" || this.state.user.levelId === null || this.state.user.levelId === undefined) {
+                // url_product = ip + "/Product/find/notauthorization/search/16/" + this.props.match.url.substring(20) + "/" + page + "/" + size;
+                url_product = ip + "/Product/find/notauthorization/search2/";
+                const dataSearch2 = {
+                    search: this.props.match.url.substring(20),
+                    page: page,
+                    size: size,
+                    levelId: 16
+                }
+
+                const product = await (await axios.post(url_product, dataSearch2, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+                if ((product.statusCode === 500) || (product.statusCode === 400)) {
+                    swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                        this.setState({
+                            token: cookies.remove('token', { path: '/' }),
+                            user: cookies.remove('user', { path: '/' })
+                        });
+                        window.location.replace('/Login', false);
+                    });
+                } else {
+                    this.setState({
+                        product: product,
+                        sizeOld: this.state.size,
+                        pageOld: this.state.page,
+                        search: this.props.match.url.substring(20)
+                    });
+                }
+            } else {
+                // url_product = ip + "/Product/find/authorization/search/" + this.props.match.url.substring(20) + "/" + page + "/" + size;
+                url_product = ip + "/Product/find/authorization/search/";
+                const dataSearch3 = {
+                    search: this.props.match.url.substring(20),
+                    page: page,
+                    size: size,
+                    levelId: 0
+                }
+
+                const product = await (await axios.post(url_product, dataSearch3, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+                if ((product.statusCode === 500) || (product.statusCode === 400)) {
+                    swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+                        this.setState({
+                            token: cookies.remove('token', { path: '/' }),
+                            user: cookies.remove('user', { path: '/' })
+                        });
+                        window.location.replace('/Login', false);
+                    });
+                } else {
+                    this.setState({
+                        product: product,
+                        sizeOld: this.state.size,
+                        pageOld: this.state.page,
+                        search: this.props.match.url.substring(20)
+                    });
+                }
+            }
+
+            // const product = await (await axios.post(url_product, { headers: { "token": this.state.token, "key": this.state.user?.username } }, dataSearch)).data;
+            // if ((product.statusCode === 500) || (product.statusCode === 400)) {
+            //     swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
+            //         this.setState({
+            //             token: cookies.remove('token', { path: '/' }),
+            //             user: cookies.remove('user', { path: '/' })
+            //         });
+            //         window.location.replace('/Login', false);
+            //     });
+            // } else {
+            //     this.setState({
+            //         product: product,
+            //         sizeOld: this.state.size,
+            //         pageOld: this.state.page,
+            //         search: this.props.match.url.substring(20)
+            //     });
+            // }
+
+            const dataSearchCount = {
+                search: this.props.match.url.substring(20)
+            }
+            var url_product_count = ip + "/Product/count/search/";
+            const product_count = await (await axios.post(url_product_count, dataSearchCount)).data;
             this.setState({
                 product_count: product_count[0].num
             });
@@ -199,8 +290,7 @@ export default class ProductTab extends Component {
     }
 
     render() {
-        // console.log(this.props.catId, " this.props.catId");
-        // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
+        console.log(this.props.match.url.substring(20), " this.props");
         return (
             <Container fluid>
                 {window.innerWidth < 684 ?
@@ -220,18 +310,18 @@ export default class ProductTab extends Component {
                     <></>
                 }
                 <Row id="Row-Product-Search">
-                    ค้นหาคำว่า "{this.props.match.params.search}" จำนวน {this.state.product_count} รายการ
+                    ค้นหาคำว่า "{this.props.match.url.substring(20)}" จำนวน {this.state.product_count} รายการ
                 </Row>
                 <Row id="Row-Product">
                     <Col xs={12} md={12} lg={12}>
                         {this.props.match.params.mode === "grid" ?
                             <Space>
-                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/grid/" + this.props.match.url.substring(20)}>
                                     <div style={{ border: "10px solid #DA213D", backgroundColor: "#DA213D" }}>
                                         <Image src={grid} />
                                     </div>
                                 </NavLink >
-                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/list/" + this.props.match.url.substring(20)}>
                                     <div style={{ border: "10px solid #707070", backgroundColor: "#707070" }}>
                                         <Image src={list} />
                                     </div>
@@ -239,12 +329,12 @@ export default class ProductTab extends Component {
                             </Space>
                             :
                             <Space>
-                                <NavLink to={"/SearchProduct/grid/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/grid/" + this.props.match.url.substring(20)}>
                                     <div style={{ border: "10px solid #707070", backgroundColor: "#707070" }}>
                                         <Image src={grid} />
                                     </div>
                                 </NavLink >
-                                <NavLink to={"/SearchProduct/list/" + this.props.match.params.search}>
+                                <NavLink to={"/SearchProduct/list/" + this.props.match.url.substring(20)}>
                                     <div style={{ border: "10px solid #DA213D", backgroundColor: "#DA213D" }}>
                                         <Image src={list} />
                                     </div>
@@ -276,19 +366,19 @@ export default class ProductTab extends Component {
                 {
                     (this.state.statusDataProduct) ?
                         <>
-                <Row id="Row-Product-img">
-                    {this.state.product.length > 0 ?
-                        this.props.match.params.mode === "grid" ? this.grid_product() : this.list_product()
-                        :
-                        <Col xs={24} md={24} lg={24} id="rowempty">
-                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-                        </Col>
-                    }
-                </Row>
-                <Row id="product-footer-page-search">
-                    <Pagination size="small" current={this.state.page} pageSize={this.state.size} total={this.state.product_count} onChange={this.onChangePage} />
-                </Row>
-                </>
+                            <Row id="Row-Product-img">
+                                {this.state.product.length > 0 ?
+                                    this.props.match.params.mode === "grid" ? this.grid_product() : this.list_product()
+                                    :
+                                    <Col xs={24} md={24} lg={24} id="rowempty">
+                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                                    </Col>
+                                }
+                            </Row>
+                            <Row id="product-footer-page-search">
+                                <Pagination size="small" current={this.state.page} pageSize={this.state.size} total={this.state.product_count} onChange={this.onChangePage} />
+                            </Row>
+                        </>
                         :
                         <Row id="row-spin-slide">
                             <Spin size="large" />

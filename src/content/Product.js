@@ -6,9 +6,9 @@ import ProductSlide from "./Product/ProductSlide"
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { NavLink } from 'react-router-dom';
-import P1 from '../img/pd1.svg';
-import P2 from '../img/pd2.svg';
-import P3 from '../img/pd3.svg';
+// import P1 from '../img/pd1.svg';
+// import P2 from '../img/pd2.svg';
+// import P3 from '../img/pd3.svg';
 
 const cookies = new Cookies();
 
@@ -21,7 +21,9 @@ export default class Product extends Component {
             user: [],
             catalog: [],
             statusDataCat: false,
-            mode: ""
+            statusDataImg: false,
+            mode: "",
+            img_product: []
         };
     }
 
@@ -39,6 +41,13 @@ export default class Product extends Component {
             catalog: catalog,
             statusDataCat: true
         });
+
+        var url_img_product = ip + "/ImgSetting/find/all/product/font";
+        const img_product = await (await axios.get(url_img_product)).data;
+        this.setState({
+            img_product: img_product,
+            statusDataImg: true
+        });
     }
 
     render() {
@@ -47,9 +56,20 @@ export default class Product extends Component {
             <Container fluid id="bg">
                 <Col xs={24} md={24} xl={24} id="cover-product">
                     <Carousel autoplay>
-                        <Image src={P1} fluid></Image>
-                        <Image src={P2} fluid></Image>
-                        <Image src={P3} fluid></Image>
+                        {
+                            (this.state.statusDataImg) ?
+                                (this.state.img_product.length > 0) ?
+                                    this.state.img_product.map((img, i) => {
+                                        return <Image src={img.urlimg} onClick={() => {this.props.history.push(img.url)}} style={{ cursor: "pointer" }} fluid></Image>
+                                    })
+                                    :
+                                    <></>
+                                :
+                                <Row id="row-spin">
+                                    <Spin size="large" />
+                                </Row>
+
+                        }
                     </Carousel>
                 </Col>
                 <Row id="Product">
