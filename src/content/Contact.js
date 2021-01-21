@@ -19,7 +19,6 @@ export default class Contact extends Component {
     }
 
     async onRegister(values) {
-        console.log(values, " values");
         this.setState({
             statusSend: true
         });
@@ -48,8 +47,6 @@ export default class Contact extends Component {
         };
 
         const contact = await axios(config);
-        // const data_contact = contact.data;
-        console.log(contact, " contact");
         if (contact.status === 200) {
             swal("บันทึกข้อมูลสำเร็จ", "กรุณารอการติดต่อกลับจากเจ้าหน้าที่", "success").then((value) => {
                 window.location.replace('/Contact', false);

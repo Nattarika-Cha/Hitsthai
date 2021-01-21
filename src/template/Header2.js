@@ -91,23 +91,6 @@ export default class Header2 extends Component {
     render() {
         widthSideber = (window.innerWidth * 80 / 100) + "px";
         heightSideber = window.innerHeight + "px";
-        // window.addEventListener("click", function (e) {
-        //     if (window.location.pathname === "/Home" || window.location.pathname === "/") {
-        //         console.log("testtttt")
-        //         sty_home = { color: "rgb(255 255 255)", backgroundColor: "#DA213D", borderRadius: "10mm" };
-        //     }
-        //     else 
-        //     {
-        //         sty_home = {};
-        //     }
-        //     console.log(window.location.pathname, " window.location.pathname Head2");
-        // });
-        // console.log(window.location.pathname, " window.location.pathname Head222222");
-
-        // var sty_home;
-        // if (window.location.pathname === "/Home" || window.location.pathname === "/") {
-        //     sty_home = active;
-        // }
         return (
             <Container fluid>
                 <div id="header-frist2">

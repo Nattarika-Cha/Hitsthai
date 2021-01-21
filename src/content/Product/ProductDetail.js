@@ -85,7 +85,6 @@ export default class Abount extends Component {
 
             var url_product_img = ip + "/ProductImg/ImgProduct/all/" + this.props.match.params.productId;
             const product_img = await (await axios.get(url_product_img)).data;
-            console.log(product_img, " product_img");
             if (product_img.length > 0) {
                 this.setState({
                     images: product_img

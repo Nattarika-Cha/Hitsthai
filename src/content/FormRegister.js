@@ -22,7 +22,6 @@ export default class MemberPoint extends Component {
     async componentDidMount() {
         var url_contact = ip + "/Contact/find/keyregister/" + this.props.match.params.key;
         const contact = await (await axios.get(url_contact)).data;
-        console.log(contact);
         this.setState({
             contact: contact,
             contactStatus: true
@@ -36,7 +35,6 @@ export default class MemberPoint extends Component {
     }
 
     async onSave(value) {
-        console.log(value, " value00");
         this.setState({
             statusSend: true
         });

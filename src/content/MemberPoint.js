@@ -95,7 +95,6 @@ export default class MemberPoint extends Component {
 
     async componentDidUpdate() {
         if (this.state.page !== this.state.pageOld) {
-            console.log("testttttt");
             var page = 1;
             if (this.state.size <= this.state.point_count) {
                 page = parseInt(this.state.page);

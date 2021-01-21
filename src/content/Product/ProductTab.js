@@ -145,21 +145,15 @@ export default class ProductTab extends Component {
         this.setState({
             size: value
         });
-        // console.log(value , " value");
-        // console.log(option , " option");
     }
 
     onChangePage(page, pageSize) {
         this.setState({
             page: page
         });
-        // console.log(page, " page");
-        // console.log(pageSize, " pageSize");
     }
 
     render() {
-        // console.log(this.props.catId, " this.props.catId");
-        // console.log(this.props.props.match.params.size, "  this.props.match.params.size");
         return (
             <Container fluid>
                 <Row id="product-tab">
@@ -199,7 +193,6 @@ export default class ProductTab extends Component {
                             {this.props.mode === "grid" ?
 
                                 <Select defaultValue={this.state.size} style={{ width: 60 }} onChange={this.handleChange}>
-                                    {/* {(() => { console.log(this.state.size, " tesstttst") })()} */}
                                     <Option value="12">12</Option>
                                     <Option value="24">24</Option>
                                     <Option value="36">36</Option>

@@ -125,7 +125,6 @@ export default class Home extends Component {
     }
 
     render() {
-        console.log(this.state.statusDataNew, " statusDataNew");
         return (
             <Container fluid>
                 <Row id="home">

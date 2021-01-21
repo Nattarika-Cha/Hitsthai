@@ -45,7 +45,6 @@ export default class Changepass extends Component {
     }
 
     async onChangepass(values) {
-        console.log(this.state.user.username, " dsds")
         this.setState({
             statusSend: true
         });
@@ -85,7 +84,6 @@ export default class Changepass extends Component {
                 });
 
             }
-            console.log(data_changPasseord, " data");
         }
         else {
             swal("Warning!", "Password ใหม่ไม่ตรงกัน", "warning").then((value) => {

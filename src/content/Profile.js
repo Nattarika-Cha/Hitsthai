@@ -14,7 +14,6 @@ var ip = "http://localhost:5000";
 var ip_img_profile = "http://128.199.198.10/API/profile/";
 
 const normFile = e => {
-    console.log('Upload event:', e);
     if (Array.isArray(e)) {
         return e;
     }
@@ -107,7 +106,6 @@ export default class Login extends Component {
         this.setState({
             statusSend: true
         });
-        // console.log(this.state.imageUrl, " jdkjasdasd");
         var img = "";
         if (this.state.imageUrl !== (ip_img_profile + this.state.userEdit.img)) {
             var length = values.upload.length - 1;
@@ -152,20 +150,6 @@ export default class Login extends Component {
         }
 
     }
-
-    // onChange(e) {
-    //     console.log(e.target.value, " eeee");
-
-    // }
-
-    // onFieldsChange(e) {
-    //     console.log(e, " wwwwwwww");
-    // }
-
-    // setFieldsValue(e) {
-    //     console.log(e, " sssss");
-    // }
-
     render() {
         const { loading, imageUrl } = this.state;
         const uploadButton = (

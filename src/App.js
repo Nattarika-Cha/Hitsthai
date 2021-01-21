@@ -23,7 +23,6 @@ var heightContent = "";
 export default class App extends Component {
   render() {
     heightContent = (window.innerHeight - 210 - 55 - 33) + "px";
-    // console.log(window.innerHeight, " window");
     return (
 
       // <div className="App">
