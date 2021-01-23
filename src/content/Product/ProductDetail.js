@@ -8,6 +8,7 @@ import { CheckCircleTwoTone, CloseCircleTwoTone, ShoppingTwoTone } from '@ant-de
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import swal from 'sweetalert';
+import ShowMore from 'react-show-more';
 
 const cookies = new Cookies();
 var ip = "http://localhost:5000";
@@ -471,17 +472,35 @@ export default class Abount extends Component {
                                             <Col xs={24} md={24} xl={24} id="descript-Header">วิธีการใช้งาน</Col>
                                             <Col xs={24} md={24} xl={24}>
                                                 <Col id="descrip-detail">
-                                                    <div>
+                                                <ShowMore 
+                                                    id="read"
+                                                    lines={5}
+                                                    more='Show more'
+                                                    less='Show less'
+                                                    anchorClass=''
+                                                >
+                                                    {this.state.product[0]?.direction}
+                                                </ShowMore>
+                                                    {/* <div>
                                                         {this.state.product[0]?.direction}
-                                                    </div>
+                                                    </div> */}
                                                 </Col>
                                             </Col>
                                             <Col xs={24} md={24} xl={24} id="descript-Header1">รายละเอียดสินค้า</Col>
                                             <Col xs={24} md={24} xl={24}>
                                                 <Col id="descrip-detail">
-                                                    <div>
+                                                <ShowMore 
+                                                    id="read"
+                                                    lines={5}
+                                                    more='Show more'
+                                                    less='Show less'
+                                                    anchorClass=''
+                                                >
+                                                    {this.state.product[0]?.detail}
+                                                </ShowMore>
+                                                    {/* <div>
                                                         {this.state.product[0]?.detail}
-                                                    </div>
+                                                    </div> */}
                                                 </Col>
                                             </Col>
                                         </Row>
