@@ -75,7 +75,6 @@ export default class ProductList extends Component {
     }
 
     callback(key) {
-        console.log(key, " key");
         page = 1;
         this.setState({
             tab: key
@@ -83,7 +82,6 @@ export default class ProductList extends Component {
     }
 
     render() {
-        console.log(this.state.tab.toString(), " this.state.tab");
         mode = this.props.match.params.mode;
         // page = this.props.match.params.page;
         // size = this.props.match.params.size;

@@ -8,7 +8,6 @@ import swal from 'sweetalert';
 var ip = "http://localhost:5000";
 
 const normFile = e => {
-    // console.log('Upload event:', e);
     if (Array.isArray(e)) {
         return e;
     }
@@ -16,7 +15,6 @@ const normFile = e => {
 };
 
 const onFinishFailed = errorInfo => {
-    // console.log('Failed:', errorInfo);
 };
 
 function beforeUpload(file) {
@@ -45,7 +43,6 @@ export default class Register extends Component {
     }
 
     onPreview(info) {
-        console.log(info, " info info info ");
         this.setState({ flagUplode: false });
         return;
     }
@@ -61,7 +58,6 @@ export default class Register extends Component {
     }
 
     async onRegister(values) {
-        // console.log('Success:', values);
 
         const isJpgOrPng = values.upload[0].type === 'image/jpeg' || values.upload[0].type === 'image/png';
         if (!isJpgOrPng) {

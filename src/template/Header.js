@@ -98,20 +98,10 @@ export default withRouter(class Header extends Component {
     // }
 
     onSearch(value) {
-        console.log(value, " value")
         if (value !== "") {
             this.props.history.push("/SearchProduct/grid/" + value);
         }
     }
-
-    // onChange(value) {
-    //     console.log(value.target.value, " value");
-    //     options = [
-    //         { value: 'Burns Bay Road' },
-    //         { value: 'Downing Street' },
-    //         { value: 'Wall Street' },
-    //     ];
-    // }
 
     async onSearchFild(value) {
         if (value !== "") {
@@ -131,10 +121,6 @@ export default withRouter(class Header extends Component {
     }
 
     render() {
-        console.log(this.state.user, " userrrr");
-        // img_profile = ip_img_profile + this.state.user.img;
-        // console.log(this.state.user, " this.state.user")
-        // console.log(img_profile, " img_profile")
         return (
             // <div>
             <Container fluid>

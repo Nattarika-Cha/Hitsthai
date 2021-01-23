@@ -71,8 +71,6 @@ export default class ProductTab extends Component {
                 levelId: 16
             }
 
-            console.log(dataSearch, " dataSearch")
-
             const product = await (await axios.post(url_product, dataSearch, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
             if ((product.statusCode === 500) || (product.statusCode === 400)) {
                 swal("Error!", "เกิดข้อผิดพลาดในการเข้าสู่ระบบ \n กรุณาเข้าสู่ระบบใหม่", "error").then((value) => {
@@ -256,20 +254,15 @@ export default class ProductTab extends Component {
         this.setState({
             size: value
         });
-        // console.log(value , " value");
-        // console.log(option , " option");
     }
 
     onChangePage(page, pageSize) {
         this.setState({
             page: page
         });
-        // console.log(page, " page");
-        // console.log(pageSize, " pageSize");
     }
 
     onSearch(value) {
-        console.log(value, " value3333");
         if (value !== "") {
             this.props.history.push("/SearchProduct/grid/" + value);
         }
@@ -290,7 +283,6 @@ export default class ProductTab extends Component {
     }
 
     render() {
-        console.log(this.props.match.url.substring(20), " this.props");
         return (
             <Container fluid>
                 {window.innerWidth < 684 ?

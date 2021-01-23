@@ -67,20 +67,17 @@ export default class ProductSlide extends Component {
     }
 
     list_productcade() {
-        //console.log(this.state.product, " product");
         return this.state.product.map((product) => {
             return <ProductCart product={product} />
         });
     }
 
     onSlideChange(e) {
-        console.log('Item`s position during a change: ', e.item);
-        console.log('Slide`s position during a change: ', e.slide);
+
     }
 
     onSlideChanged(e) {
-        console.log('Item`s position after changes: ', e.item);
-        console.log('Slide`s position after changes: ', e.slide);
+
     }
 
     render() {
@@ -107,8 +104,6 @@ export default class ProductSlide extends Component {
                 items: 7
             }
         };
-
-        //console.log(this.props.catId, " this.props.catId");
 
         return (
             <>

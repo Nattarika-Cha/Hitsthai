@@ -73,7 +73,6 @@ export default class Login extends Component {
                 img: data_login.img,
                 levelId: data_login.levelId
             }
-            // console.log(data_login, " user_data");
             cookies.set('user', JSON.stringify(user_data), { path: '/' });
             cookies.set('token', data_login.token, { path: '/' });
             this.setState({
