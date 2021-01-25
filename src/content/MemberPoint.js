@@ -131,7 +131,7 @@ export default class MemberPoint extends Component {
     render() {
         return (
             <Container>
-                <Row id="Header-Point">Hits Points</Row>
+                <Row id="Header-Point">ยอดขายสะสม</Row>
                 <Form>
                     <Row id="MemberPointCss">
                         <Col xs={2} md={4} xl={2}></Col>
@@ -139,7 +139,7 @@ export default class MemberPoint extends Component {
                             (this.state.statusDataPoint) ?
                                 <>
                                     <Col xs={20} md={16} xl={20}>
-                                        <Col xs={24} md={24} xl={24} id="Point-Header">คะแนนทั้งหมด</Col>
+                                        <Col xs={24} md={24} xl={24} id="Point-Header">ยอดขายทั้งหมด</Col>
                                         <Col xs={24} md={24} xl={24} id="Point">{this.state.point_sum}</Col>
                                         <Col xs={24} md={24} xl={24} id="Point-History">ประวัติ</Col>
                                         <Col xs={24} md={24} xl={24}>
@@ -147,8 +147,8 @@ export default class MemberPoint extends Component {
                                                 this.state.point.map((point) => {
                                                     return <Row id="row-point">
                                                         <Col xs={24} md={24} xl={24} id="col-order">{point.orderCode}</Col>
-                                                        <Col xs={16} md={16} xl={16} id="col-datepoint">12-12-4444</Col>
-                                                        <Col xs={8} md={8} xl={8} id="col-point">{point.point}</Col>
+                                                        <Col xs={16} md={16} xl={16} id="col-datepoint">{point.pointDate}</Col>
+                                                        <Col xs={8} md={8} xl={8} id="col-point">{point.point}  บาท</Col>
                                                     </Row>
                                                 })
                                             }
