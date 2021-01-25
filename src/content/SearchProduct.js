@@ -270,8 +270,11 @@ export default class ProductTab extends Component {
 
     async onSearchFild(value) {
         if (value !== "") {
-            var url_wordsearch = ip + "/Product/find/wordsearch/" + value;
-            const wordsearch = await (await axios.get(url_wordsearch)).data;
+            const dataSearch = {
+                search : value
+            }
+            var url_wordsearch = ip + "/Product/find/wordsearch/";
+            const wordsearch = await (await axios.post(url_wordsearch, dataSearch)).data;
             this.setState({
                 options: wordsearch
             });
