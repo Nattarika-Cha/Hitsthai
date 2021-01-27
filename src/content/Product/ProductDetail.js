@@ -168,8 +168,21 @@ export default class Abount extends Component {
             var url_product_img = ip + "/ProductImg/ImgProduct/all/" + this.props.match.params.productId;
             const product_img = await (await axios.get(url_product_img)).data;
             if (product_img.length > 0) {
+                var proimgshow = [];
+                const productImgMain = await product_img.filter((item) => item.seq === "1");
+                if(productImgMain.length > 1) {
+                    proimgshow.push(productImgMain[0]);
+                } else {
+                    proimgshow.push(...productImgMain);
+                }
+
+                const productImgDetail = await product_img.filter((item) => item.seq !== "1");
+                if(productImgDetail.length > 1) {
+                    proimgshow.push(...productImgDetail);
+                }
+                
                 this.setState({
-                    images: product_img
+                    images: proimgshow
                 });
             } else {
                 this.setState({
