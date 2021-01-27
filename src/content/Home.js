@@ -29,7 +29,9 @@ export default class Home extends Component {
             statusDataNew: false,
             statusDataHit: false,
             img_top: [], 
-            img_buttom: []
+            img_buttom: [],
+            newP: [],
+            hit: [],
         };
     }
 
@@ -102,6 +104,18 @@ export default class Home extends Component {
         this.setState({
             img_buttom: img_buttom[0]
         });
+
+        var url_new = ip + "/WordShow/find/New";
+        const newP = await (await axios.get(url_new)).data;
+        this.setState({
+        newP: newP,
+        });
+
+        var url_hit = ip + "/WordShow/find/Hit";
+        const hit = await (await axios.get(url_hit)).data;
+        this.setState({
+        hit: hit,
+        });
     }
 
     list_product_new() {
@@ -150,7 +164,7 @@ export default class Home extends Component {
                     </Col>
                 </Row>
                 <Row id="hade-standate">
-                    <div id="standate">สินค้าใหม่</div>
+                    <div id="standate">{this.state.newP[0]?.wordShow}</div>
                 </Row>
 
                 {
@@ -168,7 +182,7 @@ export default class Home extends Component {
                 }
 
                 <Row id="hade-standate">
-                    <div id="standate">สินค้ายอดนิยม</div>
+                    <div id="standate">{this.state.hit[0]?.wordShow}</div>
                 </Row>
 
                 {
