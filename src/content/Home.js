@@ -15,7 +15,8 @@ import swal from 'sweetalert';
 
 const cookies = new Cookies();
 
-var ip = "http://128.199.198.10/API";
+// var ip = "http://128.199.198.10/API";
+var ip = "http://localhost:5000";
 // var ip_img_profile = "http://128.199.198.10/API/profile/";
 
 export default class Home extends Component {

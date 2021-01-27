@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, } from 'react-bootstrap';
-import { Row, Col, Descriptions, PageHeader, Spin } from 'antd';
+import { Row, Col, Descriptions, PageHeader, Spin, Select } from 'antd';
 import '../../css/ProductDetail.css';
 import imgm from '../../img/photocomingsoon.svg';
 import ImageGallery from 'react-image-gallery';
@@ -10,6 +10,7 @@ import Cookies from 'universal-cookie';
 import swal from 'sweetalert';
 import ShowMore from 'react-show-more';
 
+const { Option } = Select;
 const cookies = new Cookies();
 var ip = "http://localhost:5000";
 // var ip_img_profile = "http://128.199.198.10/API/profile/";
@@ -38,6 +39,7 @@ export default class Abount extends Component {
             token: "",
             user: [],
             product: [],
+            productTemp: [],
             productId: "",
             caution: [],
             member: [],
@@ -47,8 +49,45 @@ export default class Abount extends Component {
             member2: [],
             member3: [],
             enduser: [],
-            images: []
+            images: [],
+            size: '',
+            min: ''
         };
+
+        this.handleChangeSize = this.handleChangeSize.bind(this);
+        this.handleChangeMM = this.handleChangeMM.bind(this);
+    }
+
+    handleChangeSize(value) {
+        this.setState({
+            size: value.value
+        });
+
+        if (this.state.min !== "") {
+            const product = [...this.state.productTemp];
+            this.setState({
+                product: product.filter((item) => item.size === (value.value + " x " + this.state.min))
+            });
+        }
+
+    }
+
+    handleChangeMM(value) {
+        this.setState({
+            min: value.value
+        });
+
+        if (this.state.size !== "") {
+            const product = [...this.state.productTemp];
+            // console.log(product, " product")
+            // console.log(this.state.size + " x " + value.value);
+            // console.log(product.filter((item) => item.size === (this.state.size + " x " + value.value)), " product222")
+            this.setState({
+                product: product.filter((item) => item.size === (this.state.size + " x " + value.value))
+            });
+        }
+
+        console.log(this.state.product, " product333")
     }
 
     componentWillMount() {
@@ -80,9 +119,51 @@ export default class Abount extends Component {
                 window.location.replace('/Login', false);
             });
         } else {
-            this.setState({
-                product: product
-            });
+            console.log(product, " product22222");
+            if (product.length > 1) {
+                const productendmin = Math.min.apply(Math, product.map(function (o) { return o.priceend; }));
+                const productendmax = Math.max.apply(Math, product.map(function (o) { return o.priceend; }));
+                const productmin = Math.min.apply(Math, product.map(function (o) { return o.price; }));
+                const productmax = Math.max.apply(Math, product.map(function (o) { return o.price; }));
+                const peuductfrist = [{
+                    barCode: product[0]?.barCode,
+                    brand: product[0]?.brand,
+                    catCode: product[0]?.catCode,
+                    catId: product[0]?.catId,
+                    catName: product[0]?.catName,
+                    catStatus: product[0]?.catStatus,
+                    caution: product[0]?.caution,
+                    codeId: product[0]?.codeId,
+                    color: product[0]?.color,
+                    createDate: product[0]?.createDate,
+                    direction: product[0]?.direction,
+                    firstaidprocedure: product[0]?.firstaidprocedure,
+                    // flagProduct: product[0]?.flagProduct,
+                    keepespreserve: product[0]?.keepespreserve,
+                    memberCode: product[0]?.memberCode,
+                    memberName: product[0]?.memberName,
+                    name: product[0]?.name,
+                    price: productmin + " - " + productmax,
+                    priceend: productendmin + " - " + productendmax,
+                    productCode: product[0]?.productCode,
+                    productId: product[0]?.productId,
+                    productStatus: product[0]?.productStatus,
+                    // size: product[0]?.size,
+                    unit: product[0]?.unit,
+                    updateDate: product[0]?.updateDate,
+                    view: product[0]?.view,
+                }]
+                // console.log(productmin, " productmin");
+                this.setState({
+                    productTemp: product,
+                    product: peuductfrist
+                });
+            } else {
+                this.setState({
+                    product: product
+                });
+            }
+
 
             var url_product_img = ip + "/ProductImg/ImgProduct/all/" + this.props.match.params.productId;
             const product_img = await (await axios.get(url_product_img)).data;
@@ -270,24 +351,25 @@ export default class Abount extends Component {
         }
         else if (this.state.product[0]?.memberCode === "member2") {
             return <>
-                <div id="price-list-product" > {"฿ " + (((this.state.product[0]?.priceend === null) || (this.state.product[0]?.priceend === "")) ? "-" : this.state.product[0]?.priceend) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div>
-                {
-                    (this.state.product[0]?.price !== null) ?
-                        <div id="price-list-product4" > {"Commission " + (((this.state.product[0]?.price === null) || (this.state.product[0]?.price === "")) ? "-" : this.state.product[0]?.price) + " /" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div>
-                        :
-                        <div id="price-list-product3">0</div>
-                }
-            </>
+            {
+                (this.state.product[0]?.priceend !== null) ?
+                    <div id="price-list-product2" > {"฿ " + (((this.state.product[0]?.priceend === null) || (this.state.product[0]?.priceend === "")) ? "-" : this.state.product[0]?.priceend) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div>
+                    :
+                    <div id="price-list-product3">0</div>
+            }
+
+            <div id="price-list-product" > {"฿ " + (((this.state.product[0]?.price === null) || (this.state.product[0]?.price === "")) ? "-" : this.state.product[0]?.price) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div>
+        </>
         }
         else if (this.state.product[0]?.memberCode === "member3") {
             return <>
                 <div id="price-list-product" > {"฿ " + (((this.state.product[0]?.priceend === null) || (this.state.product[0]?.priceend === "")) ? "-" : this.state.product[0]?.priceend) + "/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div>
-                {
+                {/* {
                     (this.state.product[0]?.price !== null) ?
                         <div id="price-list-product5" > {(((this.state.product[0]?.price === null) || (this.state.product[0]?.price === "")) ? "-" : this.state.product[0]?.price) + " Point/" + (((this.state.product[0]?.unit === null) || (this.state.product[0]?.unit === "")) ? "-" : this.state.product[0]?.unit)} </div>
                         :
                         <div id="price-list-product3">0</div>
-                }
+                } */}
             </>
         }
     }
@@ -409,12 +491,43 @@ export default class Abount extends Component {
                                             </Col>
                                         </Row>
                                         <Row id="Row-List">
-                                            <Col xs={10} md={5} xl={5}>
-                                                <div>ขนาด   :</div>
-                                            </Col>
-                                            <Col xs={12} md={12} xl={12} id="detail-size">
-                                                <div>{this.state.product[0]?.size}</div>
-                                            </Col>
+                                            {
+                                                (this.state.productTemp.length > 1) ?
+                                                    <>
+                                                        <Col xs={10} md={5} xl={5}>
+                                                            <div>ขนาด กว้าง x ยาว:</div>
+                                                        </Col>
+                                                        <Col xs={12} md={12} xl={12} id="detail-size">
+                                                            <Select labelInValue onChange={this.handleChangeSize} id="input" style={{ width: "60%" }} placeholder="เลือกความกว้าง x ยาว">
+                                                                <Option value="1220 x 2440">1220 x 2440</Option>
+                                                                <Option value="1220 x 3050">1220 x 3050</Option>
+                                                            </Select>
+                                                        </Col>
+                                                        <Col xs={2} md={7} xl={7} id="detail-size">
+                                                        </Col>
+
+                                                        <Col xs={10} md={5} xl={5}>
+                                                            <div>ขนาด ความหนา:</div>
+                                                        </Col>
+                                                        <Col xs={12} md={12} xl={12} id="detail-size">
+                                                            <Select labelInValue onChange={this.handleChangeMM} id="input" style={{ width: "60%" }} placeholder="เลือกความหนา">
+                                                                <Option value="0.8 มม.">0.8 มม.</Option>
+                                                                <Option value="1.0 มม.">1.0 มม.</Option>
+                                                                <Option value="1.2 มม.">1.2 มม.</Option>
+                                                                <Option value="1.5 มม.">1.5 มม.</Option>
+                                                            </Select>
+                                                        </Col>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <Col xs={10} md={5} xl={5}>
+                                                            <div>ขนาด   :</div>
+                                                        </Col>
+                                                        <Col xs={12} md={12} xl={12} id="detail-size">
+                                                            <div>{this.state.product[0]?.size}</div>
+                                                        </Col>
+                                                    </>
+                                            }
                                         </Row>
                                         <Row id="Row-List">
                                             <Col xs={10} md={5} xl={5}>
@@ -472,15 +585,15 @@ export default class Abount extends Component {
                                             <Col xs={24} md={24} xl={24} id="descript-Header">วิธีการใช้งาน</Col>
                                             <Col xs={24} md={24} xl={24}>
                                                 <Col id="descrip-detail">
-                                                <ShowMore 
-                                                    id="read"
-                                                    lines={5}
-                                                    more='Show more'
-                                                    less='Show less'
-                                                    anchorClass=''
-                                                >
-                                                    {this.state.product[0]?.direction}
-                                                </ShowMore>
+                                                    <ShowMore
+                                                        id="read"
+                                                        lines={5}
+                                                        more='Show more'
+                                                        less='Show less'
+                                                        anchorClass=''
+                                                    >
+                                                        {this.state.product[0]?.direction}
+                                                    </ShowMore>
                                                     {/* <div>
                                                         {this.state.product[0]?.direction}
                                                     </div> */}
@@ -489,15 +602,15 @@ export default class Abount extends Component {
                                             <Col xs={24} md={24} xl={24} id="descript-Header1">รายละเอียดสินค้า</Col>
                                             <Col xs={24} md={24} xl={24}>
                                                 <Col id="descrip-detail">
-                                                <ShowMore 
-                                                    id="read"
-                                                    lines={5}
-                                                    more='Show more'
-                                                    less='Show less'
-                                                    anchorClass=''
-                                                >
-                                                    {this.state.product[0]?.detail}
-                                                </ShowMore>
+                                                    <ShowMore
+                                                        id="read"
+                                                        lines={5}
+                                                        more='Show more'
+                                                        less='Show less'
+                                                        anchorClass=''
+                                                    >
+                                                        {this.state.product[0]?.detail}
+                                                    </ShowMore>
                                                     {/* <div>
                                                         {this.state.product[0]?.detail}
                                                     </div> */}

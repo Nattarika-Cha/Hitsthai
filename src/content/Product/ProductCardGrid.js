@@ -18,40 +18,68 @@ export default class ProductCardTab extends Component {
             return <div id="price-card-product" >ดูข้อมูลราคา</div>
         }
         else if (this.props.product.memberCode === "EndUser") {
-            return <div id="price-card-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+            return <>
+                {
+                    (this.props.product.priceendmin === this.props.product.priceendmax) ?
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                        :
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + " - " + (((this.props.product.priceendmax === null) || (this.props.product.priceendmax === "")) ? "-" : this.props.product.priceendmax) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                }
+            </>
         }
         else if (this.props.product.memberCode === "member1") {
             return <>
                 {
-                    (this.props.product.priceend !== null) ?
-                        <div id="price-card-product2" > {"฿ " + (((this.props.product.priceend === null) || (this.props.product.priceend === "")) ? "-" : this.props.product.priceend) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                    (this.props.product.priceendmin !== null) ?
+                        (this.props.product.priceendmin === this.props.product.priceendmax) ?
+                            <div id="price-card-product2" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                            :
+                            <div id="price-card-product2" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + " - " + (((this.props.product.priceendmax === null) || (this.props.product.priceendmax === "")) ? "-" : this.props.product.priceendmax) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
                         :
                         <div id="price-card-product3">0</div>
                 }
-
-                <div id="price-card-product" > {"฿ " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                {
+                    (this.props.product.pricemin === this.props.product.pricemax) ?
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.pricemin === null) || (this.props.product.pricemin === "")) ? "-" : this.props.product.pricemin) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                    :
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.pricemin === null) || (this.props.product.pricemin === "")) ? "-" : this.props.product.pricemin) + " - " + (((this.props.product.pricemax === null) || (this.props.product.pricemax === "")) ? "-" : this.props.product.pricemax) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                }
+                
             </>
         }
         else if (this.props.product.memberCode === "member2") {
             return <>
-                <div id="price-card-product" > {"฿ " + (((this.props.product.priceend === null) || (this.props.product.priceend === "")) ? "-" : this.props.product.priceend) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
                 {
-                    (this.props.product.price !== null) ?
-                        <div id="price-card-product4" > {"Commission " + (((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + " /" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                    (this.props.product.priceendmin !== null) ?
+                        (this.props.product.priceendmin === this.props.product.priceendmax) ?
+                            <div id="price-card-product2" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                            :
+                            <div id="price-card-product2" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + " - " + (((this.props.product.priceendmax === null) || (this.props.product.priceendmax === "")) ? "-" : this.props.product.priceendmax) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
                         :
                         <div id="price-card-product3">0</div>
+                }
+                {
+                    (this.props.product.pricemin === this.props.product.pricemax) ?
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.pricemin === null) || (this.props.product.pricemin === "")) ? "-" : this.props.product.pricemin) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                    :
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.pricemin === null) || (this.props.product.pricemin === "")) ? "-" : this.props.product.pricemin) + " - " + (((this.props.product.pricemax === null) || (this.props.product.pricemax === "")) ? "-" : this.props.product.pricemax) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
                 }
             </>
         }
         else if (this.props.product.memberCode === "member3") {
             return <>
-                <div id="price-card-product" > {"฿ " + (((this.props.product.priceend === null) || (this.props.product.priceend === "")) ? "-" : this.props.product.priceend) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
                 {
+                    (this.props.product.priceendmin === this.props.product.priceendmax) ?
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                        :
+                        <div id="price-card-product" > {"฿ " + (((this.props.product.priceendmin === null) || (this.props.product.priceendmin === "")) ? "-" : this.props.product.priceendmin) + " - " + (((this.props.product.priceendmax === null) || (this.props.product.priceendmax === "")) ? "-" : this.props.product.priceendmax) + "/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
+                }
+                {/* {
                     (this.props.product.price !== null) ?
                         <div id="price-card-product5" > {(((this.props.product.price === null) || (this.props.product.price === "")) ? "-" : this.props.product.price) + " Point/" + (((this.props.product.unit === null) || (this.props.product.unit === "")) ? "-" : this.props.product.unit)} </div>
                         :
                         <div id="price-card-product3">0</div>
-                }
+                } */}
             </>
         }
     }
