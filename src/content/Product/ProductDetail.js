@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, } from 'react-bootstrap';
-import { Row, Col, Descriptions, PageHeader, Spin, Select } from 'antd';
+import { Row, Col, Descriptions, Spin, Select, Breadcrumb } from 'antd'; //PageHeader
 import '../../css/ProductDetail.css';
 import imgm from '../../img/photocomingsoon.svg';
 import ImageGallery from 'react-image-gallery';
@@ -9,28 +9,14 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import swal from 'sweetalert';
 import ShowMore from 'react-show-more';
+import { NavLink } from 'react-router-dom';
 
 const { Option } = Select;
 const cookies = new Cookies();
 var ip = "http://localhost:5000";
 // var ip_img_profile = "http://128.199.198.10/API/profile/";
 
-// const images = [
-//     {
-//         original: imgm,
-//         thumbnail: imgm,
-//     },
-//     {
-//         original: 'https://picsum.photos/id/1015/1000/600/',
-//         thumbnail: 'https://picsum.photos/id/1015/250/150/',
-//     },
-//     {
-//         original: 'https://picsum.photos/id/1019/1000/600/',
-//         thumbnail: 'https://picsum.photos/id/1019/250/150/',
-//     },
-// ];
-
-var routes = [];
+// var routes = [];
 
 export default class Abount extends Component {
     constructor(props) {
@@ -134,7 +120,6 @@ export default class Abount extends Component {
                 window.location.replace('/Login', false);
             });
         } else {
-            console.log(product, " product22222");
             if (product.length > 1) {
                 const productendmin = Math.min.apply(Math, product.map(function (o) { return o.priceend; }));
                 const productendmax = Math.max.apply(Math, product.map(function (o) { return o.priceend; }));
@@ -519,17 +504,18 @@ export default class Abount extends Component {
     }
 
     render() {
-        routes = [
-            {
-                breadcrumbName: 'สินค้า',
-            },
-            {
-                breadcrumbName: this.state.product[0]?.catName,
-            },
-            {
-                breadcrumbName: this.state.product[0]?.name,
-            },
-        ];
+        // routes = [
+        //     {
+        //         path: 'Product',
+        //         breadcrumbName: 'สินค้า',
+        //     },
+        //     {
+        //         breadcrumbName: this.state.product[0]?.catName,
+        //     },
+        //     {
+        //         breadcrumbName: this.state.product[0]?.name,
+        //     },
+        // ];
         return (
             <Container fluid>
                 {
@@ -540,10 +526,15 @@ export default class Abount extends Component {
                         :
                         <>
                             <Row id="pageheader">
-                                <PageHeader
+                                {/* <PageHeader
                                     className="site-page-header"
                                     breadcrumb={{ routes }}
-                                />
+                                /> */}
+                                <Breadcrumb separator=">">
+                                    <Breadcrumb.Item><NavLink to="/Product">สินค้า</NavLink></Breadcrumb.Item>
+                                    <Breadcrumb.Item><NavLink to={"/ProductList/" + this.state.product[0]?.catId + "/grid"}>{this.state.product[0]?.catName}</NavLink></Breadcrumb.Item>
+                                    <Breadcrumb.Item>{this.state.product[0]?.name}</Breadcrumb.Item>
+                                </Breadcrumb>
                             </Row>
                             <Col id="Product-detail">
                                 <Row id="Product-name" >
