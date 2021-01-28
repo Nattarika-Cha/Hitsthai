@@ -10,11 +10,11 @@ import Cookies from 'universal-cookie';
 import swal from 'sweetalert';
 import ShowMore from 'react-show-more';
 import { NavLink } from 'react-router-dom';
+import { config } from '../../config/config';
 
 const { Option } = Select;
 const cookies = new Cookies();
-var ip = "http://localhost:5000";
-// var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
 
 // var routes = [];
 

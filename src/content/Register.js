@@ -5,7 +5,9 @@ import { Container } from 'react-bootstrap';
 import '../css/Register.css';
 import axios from 'axios';
 import swal from 'sweetalert';
-var ip = "http://localhost:5000";
+import { config } from '../config/config';
+
+var ip = config.ipServer;
 
 const normFile = e => {
     if (Array.isArray(e)) {

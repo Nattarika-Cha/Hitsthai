@@ -4,8 +4,9 @@ import { Row, Col, Form, Input, Button, Spin } from 'antd';
 import '../css/FormRegister.css';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { config } from '../config/config';
 
-var ip = "http://localhost:5000";
+var ip = config.ipServer;
 
 export default class MemberPoint extends Component {
     constructor(props) {

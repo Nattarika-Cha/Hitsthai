@@ -9,9 +9,10 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 // import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import { config } from '../config/config';
 
-var ip = "http://localhost:5000";
-var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
+var ip_img_profile = config.ipImgProfile;
 // var img_profile = "";
 const cookies = new Cookies();
 

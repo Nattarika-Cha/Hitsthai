@@ -5,10 +5,11 @@ import '../css/Changepass.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import Cookies from 'universal-cookie';
+import { config } from '../config/config';
 
 const cookies = new Cookies();
 
-var ip = "http://localhost:5000";
+var ip = config.ipServer;
 
 axios.interceptors.request.use(
     config => {
