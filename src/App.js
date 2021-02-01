@@ -22,7 +22,7 @@ const { Header, Content, Footer } = Layout;
 var heightContent = "";
 export default class App extends Component {
   render() {
-    heightContent = (window.innerHeight - 210 - 55 - 33) + "px";
+    heightContent = (window.innerHeight - 130 - 50 - 31) + "px";
     return (
 
       // <div className="App">

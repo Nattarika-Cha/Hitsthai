@@ -113,13 +113,13 @@ export default class Header2 extends Component {
                                     </SubMenu>
                                 </Menu>
                             </Col>
-                            <Col xs={12} xl={12} id="col-Headder-center4" >
+                            <Col xs={11} xl={11} id="col-Headder-center4" >
                                 <NavLink to="/Home" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>หน้าแรก</NavLink >
                                 <NavLink to="/Abount" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>เกี่ยวกับ</NavLink>
                                 <NavLink to="/Product" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>สินค้า</NavLink>
                                 <NavLink to="/Contact" id="nav-Header" activeStyle={active} style={{fontSize: "medium" , color: "#000000"}}>ติดต่อเรา</NavLink>
                             </Col>
-                            <Col xs={6} xl={6} id="col-Headder-center3">
+                            <Col xs={7} xl={7} id="col-Headder-center3">
                                 <div style={{fontSize: "medium", color: "#000000", paddingTop:"1%"}}><PhoneOutlined rotate={90} style={{display:"inline-flex", color: "#000000", marginRight:"2%", paddingTop:"0%"}}/>Call us : 090-543-6000</div>
                             </Col>
                         </Row>
