@@ -131,7 +131,7 @@ export default class MemberPoint extends Component {
     render() {
         return (
             <Container>
-                <Row id="Header-Point">ยอดขายสะสม</Row>
+                <Row id="Header-Point">ยอดขายรวม</Row>
                 <Form>
                     <Row id="MemberPointCss">
                         <Col xs={2} md={4} xl={2}></Col>

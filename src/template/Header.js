@@ -30,7 +30,7 @@ const menu = (
 const menuuser = (
     <Menu>
         <Menu.Item key="0">
-            <NavLink to="/MemberPoint" id="sub-icon-profile" style={{fontSize: "16px"}}>Point</NavLink >
+            <NavLink to="/MemberPoint" id="sub-icon-profile" style={{fontSize: "16px"}}>ยอดขายรวม</NavLink >
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="1">

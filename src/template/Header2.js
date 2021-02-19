@@ -193,7 +193,7 @@ export default class Header2 extends Component {
                                                 <Row id="div-sidebar7">
                                                     <Collapse expandIcon={() => <UserOutlined />} >
                                                         <Panel showArrow={false} header="ตั้งค่า" key="1" style={{fontSize:"Medium", backgroundColor: "#ffffff"}}>
-                                                            <div id="cat-content"><NavLink to="/MemberPoint" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> Point</NavLink></div>
+                                                            <div id="cat-content"><NavLink to="/MemberPoint" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> ยอดขายรวม</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Profile" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> แก้ไขโปรไฟล์</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Changepass" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> เปลี่ยนรหัสผ่าน</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Logout" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> ออกจากระบบ</NavLink></div>
