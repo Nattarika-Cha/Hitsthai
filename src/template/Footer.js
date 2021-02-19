@@ -5,8 +5,9 @@ import { Row, Col, } from 'antd';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import logofacebook from "../img/facebook.svg";
+import { config } from '../config/config';
 
-var ip = "http://localhost:5000";
+var ip = config.ipServer;
 
 export default class Footer extends Component {
     constructor(props) {

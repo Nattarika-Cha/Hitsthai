@@ -7,11 +7,12 @@ import '../css/Profile.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import Cookies from 'universal-cookie';
+import { config } from '../config/config';
 
 const cookies = new Cookies();
 
-var ip = "http://localhost:5000";
-var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
+var ip_img_profile = config.ipImgProfile;
 
 const normFile = e => {
     if (Array.isArray(e)) {
@@ -134,11 +135,15 @@ export default class Login extends Component {
         const profile = await axios(config);
         const data_profile = profile.data;
         if (data_profile.statusCode === 200) {
+            const user = this.state.user;
+            user.name = values.name;
+            cookies.set('user', JSON.stringify(user), { path: '/' });
             swal("Success!", data_profile.message, "success").then((value) => {
                 this.setState({
                     flagEdit: !this.state.flagEdit,
                     statusSend: false
                 })
+                window.location.replace('/Profile', false);  
             });
         } else {
             swal("Error!", data_profile.message, "error").then((value) => {

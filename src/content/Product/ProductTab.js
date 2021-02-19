@@ -10,12 +10,12 @@ import { NavLink } from 'react-router-dom';
 import swal from 'sweetalert';
 import grid from '../../img/mode_grid.svg';
 import list from '../../img/mode_list.svg';
+import { config } from '../../config/config';
 
 const cookies = new Cookies();
 const { Option } = Select;
 
-var ip = "http://localhost:5000";
-// var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
 
 export default class ProductTab extends Component {
     constructor(props) {

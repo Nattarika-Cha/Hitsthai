@@ -5,7 +5,9 @@ import '../css/Contact.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import map from'../img/map.png';
-var ip = "http://localhost:5000";
+import { config } from '../config/config';
+
+var ip = config.ipServer;
 
 const { Option } = Select;
 export default class Contact extends Component {

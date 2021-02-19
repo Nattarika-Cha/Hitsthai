@@ -9,9 +9,10 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 // import { useHistory } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import { config } from '../config/config';
 
-var ip = "http://localhost:5000";
-var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
+var ip_img_profile = config.ipImgProfile;
 // var img_profile = "";
 const cookies = new Cookies();
 
@@ -30,7 +31,7 @@ const menu = (
 const menuuser = (
     <Menu>
         <Menu.Item key="0">
-            <NavLink to="/MemberPoint" id="sub-icon-profile" style={{fontSize: "16px"}}>ยอดขายรวม</NavLink >
+            <NavLink to="/MemberPoint" id="sub-icon-profile" style={{fontSize: "16px"}}>ยอดเงินสะสม</NavLink >
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="1">

@@ -6,11 +6,11 @@ import axios from 'axios';
 // import swal from 'sweetalert';
 import Cookies from 'universal-cookie';
 import ProductTab from './ProductTab';
+import { config } from '../../config/config';
 
 const cookies = new Cookies();
 
-var ip = "http://localhost:5000";
-// var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
 
 const { TabPane } = Tabs;
 

@@ -13,6 +13,8 @@ import Sidebar from "react-sidebar";
 import disableScroll from 'disable-scroll';
 import logo from '../img/logo3.svg';
 
+import { config } from '../config/config';
+
 const { Panel } = Collapse;
 
 const { SubMenu } = Menu;
@@ -38,8 +40,8 @@ const { SubMenu } = Menu;
 const active = { color: "rgb(255 255 255)", backgroundColor: "#DA213D", borderRadius: "10mm", marginTop: "0.7%", marginBottom: "0.7%" };
 const cookies = new Cookies();
 
-var ip = "http://localhost:5000";
-var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
+var ip_img_profile = config.ipImgProfile;
 var widthSideber = "";
 var heightSideber = "";
 export default class Header2 extends Component {
@@ -193,7 +195,7 @@ export default class Header2 extends Component {
                                                 <Row id="div-sidebar7">
                                                     <Collapse expandIcon={() => <UserOutlined />} >
                                                         <Panel showArrow={false} header="ตั้งค่า" key="1" style={{fontSize:"Medium", backgroundColor: "#ffffff"}}>
-                                                            <div id="cat-content"><NavLink to="/MemberPoint" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> ยอดขายรวม</NavLink></div>
+                                                            <div id="cat-content"><NavLink to="/MemberPoint" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> ยอดเงินสะสม</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Profile" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> แก้ไขโปรไฟล์</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Changepass" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> เปลี่ยนรหัสผ่าน</NavLink></div>
                                                             <div id="cat-content"><NavLink to="/Logout" id="sub-cat" onClick={() => this.onSetSidebarOpen(false)}> <CaretRightOutlined style={{ paddingRight: "1%" }} /> ออกจากระบบ</NavLink></div>

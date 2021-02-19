@@ -14,11 +14,12 @@ import grid from '../img/mode_grid.svg';
 import list from '../img/mode_list.svg';
 import swal from 'sweetalert';
 
+import { config } from '../config/config';
+
 const cookies = new Cookies();
 const { Option } = Select;
 
-var ip = "http://localhost:5000";
-// var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
 
 export default class ProductTab extends Component {
     constructor(props) {
@@ -270,8 +271,11 @@ export default class ProductTab extends Component {
 
     async onSearchFild(value) {
         if (value !== "") {
-            var url_wordsearch = ip + "/Product/find/wordsearch/" + value;
-            const wordsearch = await (await axios.get(url_wordsearch)).data;
+            const dataSearch = {
+                search : value
+            }
+            var url_wordsearch = ip + "/Product/find/wordsearch/";
+            const wordsearch = await (await axios.post(url_wordsearch, dataSearch)).data;
             this.setState({
                 options: wordsearch
             });

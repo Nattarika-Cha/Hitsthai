@@ -12,11 +12,11 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import ReactPlayer from 'react-player'
 import swal from 'sweetalert';
+import { config } from '../config/config';
 
 const cookies = new Cookies();
 
-var ip = "http://localhost:5000";
-// var ip_img_profile = "http://128.199.198.10/API/profile/";
+var ip = config.ipServer;
 
 export default class Home extends Component {
     constructor(props) {
@@ -91,7 +91,7 @@ export default class Home extends Component {
             });
         }
 
-        await (await axios.put(url_statisticsuser, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
+        await (await axios.put(url_statisticsuser, {}, { headers: { "token": this.state.token, "key": this.state.user?.username } })).data;
 
         var url_img_top = ip + "/ImgSetting/find/home/top";
         const img_top = await (await axios.get(url_img_top)).data;

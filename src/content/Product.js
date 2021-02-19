@@ -9,10 +9,11 @@ import { NavLink } from 'react-router-dom';
 // import P1 from '../img/pd1.svg';
 // import P2 from '../img/pd2.svg';
 // import P3 from '../img/pd3.svg';
+import { config } from '../config/config';
 
 const cookies = new Cookies();
 
-var ip = "http://localhost:5000";
+var ip = config.ipServer;
 export default class Product extends Component {
     constructor(props) {
         super(props);

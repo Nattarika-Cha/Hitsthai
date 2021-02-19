@@ -5,9 +5,10 @@ import '../css/MemberPoint.css';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { config } from '../config/config';
 
 const cookies = new Cookies();
-var ip = "http://localhost:5000";
+var ip = config.ipServer;
 
 export default class MemberPoint extends Component {
     constructor(props) {
